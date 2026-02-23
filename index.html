@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crack Any Role — Study Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --mern: #00d4aa;
+    --cpp: #ff6b35;
+    --gold: #ffd700;
+    --text: #e8e8f0;
+    --muted: #6b6b8a;
+    --card: #13131f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 70%);
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%);
+    animation: pulse 6s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+  }
+
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    animation: fadeIn 0.8s ease 0.1s both;
+  }
+
+  .hero h1 span.g1 { color: var(--mern); }
+  .hero h1 span.g2 { color: var(--cpp); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-top: 1.5rem;
+    max-width: 500px;
+    line-height: 1.6;
+    animation: fadeIn 0.8s ease 0.2s both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    animation: fadeIn 0.8s ease 0.3s both;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .stat-num.mern-col { color: var(--mern); }
+  .stat-num.cpp-col { color: var(--cpp); }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* SECTION */
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 3rem;
+  }
+
+  /* COMPARISON CARDS */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  @media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
+
+  .compare-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .compare-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .compare-card.mern-card { border-top: 3px solid var(--mern); }
+  .compare-card.mern-card:hover { border-color: var(--mern); }
+  .compare-card.cpp-card { border-top: 3px solid var(--cpp); }
+  .compare-card.cpp-card:hover { border-color: var(--cpp); }
+
+  .compare-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 100px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .mern-card::before { background: linear-gradient(180deg, var(--mern), transparent); }
+  .cpp-card::before { background: linear-gradient(180deg, var(--cpp), transparent); }
+
+  .card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+    display: inline-block;
+  }
+
+  .mern-tag { background: rgba(0,212,170,0.12); color: var(--mern); }
+  .cpp-tag { background: rgba(255,107,53,0.12); color: var(--cpp); }
+
+  .card-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-pros {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card-pros li {
+    font-size: 0.85rem;
+    color: #b0b0c8;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .card-pros li::before {
+    content: '→';
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  .mern-card .card-pros li::before { color: var(--mern); }
+  .cpp-card .card-pros li::before { color: var(--cpp); }
+
+  .recommended-badge {
+    position: absolute;
+    top: 1.2rem; right: 1.2rem;
+    background: var(--gold);
+    color: #000;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100px;
+  }
+
+  /* VERDICT */
+  .verdict-box {
+    background: linear-gradient(135deg, rgba(0,212,170,0.05), rgba(255,107,53,0.05));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .verdict-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+  }
+
+  .verdict-text {
+    color: #b0b0c8;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 768px) { .verdict-grid { grid-template-columns: 1fr; } }
+
+  .verdict-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .verdict-item-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .mern-col { color: var(--mern); }
+  .cpp-col { color: var(--cpp); }
+
+  .verdict-item p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* WEEK TIMELINE */
+  .timeline-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .toggle-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .toggle-btn.active-mern {
+    background: rgba(0,212,170,0.1);
+    border-color: var(--mern);
+    color: var(--mern);
+  }
+
+  .toggle-btn.active-cpp {
+    background: rgba(255,107,53,0.1);
+    border-color: var(--cpp);
+    color: var(--cpp);
+  }
+
+  .weeks-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .week-group {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .week-group:hover { border-color: #2e2e4e; }
+
+  .week-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--card);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .week-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    min-width: 4rem;
+  }
+
+  .week-theme {
+    font-size: 0.9rem;
+    color: #b0b0c8;
+    flex: 1;
+  }
+
+  .week-days-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .week-chevron {
+    color: var(--muted);
+    transition: transform 0.2s ease;
+    font-size: 0.8rem;
+  }
+
+  .week-group.open .week-chevron { transform: rotate(180deg); }
+
+  .week-body {
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .week-group.open .week-body { display: block; }
+
+  .day-row {
+    display: grid;
+    grid-template-columns: 48px 120px 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+  }
+
+  .day-row:last-child { border-bottom: none; }
+  .day-row:hover { background: rgba(255,255,255,0.02); }
+
+  @media (max-width: 700px) {
+    .day-row { grid-template-columns: 48px 1fr; }
+    .day-mern, .day-cpp { grid-column: 2; border-right: none; }
+    .day-label { grid-column: 2; border-right: none; font-size: 0.6rem; }
+  }
+
+  .day-label {
+    padding: 1rem 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border-right: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+  }
+
+  .day-mern, .day-cpp {
+    padding: 1rem 1.5rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    border-right: 1px solid var(--border);
+  }
+
+  .day-cpp { border-right: none; }
+
+  .col-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.3rem;
+  }
+
+  .mern-label { color: var(--mern); }
+  .cpp-label { color: var(--cpp); }
+
+  .day-topic { color: #c8c8e0; }
+
+  /* PHASE TABS */
+  .phases {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .phase-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .phase-btn:hover, .phase-btn.active {
+    background: rgba(255,215,0,0.1);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar-wrap {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--border);
+    z-index: 1000;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--mern), var(--cpp));
+    transition: width 0.4s ease;
+  }
+
+  .progress-widget {
+    position: fixed;
+    top: 1.2rem; right: 1.5rem;
+    z-index: 1001;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .progress-pct {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--mern), var(--cpp));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .progress-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .reset-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .reset-btn:hover { border-color: #ff4444; color: #ff4444; }
+
+  /* CHECKBOXES */
+  .day-row {
+    position: relative;
+  }
+
+  .day-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .check-input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .check-input:hover {
+    border-color: var(--mern);
+  }
+
+  .check-input:checked {
+    background: var(--mern);
+    border-color: var(--mern);
+  }
+
+  .check-input:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .day-row.completed .day-label,
+  .day-row.completed .day-topic {
+    opacity: 0.4;
+    text-decoration: line-through;
+    text-decoration-color: var(--mern);
+  }
+
+  .day-row.completed {
+    background: rgba(0,212,170,0.03) !important;
+  }
+
+  /* WEEK PROGRESS MINI */
+  .week-progress-mini {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .mini-dots {
+    display: flex;
+    gap: 2px;
+  }
+
+  .mini-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.2s;
+  }
+
+  .mini-dot.done { background: var(--mern); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 2rem;
+  }
+
+  /* GLOW accent lines */
+  .accent-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mern), transparent);
+    margin: 0 auto 5rem;
+    max-width: 600px;
+    opacity: 0.3;
+  }
+
+  .accent-line.cpp-line {
+    background: linear-gradient(90deg, transparent, var(--cpp), transparent);
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+<div class="progress-widget">
+  <div>
+    <div class="progress-pct" id="progressPct">0%</div>
+    <div class="progress-label">SESSIONS<br>DONE</div>
+  </div>
+  <div>
+    <div class="progress-label" id="progressCount" style="font-size:0.75rem; color: var(--text)">0/70</div>
+    <div class="progress-label">TOTAL</div>
+  </div>
+  <button class="reset-btn" onclick="resetProgress()">RESET</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">10-WEEK STUDY CALENDAR — CRACK ANY ROLE</div>
+  <h1>
+    <span class="g1">MERN</span><br>
+    <span style="color: var(--text)">+ AI +</span><br>
+    <span class="g2">C++ DSA</span>
+  </h1>
+  <p class="hero-sub">Two battle-tested roadmaps to land your dream SDE role — from JS basics to system design, in 10 focused weeks.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num mern-col">70</div>
+      <div class="stat-label">DAILY EVENTS</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" style="color:var(--gold)">10</div>
+      <div class="stat-label">WEEKS</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num cpp-col">2</div>
+      <div class="stat-label">ROADMAPS</div>
+    </div>
+  </div>
+  <div class="scroll-hint">↓ SCROLL TO EXPLORE</div>
+</div>
+
+<div class="accent-line"></div>
+
+<!-- COMPARE -->
+<section>
+  <div class="section-label">// 01 — CHOOSE YOUR PATH</div>
+  <div class="section-title">WHICH ROADMAP?</div>
+
+  <div class="compare-grid">
+
+    <div class="compare-card mern-card">
+      <span class="card-tag mern-tag">ROADMAP A</span>
+      <div class="card-name">MERN + AI</div>
+      <p class="card-desc">Pure full-stack focus. JavaScript, React, Node, MongoDB, with AI (OpenAI API) integrated in Week 4+. LeetCode DSA runs alongside.</p>
+      <ul class="card-pros">
+        <li>Best for startup / full-stack / frontend roles</li>
+        <li>Faster path to building portfolio projects</li>
+        <li>AI features make your projects stand out</li>
+        <li>Deploy real apps by Week 3 (Render + Vercel)</li>
+        <li>NeetCode-style LeetCode progression</li>
+      </ul>
+    </div>
+
+    <div class="compare-card cpp-card">
+      <span class="recommended-badge">★ RECOMMENDED</span>
+      <span class="card-tag cpp-tag">ROADMAP B</span>
+      <div class="card-name">MERN + AI + C++ DSA</div>
+      <p class="card-desc">Same MERN+AI track but with a parallel C++ DSA lane using Striver's TUF sheet — the gold standard for product company interviews.</p>
+      <ul class="card-pros">
+        <li>Best for FAANG / product companies / SDE-2 roles</li>
+        <li>C++ STL from Day 1 — industry interview standard</li>
+        <li>TUF (Striver's) sheet — battle-tested by 100k+ students</li>
+        <li>Covers arrays → graphs → DP → tries systematically</li>
+        <li>Same projects + stronger DSA = full package</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict-box">
+    <div class="verdict-title">⚡ THE VERDICT</div>
+    <p class="verdict-text">Both roadmaps share the same MERN + AI curriculum. The difference is in the DSA track. If you're targeting companies where the coding round is the real filter — pick Roadmap B. Roadmap A is still solid if you're focused purely on full-stack / startup ecosystem roles.</p>
+    <div class="verdict-grid">
+      <div class="verdict-item">
+        <div class="verdict-item-title mern-col">PICK ROADMAP A IF...</div>
+        <p>You're targeting startups, SaaS companies, frontend-heavy roles, or just want to build a strong portfolio ASAP.</p>
+      </div>
+      <div class="verdict-item">
+        <div class="verdict-item-title cpp-col">PICK ROADMAP B IF...</div>
+        <p>You're targeting Amazon, Google, Flipkart, Dream11, or any company where DSA rounds are elimination rounds. This is your weapon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="accent-line cpp-line"></div>
+
+<!-- WEEK TIMELINE -->
+<section>
+  <div class="section-label">// 02 — FULL CURRICULUM</div>
+  <div class="section-title">10-WEEK BREAKDOWN</div>
+
+  <div class="phases" id="phases">
+    <button class="phase-btn active" onclick="filterPhase('all', this)">ALL WEEKS</button>
+    <button class="phase-btn" onclick="filterPhase('1,2', this)">⚡ PHASE 1 — FOUNDATIONS (W1-2)</button>
+    <button class="phase-btn" onclick="filterPhase('3,4', this)">🛠️ PHASE 2 — BUILD + AI (W3-4)</button>
+    <button class="phase-btn" onclick="filterPhase('5,6', this)">🚀 PHASE 3 — ADVANCED (W5-6)</button>
+    <button class="phase-btn" onclick="filterPhase('7,8,9,10', this)">💼 PHASE 4 — INTERVIEW GRIND (W7-10)</button>
+  </div>
+
+  <div class="weeks-grid" id="weeksGrid"></div>
+</section>
+
+<footer>
+  CRACK ANY ROLE ROADMAP &nbsp;|&nbsp; 10 WEEKS &nbsp;|&nbsp; 70 SESSIONS &nbsp;|&nbsp; VALORANT 🎮 EVERY NIGHT
+</footer>
+
+<script>
+const weeks = [
+  {
+    week: 1,
+    theme: "JS Foundations + Node + Express + Arrays DSA",
+    days: [
+      { label: "W1 MON", mern: "JS Setup — Variables, Functions, Scope, ES6 basics", cpp: "C++ STL Intro — vectors, pairs, maps, sets, priority_queue" },
+      { label: "W1 TUE", mern: "Async JS — Promises, async/await, Array methods", cpp: "Arrays Easy — Largest Element, Second Largest, Remove Duplicates" },
+      { label: "W1 WED", mern: "Event Loop, Node.js — fs, path, modules, CLI tool", cpp: "Arrays Medium — Left Rotate by K, Move Zeroes" },
+      { label: "W1 THU", mern: "Express.js — routing, middleware, REST CRUD API", cpp: "Arrays Medium — Union of Two Sorted Arrays, Missing Number" },
+      { label: "W1 FRI", mern: "Express Middleware, Error Handling, pagination + search", cpp: "Arrays Hard — Two Sum, Best Time to Buy Stock" },
+      { label: "W1 SAT", mern: "MongoDB Atlas setup, Mongoose, full CRUD Notes API", cpp: "Arrays Hard block — 3Sum, Kadane's Algorithm, Merge Sorted Arrays" },
+      { label: "W1 SUN", mern: "JS deep dive — Prototypes, 'this' keyword, cheat sheet", cpp: "Binary Search — Floor/Ceil, First & Last Position, Binary Search on Answers" },
+    ]
+  },
+  {
+    week: 2,
+    theme: "MongoDB + JWT Auth + React Foundations + LinkedLists DSA",
+    days: [
+      { label: "W2 MON", mern: "MongoDB Advanced — Indexing, Aggregation Pipeline ($match/$group/$lookup)", cpp: "Binary Search Hard — Median of Two Sorted Arrays, Gas Stations" },
+      { label: "W2 TUE", mern: "JWT Auth — bcrypt, register/login, auth middleware, refresh tokens", cpp: "Strings — Reverse Words, Longest Common Prefix, string methods in C++" },
+      { label: "W2 WED", mern: "React Foundations — JSX, components, props, useState, Todo UI", cpp: "Linked Lists — Reverse LL, Middle, Detect Cycle (Floyd's)" },
+      { label: "W2 THU", mern: "React Hooks — useEffect, useRef, useContext, ThemeContext", cpp: "Linked Lists Medium — Merge Two Sorted, Remove Nth, Add Two Numbers" },
+      { label: "W2 FRI", mern: "React Router v6 — protected routes, React Hook Form", cpp: "Linked Lists Hard — Reverse K-Group, Flatten LL, LRU Cache" },
+      { label: "W2 SAT", mern: "Connect React → Express via Axios, CORS, Login flow, MongoDB display", cpp: "Stacks & Queues — Valid Parentheses, Next Greater Element, Min Stack" },
+      { label: "W2 SUN", mern: "Build end-to-end Notes App: React + Express + MongoDB + JWT. Deploy.", cpp: "Stacks Hard — Largest Rectangle in Histogram, Trapping Rain Water" },
+    ]
+  },
+  {
+    week: 3,
+    theme: "Project 1 Build (Job Board / Blog) + Trees DSA",
+    days: [
+      { label: "W3 MON", mern: "Project 1 Planning — schemas, API routes, wireframe on Excalidraw", cpp: "Trees Intro — Inorder/Preorder/Postorder (recursive + iterative), Height, Diameter" },
+      { label: "W3 TUE", mern: "Project 1 Backend Setup — folder structure, User model, auth routes", cpp: "Trees Medium — Level Order, Zigzag, Vertical Order Traversal, Max Width" },
+      { label: "W3 WED", mern: "Project 1 All CRUD APIs — search ($regex), pagination, Postman collection", cpp: "Trees Hard — Max Path Sum, Construct BT from Preorder+Inorder, LCA" },
+      { label: "W3 THU", mern: "Project 1 React Setup — Vite + Tailwind, router, reusable components, shadcn/ui", cpp: "BST — Search, Insert, Delete, Validate BST, Kth Smallest, LCA in BST" },
+      { label: "W3 FRI", mern: "Project 1 Auth + API Integration — Axios interceptors, Auth context, Protected Route", cpp: "Heaps — Kth Largest, Top K Frequent, K Closest Points, Merge K Sorted Lists" },
+      { label: "W3 SAT", mern: "Project 1 Core UI — main pages, connect to APIs, react-hot-toast, deploy live", cpp: "Heaps Hard — Find Median from Data Stream (two heaps), Task Scheduler" },
+      { label: "W3 SUN", mern: "Project 1 final fixes, README, push to GitHub, add to LinkedIn", cpp: "Greedy — Jump Game I & II, N Meetings, Minimum Platforms, Job Sequencing" },
+    ]
+  },
+  {
+    week: 4,
+    theme: "AI Features (OpenAI API) + Redux + Graphs DSA",
+    days: [
+      { label: "W4 MON", mern: "OpenAI API — Chat Completions, /api/chat Express endpoint", cpp: "Graphs — Adjacency list/matrix, BFS traversal, DFS traversal" },
+      { label: "W4 TUE", mern: "Prompt Engineering — zero-shot, few-shot, CoT, system prompts, coding chatbot", cpp: "Graphs — Number of Islands, Flood Fill, Rotten Oranges (multi-source BFS)" },
+      { label: "W4 WED", mern: "AI Chat UI in React — message bubbles, typing indicator, react-markdown", cpp: "Topological Sort — Kahn's BFS algo, Course Schedule I & II" },
+      { label: "W4 THU", mern: "Add AI feature to Project 1 (Job Description Generator or Post Summarizer)", cpp: "Shortest Path — Dijkstra's, Bellman-Ford, Network Delay Time" },
+      { label: "W4 FRI", mern: "Streaming (SSE), rate limiting (express-rate-limit), input validation", cpp: "MST + Disjoint Set — Kruskal's, Prim's, Union-Find (rank + path compression)" },
+      { label: "W4 SAT", mern: "Redux Toolkit — createSlice, configureStore, RTK Query, refactor auth state", cpp: "Graphs Hard — Alien Dictionary, Kosaraju's SCC, Bridges, Articulation Points" },
+      { label: "W4 SUN", mern: "Plan Project 2 (AI Resume Builder / Interview Prep / Cover Letter / Smart Notes)", cpp: "Dynamic Programming Intro — Climbing Stairs, Frog Jump, House Robber, DP on Grids" },
+    ]
+  },
+  {
+    week: 5,
+    theme: "Project 2 (AI-Powered App) + DP DSA",
+    days: [
+      { label: "W5 MON", mern: "Project 2 Backend — Express, Mongoose, all models, auth + CRUD routes", cpp: "DP Subsequences — Subset Sum, Partition Equal Subset, 0/1 Knapsack" },
+      { label: "W5 TUE", mern: "Project 2 AI Core — main AI endpoint, conversation history in MongoDB, streaming", cpp: "DP Strings — LCS, Edit Distance, Longest Common Substring, Distinct Subsequences" },
+      { label: "W5 WED", mern: "Project 2 React Frontend — Vite, all pages, connect to backend", cpp: "DP on Stocks — Best Time to Buy/Sell (multiple transactions, cooldown, fee)" },
+      { label: "W5 THU", mern: "Project 2 Auth + Connect — Axios interceptors, error handling, loading states", cpp: "DP LIS — Longest Increasing Subsequence (O(n log n)), Russian Doll Envelopes" },
+      { label: "W5 FRI", mern: "Project 2 Polish — mobile responsive, empty states, react-hot-toast, deploy", cpp: "DP Partition — Matrix Chain Multiplication, Burst Balloons, Palindrome Partitioning" },
+      { label: "W5 SAT", mern: "System Design: DB Design — SQL vs NoSQL, Normalization, DB Indexing deep dive", cpp: "DP Hard practice block + System Design: Vertical vs Horizontal Scaling, Sharding" },
+      { label: "W5 SUN", mern: "TypeScript intro — types, interfaces, generics, convert Notes App to TS", cpp: "Tries + Segment Trees — Trie insert/search, prefix problems, range queries" },
+    ]
+  },
+  {
+    week: 6,
+    theme: "Advanced Backend + System Design Case Studies",
+    days: [
+      { label: "W6 MON", mern: "Node.js Security + Performance — Helmet, rate limiting, compression, N+1 problem", cpp: "Recursion deep dive — subsets, permutations, all paths" },
+      { label: "W6 TUE", mern: "Testing — Jest, Supertest, unit tests for controllers", cpp: "Backtracking Hard — N-Queens, Sudoku Solver, Word Search" },
+      { label: "W6 WED", mern: "Docker Basics — Dockerfile, docker-compose for MERN stack", cpp: "Two Pointers advanced problems" },
+      { label: "W6 THU", mern: "CI/CD with GitHub Actions — auto-deploy to Render on push", cpp: "Sliding Window advanced — hard problems" },
+      { label: "W6 FRI", mern: "WebSockets — Socket.io, real-time chat feature", cpp: "Monotonic Stack — hard problems" },
+      { label: "W6 SAT", mern: "System Design: URL Shortener + Pastebin (design both end-to-end)", cpp: "System Design continued — consistent hashing, message queues" },
+      { label: "W6 SUN", mern: "System Design: Twitter/X Feed + NestJS intro (controllers, services, modules)", cpp: "NestJS + System Design continued" },
+    ]
+  },
+  {
+    week: 7,
+    theme: "Resume, Applying, Technical Interview Prep",
+    days: [
+      { label: "W7 MON", mern: "Resume crafting — ATS-friendly format, quantify impact, projects section", cpp: "DSA Hard — mixed set, timed 45 min per problem" },
+      { label: "W7 TUE", mern: "LinkedIn + GitHub polish — profile photo, headline, pinned repos, READMEs", cpp: "DSA Hard — mixed set continued" },
+      { label: "W7 WED", mern: "Start applying — 20+ applications, cold outreach on LinkedIn", cpp: "Interview simulation — mock coding round, timed" },
+      { label: "W7 THU", mern: "Technical Interview: JS Deep — closures, event loop, this, promises, event delegation", cpp: "C++ Interview Qs — memory management, pointers, STL internals" },
+      { label: "W7 FRI", mern: "Technical Interview: React + Node — hooks under the hood, reconciliation, cluster", cpp: "DSA Hard — graphs + DP mixed" },
+      { label: "W7 SAT", mern: "System Design: Netflix (CDN, video streaming, microservices) + Mock Interview", cpp: "Mock Interview: full loop — DSA + System Design + behavioral" },
+      { label: "W7 SUN", mern: "System Design: WhatsApp (WebSockets, message queues, end-to-end encryption)", cpp: "DSA Marathon — 4 hard problems timed" },
+    ]
+  },
+  {
+    week: 8,
+    theme: "Interview Simulation Week — Full Mock Loops",
+    days: [
+      { label: "W8 MON", mern: "Interview Prep: MongoDB + REST APIs — deep revision, common interview Qs", cpp: "DSA Hard — graphs week" },
+      { label: "W8 TUE", mern: "System Design Practice: Rate Limiter (token bucket, sliding window counter)", cpp: "DSA Hard — DP week" },
+      { label: "W8 WED", mern: "Behavioral Interview Prep — STAR method, 10 stories (leadership, failure, conflict)", cpp: "DSA: Timed Mock — 3 problems, 90 minutes" },
+      { label: "W8 THU", mern: "Project Deep Dive Prep — explain architecture, trade-offs, what you'd do differently", cpp: "DSA Hard — mixed" },
+      { label: "W8 FRI", mern: "Full Mock Technical Interview — coding + system design + behavioral (3 hrs)", cpp: "DSA Hard — final push" },
+      { label: "W8 SAT", mern: "System Design: Uber (geolocation, matching algorithm, surge pricing) + Mass Apply", cpp: "Mass Apply + System Design review" },
+      { label: "W8 SUN", mern: "LangChain + RAG basics — vector DBs, embeddings, RAG pipeline", cpp: "DSA Contest — participate in Codeforces/LeetCode weekly" },
+    ]
+  },
+  {
+    week: 9,
+    theme: "Advanced Topics + Active Job Search",
+    days: [
+      { label: "W9 MON", mern: "TypeScript Advanced — generics, utility types, decorators, TS in React", cpp: "Graph Algorithms Hard — advanced flow, matching" },
+      { label: "W9 TUE", mern: "Apply + Follow Up — track applications, follow up with recruiters, referrals", cpp: "DP Hard — advanced problems" },
+      { label: "W9 WED", mern: "Salary Negotiation Prep — market rates, counter-offer strategies, total comp", cpp: "DSA Hard Mixed" },
+      { label: "W9 THU", mern: "Node.js Internals for Interviews — libuv, cluster, worker threads, streams deep", cpp: "DSA Hard — final hard problems" },
+      { label: "W9 FRI", mern: "React Performance + Web Vitals — memo, useMemo, useCallback, lazy, Suspense", cpp: "DSA Final Hard set" },
+      { label: "W9 SAT", mern: "System Design: Google Drive (chunked upload, file sharing, sync) + Full Mock", cpp: "Full Mock Interview Loop" },
+      { label: "W9 SUN", mern: "System Design: Search Autocomplete (trie, ranking, caching) + DSA Marathon", cpp: "DSA Marathon — 5 hard problems" },
+    ]
+  },
+  {
+    week: 10,
+    theme: "Final Review + Mass Apply + Ongoing Plan",
+    days: [
+      { label: "W10 MON", mern: "Final Tech Review: Backend — Express, MongoDB, JWT, Redis, Docker", cpp: "DSA Hard — final weak spots" },
+      { label: "W10 TUE", mern: "Final Tech Review: Frontend + C++ — React patterns, TS, performance", cpp: "DSA final round" },
+      { label: "W10 WED", mern: "System Design Final Review — all 8 case studies, common patterns, trade-offs", cpp: "System Design final" },
+      { label: "W10 THU", mern: "DSA Weak Spot Final Push — revisit problems you got wrong", cpp: "C++ final hard set" },
+      { label: "W10 FRI", mern: "Final Full Mock Interview — 3-hour end-to-end simulation", cpp: "Final Mock" },
+      { label: "W10 SAT", mern: "Mass Apply — 50+ applications, LinkedIn Easy Apply blitz, portfolio final check", cpp: "Portfolio + apply" },
+      { label: "W10 SUN", mern: "Reflect — what worked, what didn't. Create your ongoing plan beyond 10 weeks.", cpp: "Plan the next chapter 🚀" },
+    ]
+  }
+];
+
+const STORAGE_KEY = 'roadmap_progress_v1';
+const TOTAL = weeks.reduce((acc, w) => acc + w.days.length, 0);
+
+const phaseMap = {
+  'all': [1,2,3,4,5,6,7,8,9,10],
+  '1,2': [1,2],
+  '3,4': [3,4],
+  '5,6': [5,6],
+  '7,8,9,10': [7,8,9,10]
+};
+
+function getProgress() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  } catch { return {}; }
+}
+
+function saveProgress(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function getDayKey(weekNum, dayIdx) {
+  return `w${weekNum}_d${dayIdx}`;
+}
+
+function updateProgressUI() {
+  const data = getProgress();
+  const done = Object.values(data).filter(Boolean).length;
+  const pct = Math.round((done / TOTAL) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressCount').textContent = done + '/' + TOTAL;
+}
+
+function toggleDay(weekNum, dayIdx, checked) {
+  const data = getProgress();
+  const key = getDayKey(weekNum, dayIdx);
+  data[key] = checked;
+  saveProgress(data);
+  updateProgressUI();
+
+  // update row style
+  const row = document.getElementById('row-' + key);
+  if (row) row.classList.toggle('completed', checked);
+
+  // update week mini dots
+  renderWeekDots(weekNum);
+}
+
+function renderWeekDots(weekNum) {
+  const data = getProgress();
+  const w = weeks.find(x => x.week === weekNum);
+  if (!w) return;
+  const dotsEl = document.getElementById('dots-w' + weekNum);
+  if (!dotsEl) return;
+  dotsEl.innerHTML = w.days.map((_, i) => {
+    const key = getDayKey(weekNum, i);
+    return `<div class="mini-dot ${data[key] ? 'done' : ''}"></div>`;
+  }).join('');
+  const doneCount = w.days.filter((_, i) => data[getDayKey(weekNum, i)]).length;
+  const countEl = document.getElementById('count-w' + weekNum);
+  if (countEl) countEl.textContent = doneCount + '/' + w.days.length;
+}
+
+function resetProgress() {
+  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  updateProgressUI();
+  // uncheck all checkboxes and remove completed class
+  document.querySelectorAll('.check-input').forEach(cb => cb.checked = false);
+  document.querySelectorAll('.day-row.completed').forEach(r => r.classList.remove('completed'));
+  document.querySelectorAll('.mini-dot').forEach(d => d.classList.remove('done'));
+  document.querySelectorAll('[id^="count-w"]').forEach(el => {
+    const weekNum = parseInt(el.id.replace('count-w',''));
+    const w = weeks.find(x => x.week === weekNum);
+    if (w) el.textContent = '0/' + w.days.length;
+  });
+}
+
+function renderWeeks(weekNums) {
+  const grid = document.getElementById('weeksGrid');
+  grid.innerHTML = '';
+  const data = getProgress();
+
+  weeks.filter(w => weekNums.includes(w.week)).forEach(w => {
+    const doneCount = w.days.filter((_, i) => data[getDayKey(w.week, i)]).length;
+    const phaseColors = { 1:'#00d4aa', 2:'#00d4aa', 3:'#ff6b35', 4:'#ff6b35', 5:'#a855f7', 6:'#a855f7', 7:'#ffd700', 8:'#ffd700', 9:'#ffd700', 10:'#ffd700' };
+    const col = phaseColors[w.week] || '#fff';
+
+    const group = document.createElement('div');
+    group.className = 'week-group';
+    group.innerHTML = `
+      <div class="week-header" onclick="toggleWeek(this.parentElement)">
+        <span class="week-num" style="color:${col}">W${w.week}</span>
+        <span class="week-theme">${w.theme}</span>
+        <div class="week-progress-mini">
+          <div class="mini-dots" id="dots-w${w.week}">
+            ${w.days.map((_, i) => `<div class="mini-dot ${data[getDayKey(w.week, i)] ? 'done' : ''}"></div>`).join('')}
+          </div>
+          <span id="count-w${w.week}">${doneCount}/${w.days.length}</span>
+        </div>
+        <span class="week-chevron" style="margin-left:0.5rem">▼</span>
+      </div>
+      <div class="week-body">
+        <div class="day-row" style="background: rgba(255,255,255,0.02)">
+          <div style="border-right:1px solid var(--border)"></div>
+          <div class="day-label" style="color:var(--muted);font-size:0.6rem;letter-spacing:0.15em">SESSION</div>
+          <div class="day-mern"><span class="col-header mern-label">MERN + AI TRACK</span></div>
+          <div class="day-cpp"><span class="col-header cpp-label">C++ DSA (TUF) TRACK</span></div>
+        </div>
+        ${w.days.map((d, i) => {
+          const key = getDayKey(w.week, i);
+          const checked = data[key] ? 'checked' : '';
+          return `
+          <div class="day-row ${data[key] ? 'completed' : ''}" id="row-${key}">
+            <div class="day-check">
+              <input type="checkbox" class="check-input" ${checked}
+                onchange="toggleDay(${w.week}, ${i}, this.checked)" title="Mark as done">
+            </div>
+            <div class="day-label">${d.label}</div>
+            <div class="day-mern"><span class="day-topic">${d.mern}</span></div>
+            <div class="day-cpp"><span class="day-topic">${d.cpp}</span></div>
+          </div>`;
+        }).join('')}
+      </div>
+    `;
+    grid.appendChild(group);
+  });
+
+  updateProgressUI();
+}
+
+function toggleWeek(el) {
+  el.classList.toggle('open');
+}
+
+function filterPhase(key, btn) {
+  document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderWeeks(phaseMap[key]);
+}
+
+renderWeeks([1,2,3,4,5,6,7,8,9,10]);
+</script>
+</body>
+</html>
