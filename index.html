@@ -27,7 +27,6 @@
     overflow-x: hidden;
   }
 
-  /* NOISE OVERLAY */
   body::before {
     content: '';
     position: fixed;
@@ -38,7 +37,6 @@
     opacity: 0.4;
   }
 
-  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -118,9 +116,7 @@
     animation: fadeIn 0.8s ease 0.3s both;
   }
 
-  .stat {
-    text-align: center;
-  }
+  .stat { text-align: center; }
 
   .stat-num {
     font-family: 'Bebas Neue', sans-serif;
@@ -156,7 +152,6 @@
     50% { transform: translateX(-50%) translateY(-8px); }
   }
 
-  /* SECTION */
   section {
     max-width: 1200px;
     margin: 0 auto;
@@ -179,7 +174,6 @@
     margin-bottom: 3rem;
   }
 
-  /* COMPARISON CARDS */
   .compare-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -199,10 +193,7 @@
     transition: transform 0.3s ease, border-color 0.3s ease;
   }
 
-  .compare-card:hover {
-    transform: translateY(-4px);
-  }
-
+  .compare-card:hover { transform: translateY(-4px); }
   .compare-card.mern-card { border-top: 3px solid var(--mern); }
   .compare-card.mern-card:hover { border-color: var(--mern); }
   .compare-card.cpp-card { border-top: 3px solid var(--cpp); }
@@ -284,7 +275,6 @@
     border-radius: 100px;
   }
 
-  /* VERDICT */
   .verdict-box {
     background: linear-gradient(135deg, rgba(0,212,170,0.05), rgba(255,107,53,0.05));
     border: 1px solid var(--border);
@@ -338,7 +328,6 @@
     line-height: 1.5;
   }
 
-  /* WEEK TIMELINE */
   .timeline-header {
     display: flex;
     align-items: center;
@@ -478,7 +467,29 @@
 
   .day-topic { color: #c8c8e0; }
 
-  /* PHASE TABS */
+  .task-bullet {
+    color: #c0c0da;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    padding: 0.1rem 0;
+    padding-left: 0.9rem;
+    position: relative;
+  }
+  .task-bullet::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--mern);
+    font-weight: 700;
+  }
+  .task-bullet:first-child { padding-top: 0; }
+
+  .day-row.completed .task-bullet {
+    opacity: 0.35;
+    text-decoration: line-through;
+    text-decoration-color: var(--mern);
+  }
+
   .phases {
     display: flex;
     gap: 0.5rem;
@@ -505,7 +516,6 @@
     color: var(--gold);
   }
 
-  /* PROGRESS BAR */
   .progress-bar-wrap {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -564,10 +574,7 @@
   }
   .reset-btn:hover { border-color: #ff4444; color: #ff4444; }
 
-  /* CHECKBOXES */
-  .day-row {
-    position: relative;
-  }
+  .day-row { position: relative; }
 
   .day-check {
     display: flex;
@@ -589,9 +596,7 @@
     flex-shrink: 0;
   }
 
-  .check-input:hover {
-    border-color: var(--mern);
-  }
+  .check-input:hover { border-color: var(--mern); }
 
   .check-input:checked {
     background: var(--mern);
@@ -610,17 +615,10 @@
   }
 
   .day-row.completed .day-label,
-  .day-row.completed .day-topic {
-    opacity: 0.4;
-    text-decoration: line-through;
-    text-decoration-color: var(--mern);
-  }
+  .day-row.completed .day-topic { opacity: 0.4; text-decoration: line-through; text-decoration-color: var(--mern); }
 
-  .day-row.completed {
-    background: rgba(0,212,170,0.03) !important;
-  }
+  .day-row.completed { background: rgba(0,212,170,0.03) !important; }
 
-  /* WEEK PROGRESS MINI */
   .week-progress-mini {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.6rem;
@@ -631,10 +629,7 @@
     gap: 0.4rem;
   }
 
-  .mini-dots {
-    display: flex;
-    gap: 2px;
-  }
+  .mini-dots { display: flex; gap: 2px; }
 
   .mini-dot {
     width: 6px; height: 6px;
@@ -645,7 +640,380 @@
 
   .mini-dot.done { background: var(--mern); }
 
-  /* FOOTER */
+  .day-row-wrap { border-bottom: 1px solid var(--border); }
+  .day-row-wrap:last-child { border-bottom: none; }
+  .day-row { border-bottom: none; }
+
+  .resources-row {
+    display: none;
+    padding: 0.75rem 1.5rem 0.75rem calc(48px + 120px + 1.5rem);
+    background: rgba(255,215,0,0.03);
+    border-top: 1px dashed rgba(255,215,0,0.15);
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .resources-row.open { display: flex; }
+
+  .res-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-right: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .res-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: rgba(255,215,0,0.07);
+    border: 1px solid rgba(255,215,0,0.2);
+    color: #d4b800;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: default;
+  }
+
+  .res-toggle {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .res-toggle:hover { color: var(--gold); }
+
+  .bonus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .bonus-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .bonus-card:hover { transform: translateY(-4px); }
+
+  .bonus-card-header {
+    padding: 1.5rem 1.5rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .bonus-icon { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+
+  .bonus-meta { flex: 1; }
+
+  .bonus-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.4rem;
+  }
+
+  .bonus-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  .bonus-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0 1.5rem 1rem;
+  }
+
+  .bonus-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+    color: var(--muted);
+  }
+
+  .bonus-preview {
+    padding: 0 1.5rem 1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .bonus-body { display: none; padding: 1.5rem; }
+  .bonus-body.open { display: block; }
+
+  .bonus-section { margin-bottom: 1.5rem; }
+  .bonus-section:last-child { margin-bottom: 0; }
+
+  .bonus-section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.6rem;
+  }
+
+  .bonus-text {
+    font-size: 0.85rem;
+    color: #b8b8d0;
+    line-height: 1.75;
+  }
+
+  .bonus-callout {
+    background: rgba(255,215,0,0.06);
+    border-left: 3px solid var(--gold);
+    padding: 0.8rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0;
+    font-size: 0.82rem;
+    color: #c8b800;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .bonus-step {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    align-items: flex-start;
+  }
+
+  .bonus-step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 1.5rem;
+  }
+
+  .bonus-step-text {
+    font-size: 0.83rem;
+    color: #b8b8d0;
+    line-height: 1.6;
+    padding-top: 0.1rem;
+  }
+
+  .bonus-toggle-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .bonus-toggle-btn:hover { color: var(--gold); }
+
+  .bonus-read-badge {
+    display: none;
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: rgba(0,212,170,0.15);
+    border: 1px solid var(--mern);
+    color: var(--mern);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+  }
+
+  .bonus-card.read-done { border-color: rgba(0,212,170,0.3); }
+  .bonus-card.read-done .bonus-read-badge { display: block; }
+  .bonus-card { position: relative; }
+
+  /* PROJECTS SECTION STYLES */
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+  }
+
+  .project-card:hover { transform: translateY(-3px); }
+
+  .project-card-inner {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: start;
+  }
+
+  @media (max-width: 700px) {
+    .project-card-inner { grid-template-columns: 50px 1fr auto; }
+  }
+
+  .project-num-col {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 0;
+    border-right: 1px solid var(--border);
+  }
+
+  .project-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .project-main { padding: 1.5rem 2rem; flex: 1; }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .project-level-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+  }
+
+  .project-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .project-stack {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+    color: #b0b0c8;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .project-why {
+    background: rgba(255,215,0,0.05);
+    border-left: 2px solid rgba(255,215,0,0.4);
+    padding: 0.6rem 1rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.82rem;
+    color: #c0aa00;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .project-features {
+    display: none;
+    padding: 1rem 2rem 1.5rem;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+
+  .project-features.open { display: block; }
+
+  .project-features-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.8rem;
+  }
+
+  .features-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .feature-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: #a0a0c0;
+    transition: all 0.2s ease;
+  }
+
+  .feature-chip:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+
+  .project-expand-col {
+    padding: 2rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .project-expand-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .project-expand-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .project-week-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .project-week-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+
   footer {
     border-top: 1px solid var(--border);
     text-align: center;
@@ -656,14 +1024,12 @@
     letter-spacing: 0.1em;
   }
 
-  /* DIVIDER */
   .divider {
     border: none;
     border-top: 1px solid var(--border);
     margin: 0 2rem;
   }
 
-  /* GLOW accent lines */
   .accent-line {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--mern), transparent);
@@ -726,7 +1092,6 @@
   <div class="section-title">WHICH ROADMAP?</div>
 
   <div class="compare-grid">
-
     <div class="compare-card mern-card">
       <span class="card-tag mern-tag">ROADMAP A</span>
       <div class="card-name">MERN + AI</div>
@@ -753,10 +1118,8 @@
         <li>Same projects + stronger DSA = full package</li>
       </ul>
     </div>
-
   </div>
 
-  <!-- VERDICT -->
   <div class="verdict-box">
     <div class="verdict-title">⚡ THE VERDICT</div>
     <p class="verdict-text">Both roadmaps share the same MERN + AI curriculum. The difference is in the DSA track. If you're targeting companies where the coding round is the real filter — pick Roadmap B. Roadmap A is still solid if you're focused purely on full-stack / startup ecosystem roles.</p>
@@ -791,146 +1154,35 @@
   <div class="weeks-grid" id="weeksGrid"></div>
 </section>
 
+<div class="accent-line"></div>
+
+<!-- BONUS SECTION -->
+<section id="bonus">
+  <div class="section-label">// 03 — BONUS READING</div>
+  <div class="section-title">HOW REAL<br>SYSTEMS WORK</div>
+  <p style="color:var(--muted); max-width:560px; margin-bottom:3rem; line-height:1.7; font-size:0.95rem;">Deep dives into real engineering decisions made by top companies. Read one a day — these stories will make your system design answers unforgettable.</p>
+
+  <div class="bonus-grid" id="bonusGrid"></div>
+</section>
+
+<div class="accent-line cpp-line"></div>
+
+<!-- PROJECTS SECTION -->
+<section id="projects">
+  <div class="section-label">// 04 — BUILD ORDER</div>
+  <div class="section-title">5 PORTFOLIO<br>PROJECTS</div>
+  <p style="color:var(--muted); max-width:560px; margin-bottom:3rem; line-height:1.7; font-size:0.95rem;">Build these in order. Each one introduces one new hard concept so your portfolio tells a story — not just the same CRUD app repeated five times.</p>
+
+  <div class="projects-grid" id="projectsGrid"></div>
+</section>
+
 <footer>
   CRACK ANY ROLE ROADMAP &nbsp;|&nbsp; 10 WEEKS &nbsp;|&nbsp; 70 SESSIONS &nbsp;|&nbsp; VALORANT 🎮 EVERY NIGHT
 </footer>
 
 <script>
-const weeks = [
-  {
-    week: 1,
-    theme: "JS Foundations + Node + Express + Arrays DSA",
-    days: [
-      { label: "W1 MON", mern: "JS Setup — Variables, Functions, Scope, ES6 basics", cpp: "C++ STL Intro — vectors, pairs, maps, sets, priority_queue" },
-      { label: "W1 TUE", mern: "Async JS — Promises, async/await, Array methods", cpp: "Arrays Easy — Largest Element, Second Largest, Remove Duplicates" },
-      { label: "W1 WED", mern: "Event Loop, Node.js — fs, path, modules, CLI tool", cpp: "Arrays Medium — Left Rotate by K, Move Zeroes" },
-      { label: "W1 THU", mern: "Express.js — routing, middleware, REST CRUD API", cpp: "Arrays Medium — Union of Two Sorted Arrays, Missing Number" },
-      { label: "W1 FRI", mern: "Express Middleware, Error Handling, pagination + search", cpp: "Arrays Hard — Two Sum, Best Time to Buy Stock" },
-      { label: "W1 SAT", mern: "MongoDB Atlas setup, Mongoose, full CRUD Notes API", cpp: "Arrays Hard block — 3Sum, Kadane's Algorithm, Merge Sorted Arrays" },
-      { label: "W1 SUN", mern: "JS deep dive — Prototypes, 'this' keyword, cheat sheet", cpp: "Binary Search — Floor/Ceil, First & Last Position, Binary Search on Answers" },
-    ]
-  },
-  {
-    week: 2,
-    theme: "MongoDB + JWT Auth + React Foundations + LinkedLists DSA",
-    days: [
-      { label: "W2 MON", mern: "MongoDB Advanced — Indexing, Aggregation Pipeline ($match/$group/$lookup)", cpp: "Binary Search Hard — Median of Two Sorted Arrays, Gas Stations" },
-      { label: "W2 TUE", mern: "JWT Auth — bcrypt, register/login, auth middleware, refresh tokens", cpp: "Strings — Reverse Words, Longest Common Prefix, string methods in C++" },
-      { label: "W2 WED", mern: "React Foundations — JSX, components, props, useState, Todo UI", cpp: "Linked Lists — Reverse LL, Middle, Detect Cycle (Floyd's)" },
-      { label: "W2 THU", mern: "React Hooks — useEffect, useRef, useContext, ThemeContext", cpp: "Linked Lists Medium — Merge Two Sorted, Remove Nth, Add Two Numbers" },
-      { label: "W2 FRI", mern: "React Router v6 — protected routes, React Hook Form", cpp: "Linked Lists Hard — Reverse K-Group, Flatten LL, LRU Cache" },
-      { label: "W2 SAT", mern: "Connect React → Express via Axios, CORS, Login flow, MongoDB display", cpp: "Stacks & Queues — Valid Parentheses, Next Greater Element, Min Stack" },
-      { label: "W2 SUN", mern: "Build end-to-end Notes App: React + Express + MongoDB + JWT. Deploy.", cpp: "Stacks Hard — Largest Rectangle in Histogram, Trapping Rain Water" },
-    ]
-  },
-  {
-    week: 3,
-    theme: "Project 1 Build (Job Board / Blog) + Trees DSA",
-    days: [
-      { label: "W3 MON", mern: "Project 1 Planning — schemas, API routes, wireframe on Excalidraw", cpp: "Trees Intro — Inorder/Preorder/Postorder (recursive + iterative), Height, Diameter" },
-      { label: "W3 TUE", mern: "Project 1 Backend Setup — folder structure, User model, auth routes", cpp: "Trees Medium — Level Order, Zigzag, Vertical Order Traversal, Max Width" },
-      { label: "W3 WED", mern: "Project 1 All CRUD APIs — search ($regex), pagination, Postman collection", cpp: "Trees Hard — Max Path Sum, Construct BT from Preorder+Inorder, LCA" },
-      { label: "W3 THU", mern: "Project 1 React Setup — Vite + Tailwind, router, reusable components, shadcn/ui", cpp: "BST — Search, Insert, Delete, Validate BST, Kth Smallest, LCA in BST" },
-      { label: "W3 FRI", mern: "Project 1 Auth + API Integration — Axios interceptors, Auth context, Protected Route", cpp: "Heaps — Kth Largest, Top K Frequent, K Closest Points, Merge K Sorted Lists" },
-      { label: "W3 SAT", mern: "Project 1 Core UI — main pages, connect to APIs, react-hot-toast, deploy live", cpp: "Heaps Hard — Find Median from Data Stream (two heaps), Task Scheduler" },
-      { label: "W3 SUN", mern: "Project 1 final fixes, README, push to GitHub, add to LinkedIn", cpp: "Greedy — Jump Game I & II, N Meetings, Minimum Platforms, Job Sequencing" },
-    ]
-  },
-  {
-    week: 4,
-    theme: "AI Features (OpenAI API) + Redux + Graphs DSA",
-    days: [
-      { label: "W4 MON", mern: "OpenAI API — Chat Completions, /api/chat Express endpoint", cpp: "Graphs — Adjacency list/matrix, BFS traversal, DFS traversal" },
-      { label: "W4 TUE", mern: "Prompt Engineering — zero-shot, few-shot, CoT, system prompts, coding chatbot", cpp: "Graphs — Number of Islands, Flood Fill, Rotten Oranges (multi-source BFS)" },
-      { label: "W4 WED", mern: "AI Chat UI in React — message bubbles, typing indicator, react-markdown", cpp: "Topological Sort — Kahn's BFS algo, Course Schedule I & II" },
-      { label: "W4 THU", mern: "Add AI feature to Project 1 (Job Description Generator or Post Summarizer)", cpp: "Shortest Path — Dijkstra's, Bellman-Ford, Network Delay Time" },
-      { label: "W4 FRI", mern: "Streaming (SSE), rate limiting (express-rate-limit), input validation", cpp: "MST + Disjoint Set — Kruskal's, Prim's, Union-Find (rank + path compression)" },
-      { label: "W4 SAT", mern: "Redux Toolkit — createSlice, configureStore, RTK Query, refactor auth state", cpp: "Graphs Hard — Alien Dictionary, Kosaraju's SCC, Bridges, Articulation Points" },
-      { label: "W4 SUN", mern: "Plan Project 2 (AI Resume Builder / Interview Prep / Cover Letter / Smart Notes)", cpp: "Dynamic Programming Intro — Climbing Stairs, Frog Jump, House Robber, DP on Grids" },
-    ]
-  },
-  {
-    week: 5,
-    theme: "Project 2 (AI-Powered App) + DP DSA",
-    days: [
-      { label: "W5 MON", mern: "Project 2 Backend — Express, Mongoose, all models, auth + CRUD routes", cpp: "DP Subsequences — Subset Sum, Partition Equal Subset, 0/1 Knapsack" },
-      { label: "W5 TUE", mern: "Project 2 AI Core — main AI endpoint, conversation history in MongoDB, streaming", cpp: "DP Strings — LCS, Edit Distance, Longest Common Substring, Distinct Subsequences" },
-      { label: "W5 WED", mern: "Project 2 React Frontend — Vite, all pages, connect to backend", cpp: "DP on Stocks — Best Time to Buy/Sell (multiple transactions, cooldown, fee)" },
-      { label: "W5 THU", mern: "Project 2 Auth + Connect — Axios interceptors, error handling, loading states", cpp: "DP LIS — Longest Increasing Subsequence (O(n log n)), Russian Doll Envelopes" },
-      { label: "W5 FRI", mern: "Project 2 Polish — mobile responsive, empty states, react-hot-toast, deploy", cpp: "DP Partition — Matrix Chain Multiplication, Burst Balloons, Palindrome Partitioning" },
-      { label: "W5 SAT", mern: "System Design: DB Design — SQL vs NoSQL, Normalization, DB Indexing deep dive", cpp: "DP Hard practice block + System Design: Vertical vs Horizontal Scaling, Sharding" },
-      { label: "W5 SUN", mern: "TypeScript intro — types, interfaces, generics, convert Notes App to TS", cpp: "Tries + Segment Trees — Trie insert/search, prefix problems, range queries" },
-    ]
-  },
-  {
-    week: 6,
-    theme: "Advanced Backend + System Design Case Studies",
-    days: [
-      { label: "W6 MON", mern: "Node.js Security + Performance — Helmet, rate limiting, compression, N+1 problem", cpp: "Recursion deep dive — subsets, permutations, all paths" },
-      { label: "W6 TUE", mern: "Testing — Jest, Supertest, unit tests for controllers", cpp: "Backtracking Hard — N-Queens, Sudoku Solver, Word Search" },
-      { label: "W6 WED", mern: "Docker Basics — Dockerfile, docker-compose for MERN stack", cpp: "Two Pointers advanced problems" },
-      { label: "W6 THU", mern: "CI/CD with GitHub Actions — auto-deploy to Render on push", cpp: "Sliding Window advanced — hard problems" },
-      { label: "W6 FRI", mern: "WebSockets — Socket.io, real-time chat feature", cpp: "Monotonic Stack — hard problems" },
-      { label: "W6 SAT", mern: "System Design: URL Shortener + Pastebin (design both end-to-end)", cpp: "System Design continued — consistent hashing, message queues" },
-      { label: "W6 SUN", mern: "System Design: Twitter/X Feed + NestJS intro (controllers, services, modules)", cpp: "NestJS + System Design continued" },
-    ]
-  },
-  {
-    week: 7,
-    theme: "Resume, Applying, Technical Interview Prep",
-    days: [
-      { label: "W7 MON", mern: "Resume crafting — ATS-friendly format, quantify impact, projects section", cpp: "DSA Hard — mixed set, timed 45 min per problem" },
-      { label: "W7 TUE", mern: "LinkedIn + GitHub polish — profile photo, headline, pinned repos, READMEs", cpp: "DSA Hard — mixed set continued" },
-      { label: "W7 WED", mern: "Start applying — 20+ applications, cold outreach on LinkedIn", cpp: "Interview simulation — mock coding round, timed" },
-      { label: "W7 THU", mern: "Technical Interview: JS Deep — closures, event loop, this, promises, event delegation", cpp: "C++ Interview Qs — memory management, pointers, STL internals" },
-      { label: "W7 FRI", mern: "Technical Interview: React + Node — hooks under the hood, reconciliation, cluster", cpp: "DSA Hard — graphs + DP mixed" },
-      { label: "W7 SAT", mern: "System Design: Netflix (CDN, video streaming, microservices) + Mock Interview", cpp: "Mock Interview: full loop — DSA + System Design + behavioral" },
-      { label: "W7 SUN", mern: "System Design: WhatsApp (WebSockets, message queues, end-to-end encryption)", cpp: "DSA Marathon — 4 hard problems timed" },
-    ]
-  },
-  {
-    week: 8,
-    theme: "Interview Simulation Week — Full Mock Loops",
-    days: [
-      { label: "W8 MON", mern: "Interview Prep: MongoDB + REST APIs — deep revision, common interview Qs", cpp: "DSA Hard — graphs week" },
-      { label: "W8 TUE", mern: "System Design Practice: Rate Limiter (token bucket, sliding window counter)", cpp: "DSA Hard — DP week" },
-      { label: "W8 WED", mern: "Behavioral Interview Prep — STAR method, 10 stories (leadership, failure, conflict)", cpp: "DSA: Timed Mock — 3 problems, 90 minutes" },
-      { label: "W8 THU", mern: "Project Deep Dive Prep — explain architecture, trade-offs, what you'd do differently", cpp: "DSA Hard — mixed" },
-      { label: "W8 FRI", mern: "Full Mock Technical Interview — coding + system design + behavioral (3 hrs)", cpp: "DSA Hard — final push" },
-      { label: "W8 SAT", mern: "System Design: Uber (geolocation, matching algorithm, surge pricing) + Mass Apply", cpp: "Mass Apply + System Design review" },
-      { label: "W8 SUN", mern: "LangChain + RAG basics — vector DBs, embeddings, RAG pipeline", cpp: "DSA Contest — participate in Codeforces/LeetCode weekly" },
-    ]
-  },
-  {
-    week: 9,
-    theme: "Advanced Topics + Active Job Search",
-    days: [
-      { label: "W9 MON", mern: "TypeScript Advanced — generics, utility types, decorators, TS in React", cpp: "Graph Algorithms Hard — advanced flow, matching" },
-      { label: "W9 TUE", mern: "Apply + Follow Up — track applications, follow up with recruiters, referrals", cpp: "DP Hard — advanced problems" },
-      { label: "W9 WED", mern: "Salary Negotiation Prep — market rates, counter-offer strategies, total comp", cpp: "DSA Hard Mixed" },
-      { label: "W9 THU", mern: "Node.js Internals for Interviews — libuv, cluster, worker threads, streams deep", cpp: "DSA Hard — final hard problems" },
-      { label: "W9 FRI", mern: "React Performance + Web Vitals — memo, useMemo, useCallback, lazy, Suspense", cpp: "DSA Final Hard set" },
-      { label: "W9 SAT", mern: "System Design: Google Drive (chunked upload, file sharing, sync) + Full Mock", cpp: "Full Mock Interview Loop" },
-      { label: "W9 SUN", mern: "System Design: Search Autocomplete (trie, ranking, caching) + DSA Marathon", cpp: "DSA Marathon — 5 hard problems" },
-    ]
-  },
-  {
-    week: 10,
-    theme: "Final Review + Mass Apply + Ongoing Plan",
-    days: [
-      { label: "W10 MON", mern: "Final Tech Review: Backend — Express, MongoDB, JWT, Redis, Docker", cpp: "DSA Hard — final weak spots" },
-      { label: "W10 TUE", mern: "Final Tech Review: Frontend + C++ — React patterns, TS, performance", cpp: "DSA final round" },
-      { label: "W10 WED", mern: "System Design Final Review — all 8 case studies, common patterns, trade-offs", cpp: "System Design final" },
-      { label: "W10 THU", mern: "DSA Weak Spot Final Push — revisit problems you got wrong", cpp: "C++ final hard set" },
-      { label: "W10 FRI", mern: "Final Full Mock Interview — 3-hour end-to-end simulation", cpp: "Final Mock" },
-      { label: "W10 SAT", mern: "Mass Apply — 50+ applications, LinkedIn Easy Apply blitz, portfolio final check", cpp: "Portfolio + apply" },
-      { label: "W10 SUN", mern: "Reflect — what worked, what didn't. Create your ongoing plan beyond 10 weeks.", cpp: "Plan the next chapter 🚀" },
-    ]
-  }
-];
-
 const STORAGE_KEY = 'roadmap_progress_v1';
-const TOTAL = weeks.reduce((acc, w) => acc + w.days.length, 0);
+const TOTAL = 70;
 
 const phaseMap = {
   'all': [1,2,3,4,5,6,7,8,9,10],
@@ -941,18 +1193,10 @@ const phaseMap = {
 };
 
 function getProgress() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-  } catch { return {}; }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
 }
-
-function saveProgress(data) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-
-function getDayKey(weekNum, dayIdx) {
-  return `w${weekNum}_d${dayIdx}`;
-}
+function saveProgress(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+function getDayKey(weekNum, dayIdx) { return `w${weekNum}_d${dayIdx}`; }
 
 function updateProgressUI() {
   const data = getProgress();
@@ -969,12 +1213,8 @@ function toggleDay(weekNum, dayIdx, checked) {
   data[key] = checked;
   saveProgress(data);
   updateProgressUI();
-
-  // update row style
   const row = document.getElementById('row-' + key);
   if (row) row.classList.toggle('completed', checked);
-
-  // update week mini dots
   renderWeekDots(weekNum);
 }
 
@@ -997,7 +1237,6 @@ function resetProgress() {
   if (!confirm('Reset all progress? This cannot be undone.')) return;
   localStorage.removeItem(STORAGE_KEY);
   updateProgressUI();
-  // uncheck all checkboxes and remove completed class
   document.querySelectorAll('.check-input').forEach(cb => cb.checked = false);
   document.querySelectorAll('.day-row.completed').forEach(r => r.classList.remove('completed'));
   document.querySelectorAll('.mini-dot').forEach(d => d.classList.remove('done'));
@@ -1008,14 +1247,22 @@ function resetProgress() {
   });
 }
 
+function formatTasks(val) {
+  if (!val) return '';
+  if (Array.isArray(val)) {
+    return val.map(t => `<div class="task-bullet">${t}</div>`).join('');
+  }
+  return `<span class="day-topic">${val}</span>`;
+}
+
 function renderWeeks(weekNums) {
   const grid = document.getElementById('weeksGrid');
   grid.innerHTML = '';
   const data = getProgress();
+  const phaseColors = { 1:'#00d4aa', 2:'#00d4aa', 3:'#ff6b35', 4:'#ff6b35', 5:'#a855f7', 6:'#a855f7', 7:'#ffd700', 8:'#ffd700', 9:'#ffd700', 10:'#ffd700' };
 
   weeks.filter(w => weekNums.includes(w.week)).forEach(w => {
     const doneCount = w.days.filter((_, i) => data[getDayKey(w.week, i)]).length;
-    const phaseColors = { 1:'#00d4aa', 2:'#00d4aa', 3:'#ff6b35', 4:'#ff6b35', 5:'#a855f7', 6:'#a855f7', 7:'#ffd700', 8:'#ffd700', 9:'#ffd700', 10:'#ffd700' };
     const col = phaseColors[w.week] || '#fff';
 
     const group = document.createElement('div');
@@ -1042,28 +1289,39 @@ function renderWeeks(weekNums) {
         ${w.days.map((d, i) => {
           const key = getDayKey(w.week, i);
           const checked = data[key] ? 'checked' : '';
+          const resId = 'res-' + key;
+          const resHtml = d.resources && d.resources.length
+            ? d.resources.map(r => `<span class="res-chip">${r}</span>`).join('') : '';
           return `
-          <div class="day-row ${data[key] ? 'completed' : ''}" id="row-${key}">
-            <div class="day-check">
-              <input type="checkbox" class="check-input" ${checked}
-                onchange="toggleDay(${w.week}, ${i}, this.checked)" title="Mark as done">
+          <div class="day-row-wrap">
+            <div class="day-row ${data[key] ? 'completed' : ''}" id="row-${key}">
+              <div class="day-check">
+                <input type="checkbox" class="check-input" ${checked}
+                  onchange="toggleDay(${w.week}, ${i}, this.checked)" title="Mark as done">
+              </div>
+              <div class="day-label">${d.label}</div>
+              <div class="day-mern">${formatTasks(d.mern)}</div>
+              <div class="day-cpp">
+                ${formatTasks(d.cpp)}
+                ${resHtml ? `<button class="res-toggle" onclick="toggleRes('${resId}')">📚 resources</button>` : ''}
+              </div>
             </div>
-            <div class="day-label">${d.label}</div>
-            <div class="day-mern"><span class="day-topic">${d.mern}</span></div>
-            <div class="day-cpp"><span class="day-topic">${d.cpp}</span></div>
+            ${resHtml ? `<div class="resources-row" id="${resId}"><span class="res-label">📚 RESOURCES</span>${resHtml}</div>` : ''}
           </div>`;
         }).join('')}
       </div>
     `;
     grid.appendChild(group);
   });
-
   updateProgressUI();
 }
 
-function toggleWeek(el) {
-  el.classList.toggle('open');
+function toggleRes(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
 }
+
+function toggleWeek(el) { el.classList.toggle('open'); }
 
 function filterPhase(key, btn) {
   document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
@@ -1071,7 +1329,310 @@ function filterPhase(key, btn) {
   renderWeeks(phaseMap[key]);
 }
 
+const weeks = [
+  {
+    week: 1,
+    theme: "JS Foundations + Node.js + Express + Arrays DSA",
+    days: [
+      { label: "W1 MON", mern: ["Install VS Code, Node.js (LTS), Git, Postman","javascript.info: Variables, Data Types, Functions, Scope","ES6: arrow functions, template literals, destructuring, spread/rest"], cpp: ["TUF+: Watch 'C++ STL Complete' video","Practice: vectors, pairs, maps, sets, priority_queue","LeetCode setup: set language to C++"], resources: ["javascript.info","nodejs.org","LeetCode","VS Code","Postman","TUF+ C++ STL video"] },
+      { label: "W1 TUE", mern: ["Promises, async/await, try/catch","Array methods: map, filter, reduce, find, some, every","Closures and scope chain deep dive"], cpp: ["TUF+: Step 3 — Arrays Easy sheet","Solve in C++: Largest Element, Second Largest, Check Sorted, Remove Duplicates from Sorted Array","Focus: use vectors, for loops, STL max_element"], resources: ["javascript.info","TUF+ Step 3 Arrays Easy"] },
+      { label: "W1 WED", mern: ["Event loop: call stack, task queue, microtask queue — watch Philip Roberts JSConf talk","Node.js: modules (require/import), fs module, path, os, events","Build: CLI word-frequency counter using Node fs"], cpp: ["TUF+: Arrays Medium sheet","Solve in C++: Left Rotate Array by K, Move Zeroes","Use: rotate() from <algorithm>, two pointer approach"], resources: ["Philip Roberts JSConf talk (YouTube)","nodejs.org docs","TUF+ Arrays Medium"] },
+      { label: "W1 THU", mern: ["Express: routing, middleware chain, request-response cycle","REST principles: HTTP verbs, status codes, resource naming","Build: CRUD REST API for 'books' resource (in-memory array)"], cpp: ["TUF+: Arrays Medium cont.","Solve in C++: Union of Two Sorted Arrays, Missing Number, Maximum Consecutive Ones","Key: two pointer pattern, frequency array using unordered_map"], resources: ["expressjs.com","restfulapi.net","TUF+ Arrays Medium"] },
+      { label: "W1 FRI", mern: ["Express: custom middleware, error-handling middleware (4 params), morgan logger","Add pagination to GET route (query params: page & limit)","Add search with query param using .filter()"], cpp: ["TUF+: Arrays Hard sheet","Solve in C++: Two Sum, Best Time to Buy and Sell Stock","Key: unordered_map for O(1) lookup, single pass solution"], resources: ["expressjs.com","morgan npm","TUF+ Arrays Hard"] },
+      { label: "W1 SAT 🏋️ FULL DAY", mern: ["MORNING: MongoDB Atlas — create free cluster, connect, CRUD via Atlas UI","MORNING: Mongoose — connect from Express, define Schema, create User model","MORNING: Build full CRUD API with Express + Mongoose (Notes app), test in Postman","AFTERNOON: TUF+ complete Arrays Hard — 3Sum (sort + two pointer), Kadane's Algorithm, Merge Sorted Arrays","AFTERNOON: Key insight: always think brute force first → optimize → write clean C++ code","EVENING: System Design Intro — watch 'System Design for Beginners' NeetCode YouTube (1 hr)","EVENING: Read: What is HTTP? How DNS works? Client-Server architecture","EVENING: Push all week's MERN code to GitHub"], cpp: ["TUF+: Complete Arrays Hard sheet","3Sum (sort + two pointer), Kadane's Algorithm (max subarray), Merge Sorted Arrays","System Design Intro: 'System Design for Beginners' NeetCode YouTube"], resources: ["mongodb.com/docs","Mongoose docs","NeetCode — System Design for Beginners (YouTube)","Postman","TUF+ Arrays Hard"] },
+      { label: "W1 SUN 🏋️ FULL DAY", mern: ["MORNING: Prototypes and prototype chain in JS","MORNING: 'this' keyword — global, function, arrow, class context","MORNING: Revise all week 1 JS — write a personal cheat sheet (Notion or paper)","AFTERNOON: TUF+ Step 4 — Binary Search on Arrays: Binary Search, Floor & Ceil, First & Last Position","AFTERNOON: Key: while(lo <= hi) template, careful with mid = lo + (hi-lo)/2 to avoid overflow","EVENING: TUF+ Binary Search on Answers (intro) — Find Sqrt, Koko Eating Bananas"], cpp: ["TUF+: Step 4 — Binary Search on Arrays","Binary Search, Floor & Ceil in Sorted Array, First & Last Position","Binary Search on Answers: Find Sqrt, Koko Eating Bananas"], resources: ["javascript.info","TUF+ Step 4 Binary Search"] }
+    ]
+  },
+  {
+    week: 2,
+    theme: "MongoDB Advanced + JWT Auth + React + Linked Lists DSA",
+    days: [
+      { label: "W2 MON", mern: ["MongoDB: embedding vs referencing — when to use each","Indexing: createIndex, compound index, explain() to check query plan","Aggregation pipeline: $match, $group, $sort, $project, $lookup (joins)"], cpp: ["TUF+: Binary Search Hard","Solve in C++: Median of Two Sorted Arrays, Minimise Maximum Distance Between Gas Stations","Key: binary search on floating point answers, while(hi-lo > 1e-6)"], resources: ["MongoDB docs — Aggregation Pipeline","TUF+ Binary Search Hard"] },
+      { label: "W2 TUE", mern: ["JWT: header.payload.signature, verify flow, when to use","bcryptjs: hash on register, compare on login","Auth middleware: extract JWT from Authorization header, verify, attach user to req","Refresh token concept (read only — implement later)"], cpp: ["TUF+: Strings section","Solve in C++: Reverse Words in a String, Largest Odd Number in String, Longest Common Prefix","Key: string methods — substr(), find(), stoi(), to_string()"], resources: ["jwt.io","bcryptjs npm docs","TUF+ Strings"] },
+      { label: "W2 WED", mern: ["React (use Vite: npm create vite@latest): JSX, components, props, children","useState: state updates, re-renders, lifting state up","Conditional rendering, list rendering (.map() + keys)","Build: simple Todo UI in React"], cpp: ["TUF+: Step 6 — Linked Lists","Solve in C++: Reverse Linked List, Middle of Linked List, Detect Cycle (Floyd's)","Key: struct Node{int data; Node* next;}; — fast-slow pointer pattern"], resources: ["react.dev","Vite","TUF+ Step 6 Linked Lists"] },
+      { label: "W2 THU", mern: ["useEffect: side effects, dependency array, cleanup function","useRef: DOM refs, persisting values without re-render","useContext: global state without prop drilling (build a ThemeContext)","Fetch data from JSONPlaceholder with useEffect and display in React"], cpp: ["TUF+: Linked Lists Medium","Solve in C++: Merge Two Sorted Lists, Remove Nth Node from End, Add Two Numbers","Key: dummy node trick, two pointer for Nth from end"], resources: ["react.dev/learn/hooks","Fireship — React Hooks (YouTube)","TUF+ Linked Lists Medium"] },
+      { label: "W2 FRI", mern: ["React Router v6: BrowserRouter, Routes, Route, Link, useNavigate, useParams","Protected Routes: redirect if no token in context/localStorage","React Hook Form: register, handleSubmit, formState.errors"], cpp: ["TUF+: Linked Lists Hard","Solve in C++: Reverse Nodes in K-Group, Flatten a Linked List, LRU Cache (list + unordered_map)","Key: LRU is a VERY common interview question — understand it cold"], resources: ["reactrouter.com v6 docs","React Hook Form docs","TUF+ Linked Lists Hard"] },
+      { label: "W2 SAT 🏋️ FULL DAY", mern: ["MORNING: Connect React to Express with Axios, handle CORS (install cors package)","MORNING: Login page in React → POST to Express → get JWT → store in context","MORNING: Display MongoDB data in React components","AFTERNOON: TUF+ Step 7 — Stacks & Queues: Valid Parentheses, Implement Stack using Queue, Next Greater Element, Min Stack, Infix to Postfix","EVENING: System Design — Load Balancers, CDN, DNS in depth","EVENING: Watch 'Load Balancer vs Reverse Proxy' ByteByteGo YouTube","EVENING: System Design Primer on GitHub (star it, read intro)"], cpp: ["TUF+: Step 7 — Stacks and Queues","Valid Parentheses, Implement Stack using Queue, Next Greater Element, Min Stack","Load Balancers, CDN, DNS — System Design Primer (GitHub)"], resources: ["Axios docs","cors npm","ByteByteGo — Load Balancer vs Reverse Proxy (YouTube)","System Design Primer (GitHub)","TUF+ Step 7"] },
+      { label: "W2 SUN 🏋️ FULL DAY", mern: ["MORNING: Build end-to-end Notes App — React + Express + MongoDB + JWT auth","MORNING: Backend first (test in Postman) → then React frontend","MORNING: Deploy to Render (backend) + Vercel (frontend)","AFTERNOON: TUF+ Stacks Hard — Largest Rectangle in Histogram, Maximal Rectangle, Trapping Rain Water","AFTERNOON: Hardest stack problems — take your time, understand the monotonic stack pattern","EVENING: Write GitHub README for your Notes App","EVENING: System Design — Read CAP Theorem, ACID Properties, BASE"], cpp: ["TUF+: Stacks Hard","Largest Rectangle in Histogram, Maximal Rectangle, Trapping Rain Water","Key: monotonic stack pattern — hardest stack problems, take your time"], resources: ["render.com","vercel.com","Postman","TUF+ Stacks Hard"] }
+    ]
+  },
+  {
+    week: 3,
+    theme: "Project 1 Build (Job Board / Blog Platform) + Trees DSA",
+    days: [
+      { label: "W3 MON", mern: ["Choose: Job Board App OR Blog Platform (pick one you'd actually use)","Design MongoDB schemas (users, jobs or posts, comments)","List all API endpoints with HTTP methods, auth requirements","Wireframe on Excalidraw (excalidraw.com — free)"], cpp: ["TUF+: Step 8 — Trees Intro","Solve in C++: Inorder, Preorder, Postorder traversal (recursive + iterative)","Height of Binary Tree, Check Balanced, Diameter of Binary Tree","Key: struct TreeNode{int val; TreeNode *left, *right;}; — DFS recursion pattern"], resources: ["excalidraw.com","TUF+ Step 8 Trees"] },
+      { label: "W3 TUE", mern: ["Init backend: express, mongoose, bcryptjs, jsonwebtoken, dotenv, cors, morgan","Folder structure: /routes /controllers /models /middleware /config","Build User model + auth routes (register, login) + protect middleware"], cpp: ["TUF+: Trees Medium","Solve in C++: Level Order Traversal, Zigzag Traversal, Vertical Order Traversal","Max Width of Binary Tree, Boundary Traversal","Key: use queue<TreeNode*> for BFS, map<int,map<int,multiset<int>>> for vertical order"], resources: ["Mongoose docs","jsonwebtoken npm","TUF+ Trees Medium"] },
+      { label: "W3 WED", mern: ["Build all CRUD routes for main resource (jobs or posts)","Add: search with $text search or $regex, pagination (page+limit)","Test ALL endpoints in Postman, save Postman collection"], cpp: ["TUF+: Trees Hard","Solve in C++: Max Path Sum, Construct BT from Preorder+Inorder, Serialize & Deserialize BT","Lowest Common Ancestor, Count Complete Tree Nodes","Key: LCA is asked in almost EVERY product company interview — know it by heart"], resources: ["Postman","MongoDB $regex docs","TUF+ Trees Hard"] },
+      { label: "W3 THU", mern: ["Create React app with Vite + Tailwind CSS setup","React Router: all page components + route structure","Build reusable components: Navbar, Button, Card, Input, LoadingSpinner","shadcn/ui for beautiful ready-made components (shadcn.com)"], cpp: ["TUF+: BST section","Solve in C++: Search in BST, Insert in BST, Delete Node in BST","Validate BST, LCA in BST, Kth Smallest in BST","Key: BST property: left < root < right — use inorder for sorted output"], resources: ["tailwindcss.com","shadcn.com","TUF+ BST"] },
+      { label: "W3 FRI", mern: ["Build Login + Register pages with React Hook Form","Axios interceptors: auto-attach JWT to every request header","Auth context: store user globally, persist with localStorage","Protected Route component: redirect if no user"], cpp: ["TUF+: Step 9 — Heaps (Priority Queue)","Solve in C++: Kth Largest Element, Top K Frequent Elements, K Closest Points to Origin","Merge K Sorted Lists (use min-heap with pairs)","Key: priority_queue<int> is max-heap; priority_queue<int,vector<int>,greater<int>> is min-heap"], resources: ["Axios docs","React Hook Form docs","TUF+ Step 9 Heaps"] },
+      { label: "W3 SAT 🏋️ FULL DAY", mern: ["MORNING: Build main pages — Home, List page, Detail page, Create & Edit forms","MORNING: Connect all pages to Express APIs","MORNING: Add: loading states, error handling, react-hot-toast notifications","AFTERNOON: TUF+ Heaps Hard — Find Median from Data Stream (two heaps), Task Scheduler, Reorganize String","AFTERNOON: System Design — SQL vs NoSQL, Vertical vs Horizontal Scaling, Normalization (1NF-3NF)","AFTERNOON: Watch 'SQL vs NoSQL' Fireship YouTube, 'Database Indexing Explained' YouTube","EVENING: Finish Project 1 UI polish — responsive, mobile, empty states","EVENING: Deploy to Render + Vercel, test live URL"], cpp: ["TUF+: Heaps Hard — Find Median from Data Stream, Task Scheduler","System Design: SQL vs NoSQL, Normalization, Scaling","Watch: 'SQL vs NoSQL' Fireship YouTube, 'Database Indexing Explained' YouTube"], resources: ["react-hot-toast npm","Fireship — SQL vs NoSQL (YouTube)","Database Indexing Explained (YouTube)","TUF+ Heaps Hard","render.com","vercel.com"] },
+      { label: "W3 SUN 🏋️ FULL DAY", mern: ["MORNING: Final Project 1 fixes, bug hunt","MORNING: Write README — description, tech stack, screenshots, live demo link, setup instructions","MORNING: Push everything to GitHub, deploy final version","AFTERNOON: TUF+ Step 10 — Greedy: Assign Cookies, Jump Game I & II, N Meetings in One Room, Minimum Platforms, Job Sequencing","AFTERNOON: Key: greedy = local optimal leads to global optimal — always sort first","EVENING: TUF+ Greedy cont. — Fractional Knapsack, Activity Selection","EVENING: Add Project 1 to LinkedIn and GitHub profile with screenshots"], cpp: ["TUF+: Step 10 — Greedy Algorithms","Assign Cookies, Jump Game I & II, N Meetings, Minimum Platforms, Job Sequencing","Fractional Knapsack, Activity Selection — key: sort first"], resources: ["shields.io (README badges)","TUF+ Step 10 Greedy","LinkedIn"] }
+    ]
+  },
+  {
+    week: 4,
+    theme: "AI Integration (OpenAI API) + Redux + Graphs DSA",
+    days: [
+      { label: "W4 MON", mern: ["Create OpenAI account, get API key, read Chat Completions docs","Install openai npm package","Build Node.js script: send message, receive response, print it","Build Express endpoint /api/chat: takes user message, returns AI response"], cpp: ["TUF+: Step 11 — Graphs (start from beginning)","Graph representations: adjacency list, adjacency matrix in C++","Solve: BFS traversal, DFS traversal (iterative + recursive)","Key: vector<vector<int>> adj(n); — visited[] array, queue<int> for BFS"], resources: ["platform.openai.com docs","openai npm","TUF+ Step 11 Graphs"] },
+      { label: "W4 TUE", mern: ["Prompt engineering: zero-shot, few-shot, chain-of-thought","System prompts: give AI a persona + constraints","Parameters: temperature, max_tokens, top_p — when to tweak each","Build: coding assistant chatbot with custom system prompt"], cpp: ["TUF+: Graphs — Connected Components","Solve in C++: Number of Islands, Flood Fill, Rotten Oranges (BFS multi-source)","Detect Cycle in Undirected Graph (BFS + DFS)","Key: multi-source BFS = add all sources to queue before starting"], resources: ["OpenAI Prompt Engineering guide","TUF+ Graphs Connected Components"] },
+      { label: "W4 WED", mern: ["Build Chat UI: message bubbles (user vs AI), scrollable window, typing indicator","Connect to Express AI endpoint via Axios","Auto-scroll to bottom, Enter key to send, render markdown (react-markdown)"], cpp: ["TUF+: Topological Sort","Solve in C++: Topological Sort (DFS + Kahn's BFS algo)","Course Schedule I & II, Eventual Safe States","Key: Kahn's algo uses in-degree array — add 0-indegree nodes first"], resources: ["react-markdown npm","TUF+ Topological Sort"] },
+      { label: "W4 THU", mern: ["Build AI feature for Project 1:","→ Job Board: AI Job Description Generator","→ Blog: AI Post Summarizer / Title Suggester","Build backend route, frontend UI, test end-to-end","Handle API errors and rate limits gracefully"], cpp: ["TUF+: Shortest Path Algorithms","Solve in C++: Dijkstra's Algorithm, Bellman-Ford","Shortest Path in DAG, Network Delay Time","Key: use priority_queue<pair<int,int>,...,greater<>> for Dijkstra"], resources: ["OpenAI error handling docs","TUF+ Shortest Path"] },
+      { label: "W4 FRI", mern: ["OpenAI streaming: SSE (Server-Sent Events) from Express","React: read stream chunks, display word-by-word (like ChatGPT)","Add rate limiting to AI endpoint (express-rate-limit npm)","Add input validation (express-validator)"], cpp: ["TUF+: Minimum Spanning Tree + Disjoint Set (Union-Find)","Solve in C++: Kruskal's + Prim's Algorithm","Disjoint Set (Union by Rank + Path Compression)","Number of Operations to Make Network Connected, Redundant Connection","Key: Union-Find is asked A LOT in interviews — implement it cleanly"], resources: ["express-rate-limit npm","express-validator npm","TUF+ MST + Disjoint Set"] },
+      { label: "W4 SAT 🏋️ FULL DAY", mern: ["MORNING: Redux Toolkit — createSlice, configureStore, useSelector, useDispatch","MORNING: Refactor auth state to Redux","MORNING: RTK Query for data fetching (optional but impressive in interviews)","AFTERNOON: TUF+ Graphs Hard — Alien Dictionary, Strongly Connected Components (Kosaraju's), Bridges, Articulation Points","AFTERNOON: System Design: Caching — Redis, LRU, LFU, CDN, write-through vs write-back","AFTERNOON: Watch 'Redis in 100 Seconds' Fireship","EVENING: Redeploy Project 1 with AI feature + Redux, verify everything works on live URL"], cpp: ["TUF+: Graphs Hard — Alien Dictionary, Kosaraju's SCC, Bridges, Articulation Points","System Design: Caching — Redis, LRU/LFU, CDN, write-through vs write-back","Watch: 'Redis in 100 Seconds' Fireship"], resources: ["Redux Toolkit docs","Fireship — Redis in 100 Seconds (YouTube)","TUF+ Graphs Hard"] },
+      { label: "W4 SUN 🏋️ FULL DAY", mern: ["MORNING: Plan Project 2 — AI-Powered MERN App","Best options: AI Resume Builder, AI Interview Prep Tool, AI Cover Letter Generator, AI Smart Notes","MORNING: Design full schema, API routes, UI pages","MORNING: Look at competitors for UI inspiration","AFTERNOON: TUF+ Step 12 — DP: watch Striver's DP intro video first (mindset for DP)","AFTERNOON: Solve in C++: Climbing Stairs, Frog Jump, Frog Jump with K distances, House Robber I & II","AFTERNOON: Key: always try memoization (top-down) first, then tabulation (bottom-up)","EVENING: TUF+ DP on Grids — Unique Paths, Minimum Path Sum, Triangle (bottom-up)"], cpp: ["TUF+: Step 12 — Dynamic Programming (1D DP)","Watch Striver's DP intro video first (mindset)","Climbing Stairs, Frog Jump, House Robber I & II","DP on Grids: Unique Paths, Minimum Path Sum, Triangle"], resources: ["Striver's DP intro video (YouTube)","TUF+ Step 12 DP"] }
+    ]
+  },
+  {
+    week: 5,
+    theme: "Project 2 (AI-Powered App) Build + DP DSA",
+    days: [
+      { label: "W5 MON", mern: ["Set up Project 2 backend: Express, Mongoose, auth, folder structure","Build all MongoDB models","Build auth routes + main resource CRUD routes"], cpp: ["TUF+: DP on Subsequences","Solve in C++: Subset Sum, Partition Equal Subset Sum, Count Subsets with Sum K","0/1 Knapsack","Key: subset sum = knapsack — boolean dp[] or count dp[]"], resources: ["TUF+ DP on Subsequences"] },
+      { label: "W5 TUE", mern: ["Build the main AI-powered endpoint for Project 2","Store conversation history in MongoDB per user session","Add streaming support to AI responses","Test in Postman with different inputs"], cpp: ["TUF+: DP on Strings","Solve in C++: Longest Common Subsequence (LCS), Edit Distance, Longest Common Substring","Shortest Common Supersequence, Distinct Subsequences","Key: LCS is the base for many string DP problems — internalize it"], resources: ["OpenAI Streaming docs","Postman","TUF+ DP on Strings"] },
+      { label: "W5 WED", mern: ["Set up React + Vite + Tailwind for Project 2","Build all page components and routing","Add Framer Motion for smooth transitions (npm i framer-motion)","Build main AI feature UI"], cpp: ["TUF+: DP on Stocks","Solve in C++: Best Time to Buy Stock (I, II, III, IV)","Buy and Sell Stock with Cooldown, with Transaction Fee","Key: state machine DP — holding/not-holding, transactions remaining"], resources: ["framer-motion npm","TUF+ DP on Stocks"] },
+      { label: "W5 THU", mern: ["Connect React pages to backend APIs","Redux for auth: login, register, persist state","Protected routes, auto-redirect on JWT expiry","Handle all API errors gracefully in UI"], cpp: ["TUF+: DP on LIS (Longest Increasing Subsequence)","Solve in C++: LIS (O(n²) DP + O(n log n) binary search approach)","Longest Bitonic Subsequence, Number of LIS","Key: O(n log n) LIS uses lower_bound() on sorted array — very elegant"], resources: ["Redux Toolkit docs","TUF+ DP on LIS"] },
+      { label: "W5 FRI", mern: ["Complete responsive design for all pages","Empty states, skeleton loaders, error pages (404)","Test on mobile viewport in Chrome DevTools","Fix all bugs, remove console.logs"], cpp: ["TUF+: DP on Partition","Solve in C++: Matrix Chain Multiplication, Burst Balloons, Boolean Parenthesization","Palindrome Partitioning II","Key: interval DP pattern — dp[i][j] = answer for range i to j"], resources: ["Chrome DevTools","TUF+ DP on Partition"] },
+      { label: "W5 SAT 🏋️ FULL DAY", mern: ["MORNING: Deploy Project 2 to Render (backend) + Vercel (frontend)","MORNING: Set all environment variables, test every feature, auth flow, AI feature, mobile","MORNING: Write README with screenshots + GIF demo (use Loom) + tech stack","AFTERNOON: System Design: Database Deep Dive — Sharding, Replication, Master-Slave, Master-Master","AFTERNOON: Read: SQL joins, composite indexes, query optimization with EXPLAIN","AFTERNOON: Watch 'Database Sharding Explained' ByteByteGo YouTube","AFTERNOON: When to use Redis as primary DB vs cache","EVENING: TUF+ Mixed DP revision — revisit any DP problem you found hard this week","EVENING: Solve 3 DP problems from scratch without hints"], cpp: ["System Design: Sharding, Replication, Master-Slave, EXPLAIN query optimization","Watch: 'Database Sharding Explained' ByteByteGo YouTube","TUF+: Mixed DP revision — solve 3 problems without hints"], resources: ["ByteByteGo — Database Sharding (YouTube)","Loom (GIF demos)","render.com","vercel.com","TUF+ DP Hard"] },
+      { label: "W5 SUN 🏋️ FULL DAY", mern: ["MORNING: TypeScript — types, interfaces, enums, generics","MORNING: Convert Express backend to TypeScript (tsconfig, ts-node, @types)","MORNING: Type your Mongoose models and Express request/response","AFTERNOON: TUF+ Step 13 — Tries: Implement Trie, Count Words Equal To, Longest Word with All Prefixes","AFTERNOON: Maximum XOR of Two Numbers (XOR Trie)","AFTERNOON: Key: struct TrieNode{TrieNode* children[26]; bool isEnd;};","EVENING: TUF+ Segment Trees intro — Range Sum Query, Range Min Query","EVENING: Watch Striver's Segment Tree video if available"], cpp: ["TUF+: Step 13 — Tries","Implement Trie, Count Words Equal To, Longest Word with All Prefixes, Maximum XOR","Segment Trees intro: Range Sum Query, Range Min Query"], resources: ["typescriptlang.org/docs","Traversy Media — TypeScript Crash Course (YouTube)","TUF+ Step 13 Tries"] }
+    ]
+  },
+  {
+    week: 6,
+    theme: "Advanced Backend + DevOps + System Design Case Studies",
+    days: [
+      { label: "W6 MON", mern: ["Security: helmet.js, CORS config, NoSQL injection prevention","Input validation: express-validator deep dive","Performance: Node.js clustering, pm2 process manager","12-factor app principles (read: 12factor.net)"], cpp: ["TUF+: Step 5 — Recursion & Backtracking","Solve in C++: Subsets I & II, Permutations I & II","Combination Sum I & II","Key: pick/not-pick pattern for subsets, swap-based permutations"], resources: ["helmet npm","pm2 docs","12factor.net","TUF+ Step 5 Recursion"] },
+      { label: "W6 TUE", mern: ["Jest: unit tests, mock functions, describe + it + expect","Supertest: test API endpoints end-to-end","Write tests for auth routes + main CRUD routes","Code coverage with jest --coverage"], cpp: ["TUF+: Backtracking Hard","Solve in C++: N-Queens, Sudoku Solver, Word Search, Palindrome Partitioning","Key: N-Queens uses column, diagonal1, diagonal2 boolean arrays for O(1) check"], resources: ["jestjs.io","supertest npm","TUF+ Backtracking Hard"] },
+      { label: "W6 WED", mern: ["Docker: images, containers, Dockerfile, .dockerignore","Write Dockerfile for Express backend","docker-compose: run backend + MongoDB together locally","Watch: 'Docker in 100 Seconds' Fireship"], cpp: ["TUF+ / LeetCode: Two Pointer problems (revision + hard)","Solve in C++: 3Sum, 4Sum, Container With Most Water","Remove Duplicates II, Sort Colors (Dutch National Flag)","Key: two pointer on sorted array, three pointer for 3Sum"], resources: ["docs.docker.com","Fireship — Docker in 100 Seconds (YouTube)","TUF+ Two Pointers"] },
+      { label: "W6 THU", mern: ["GitHub Actions: create workflow, run tests on push","Add ESLint to workflow","Auto-deploy to Render on merge to main","Watch: 'GitHub Actions Tutorial' TechWorld with Nana"], cpp: ["TUF+ / LeetCode: Sliding Window (revision + hard)","Solve in C++: Longest Substring Without Repeating Chars, Minimum Window Substring","Sliding Window Maximum (monotonic deque), Max Consecutive Ones III","Key: use deque<int> for sliding window maximum (monotonic decreasing)"], resources: ["GitHub Actions docs","TechWorld with Nana — GitHub Actions (YouTube)","TUF+ Sliding Window"] },
+      { label: "W6 FRI", mern: ["WebSockets vs HTTP: when to use real-time","Socket.io: server setup, emit, on, rooms","Build: real-time notification feature or live chat","Watch: 'Socket.io Crash Course' Traversy Media"], cpp: ["TUF+: Monotonic Stack problems","Solve in C++: Next Greater Element I & II, Daily Temperatures","Sum of Subarray Minimums, Online Stock Span","Key: monotonic stack maintains increasing/decreasing order — pop when condition breaks"], resources: ["Socket.io docs","Traversy Media — Socket.io Crash Course (YouTube)","TUF+ Monotonic Stack"] },
+      { label: "W6 SAT 🏋️ FULL DAY", mern: ["MORNING: System Design Case Study 1 — URL Shortener (bit.ly)","Requirements, API design, DB schema, hashing (MD5, Base62), scaling","Watch: ByteByteGo 'Design a URL Shortener' — write your own design doc in Notion/Excalidraw","AFTERNOON: System Design Case Study 2 — Pastebin (text storage, expiry, paste uniqueness)","AFTERNOON: TUF+ Mixed hard problem session — solve 4 problems timed (30 min each)","EVENING: System Design — Message Queues, Event-Driven Architecture","EVENING: Kafka vs RabbitMQ: when and why, producer-consumer pattern","EVENING: Watch 'What is a Message Queue?' ByteByteGo"], cpp: ["System Design: URL Shortener, Pastebin, Message Queues, Kafka vs RabbitMQ","TUF+: Mixed hard problem session — 4 problems timed (30 min each)"], resources: ["ByteByteGo — Design URL Shortener (YouTube)","ByteByteGo — Message Queue (YouTube)","Alex Xu System Design Interview book","excalidraw.com"] },
+      { label: "W6 SUN 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Twitter/X Feed","Fanout on write vs fanout on read, timeline generation, Redis timeline cache","Watch 'Design Twitter' Gaurav Sen or NeetCode — draw architecture diagram in Excalidraw","AFTERNOON: NestJS intro — why it exists, modules, controllers, providers, dependency injection","NestJS is enterprise Node.js — many Indian companies use it (Razorpay, Zepto etc.)","AFTERNOON: Build a simple NestJS CRUD API — real differentiator on your resume","EVENING: TUF+ Revision session — go back to any sheet topic you scored < 80%","EVENING: Solve 3 unseen problems from those topics"], cpp: ["System Design: Twitter/X Feed — fanout on write vs read, Redis cache","NestJS intro: modules, controllers, providers, dependency injection","TUF+: Revision session — revisit weak topics, solve 3 unseen problems"], resources: ["nestjs.com docs","Gaurav Sen — Design Twitter (YouTube)","NeetCode — Design Twitter (YouTube)","excalidraw.com"] }
+    ]
+  },
+  {
+    week: 7,
+    theme: "Resume + LinkedIn + Start Applying + Technical Interview Prep",
+    days: [
+      { label: "W7 MON", mern: ["Resume structure: Contact, Summary, Skills, Projects, Experience, Education","Skills to list: C++, JavaScript, TypeScript, React, Node.js, Express, MongoDB, REST APIs, JWT, OpenAI API, Docker, Redux, Git, Socket.io","Projects: name, what it does, tech stack, live link, GitHub, 1-line impact","Experience: rewrite bullets with action verbs + numbers (reduced X by Y% / built X for Y users)","Use: Jake's Resume template on Overleaf / resume.io"], cpp: ["LeetCode: Solve 2 hard problems timed (35 min each — no hints)","Suggested: #124 Binary Tree Max Path Sum, #42 Trapping Rain Water"], resources: ["Jake's Resume (Overleaf)","resume.io","LeetCode #124 #42"] },
+      { label: "W7 TUE", mern: ["LinkedIn: headline, about, experience, skills, Open to Work","Headline: 'Full Stack Developer | MERN | AI Integration | C++ DSA'","GitHub profile README: intro, tech stack badges, GitHub stats widget","Pin 2 best projects, clean READMEs with screenshots + demo links","Make sure commit history looks active (commit daily even if small)"], cpp: ["LeetCode: 2 hard problems timed","Suggested: #23 Merge K Sorted Lists, #84 Largest Rectangle in Histogram"], resources: ["shields.io (badges)","GitHub Profile README generator","LeetCode #23 #84"] },
+      { label: "W7 WED", mern: ["Job tracker setup: Notion / Google Sheets (Company, Role, Date, Status, Notes)","Apply to 10 jobs: LinkedIn, Naukri, Instahyre, Cutshort.io, Wellfound","Roles: Full Stack Developer, MERN Stack Developer, Node.js Developer, React Developer, SDE-2","Customize resume skills order to match each JD"], cpp: ["Do 1 full timed interview simulation:","Set timer for 40 minutes — pick one medium + one easy problem you haven't seen","Solve both without looking at hints — think out loud as you code (practice this habit)"], resources: ["linkedin.com/jobs","naukri.com","instahyre.com","cutshort.io","wellfound.com"] },
+      { label: "W7 THU", mern: ["Most asked JS questions: var/let/const, hoisting, temporal dead zone","Closures, scope chain, IIFE, currying","Output-based questions: event loop, promises order","'this' in arrow vs regular, call, apply, bind","Prototype chain, class vs prototype-based OOP"], cpp: ["Common C++ interview questions:","STL internals: vector amortized growth, map vs unordered_map complexity","Smart pointers: unique_ptr, shared_ptr, weak_ptr","RAII pattern, memory management","When does std::sort use introsort?"], resources: ["javascript.info","LeetCode JS Interview Questions"] },
+      { label: "W7 FRI", mern: ["React: Virtual DOM, reconciliation, diffing algo, fiber architecture","React: hooks rules, useEffect gotchas, StrictMode double-invoke","React: useMemo vs useCallback vs React.memo — when to use each","Node.js: event loop phases (timers/I-O/check), streams, worker threads"], cpp: ["TUF+: Attempt any remaining unsolved hard problems from the sheet","Focus: problems you skipped before — come back with fresh eyes"], resources: ["react.dev/learn","Node.js docs","TUF+ Hard remaining"] },
+      { label: "W7 SAT 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Netflix / YouTube","Video upload pipeline, transcoding, CDN, adaptive bitrate streaming (HLS)","Recommendation engine concept, watch history storage","Watch ByteByteGo 'Design YouTube' — write full design doc with components diagram in Excalidraw","AFTERNOON: Mock Interview on Pramp.com (free — real person interviews you)","5 min intro, 10 min project walkthrough, 20 min coding problem, 10 min questions","Note ALL feedback","EVENING: Fix every weakness from mock interview","EVENING: DSA — 3 hard problems timed (related to your mock interview weak spots)"], cpp: ["System Design: Netflix / YouTube — HLS, CDN, transcoding, recommendation engine","Mock Interview on Pramp.com","DSA: 3 hard problems timed based on mock interview weak spots"], resources: ["ByteByteGo — Design YouTube (YouTube)","pramp.com (free mock interviews)","excalidraw.com","interviewing.io"] },
+      { label: "W7 SUN 🏋️ FULL DAY", mern: ["MORNING: System Design — Design WhatsApp / Chat Application","WebSockets, message delivery (at-most-once, at-least-once, exactly-once)","Read receipts, group chats, media storage (S3)","Watch 'Design WhatsApp' Gaurav Sen or ByteByteGo — write your own design doc","AFTERNOON: DSA Marathon — 6 problems in 3 hours (timed, no hints):","#15 3Sum, #11 Container With Most Water, #128 Longest Consecutive Sequence","#76 Minimum Window Substring, #239 Sliding Window Maximum, #295 Find Median from Data Stream","Review solutions — understand every approach","EVENING: Apply to 10 more companies","EVENING: Update job tracker, follow up on week 1 applications (7 days = follow up on LinkedIn)","EVENING: Prepare 3 smart questions to ask interviewers"], cpp: ["System Design: WhatsApp — WebSockets, message delivery guarantees, S3 media storage","DSA Marathon: #15 3Sum, #11 Container, #128 LCS, #76 Min Window, #239 SW Max, #295 Median","Apply to 10 more companies, prepare 3 smart interviewer questions"], resources: ["Gaurav Sen — Design WhatsApp (YouTube)","ByteByteGo — Design WhatsApp (YouTube)","LeetCode #15 #11 #128 #76 #239 #295"] }
+    ]
+  },
+  {
+    week: 8,
+    theme: "Interview Simulation Week — Full Mock Loops",
+    days: [
+      { label: "W8 MON", mern: ["MongoDB interview Qs: aggregation pipeline, indexing strategies, sharding concept","explain() query analysis, covered queries, write concern, read preference","REST API: versioning (v1/v2), idempotency, cursor vs offset pagination","REST security: HTTPS, CORS, rate limiting, JWT expiry, refresh tokens"], cpp: ["LeetCode Hard: Solve 2 problems timed (no hints, 35 min each)","Suggested: #41 First Missing Positive, #25 Reverse Nodes in K-Group"], resources: ["MongoDB docs","LeetCode #41 #25"] },
+      { label: "W8 TUE", mern: ["Design a Rate Limiter (very common interview question):","Algorithms: token bucket, leaky bucket, fixed window, sliding window counter","Watch ByteByteGo 'Design a Rate Limiter' — practice talking through it out loud for 20 min","Design a Notification System (push, email, SMS):","Prioritization, user preferences, retry logic, templates"], cpp: ["LeetCode: Contest simulation — pick a past weekly contest","Do the medium + hard problems timed"], resources: ["ByteByteGo — Design Rate Limiter (YouTube)","LeetCode contests archive"] },
+      { label: "W8 WED", mern: ["STAR method: Situation, Task, Action, Result","Prepare 8 STAR stories:","1. Conflict with teammate","2. Time you failed and recovered","3. Delivered under pressure / tight deadline","4. Went above and beyond","5. Learned something new quickly","6. Biggest technical challenge you solved","7. Disagreed with manager/lead and how you handled it","8. Proudest achievement so far","'Why switch?' — craft genuine positive answer (growth, tech stack, scale)"], cpp: ["Timed: 2 unseen medium problems (25 min each)","Explain approach out loud as you code — practice this habit"], resources: ["pramp.com","interviewing.io"] },
+      { label: "W8 THU", mern: ["For EACH project prepare answers to:","Walk me through your architecture (draw it while explaining)","What was your biggest challenge and how did you solve it?","How would you scale this to 1 million users?","What would you change if you built it again?","How do you handle security in this app?","What is your test coverage?","Practice: explain Project 2 in exactly 3 minutes — record yourself","Watch recording. Fix filler words, unclear parts. Re-record."], cpp: ["LeetCode Hard: #72 Edit Distance, #115 Distinct Subsequences (DP on Strings)"], resources: ["LeetCode #72 #115","Loom (self-recording)"] },
+      { label: "W8 FRI", mern: ["Do a FULL mock interview with a friend or on Pramp / Interviewing.io:","2 min self-intro (practiced, confident)","5 min project walkthrough (Project 2)","25 min coding problem in C++ (medium LeetCode)","15 min system design question","5 min your questions to interviewer","Review everything that went wrong immediately after"], cpp: ["Fix the exact type of problem you struggled with in the mock","1 easy warmup problem to keep the streak"], resources: ["pramp.com","interviewing.io"] },
+      { label: "W8 SAT 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Uber / Ride Sharing","Geospatial indexing: QuadTree, Google S2, H3","Driver location tracking (WebSockets), matching algorithm, surge pricing","Watch 'Design Uber' ByteByteGo or Gaurav Sen — write full design doc","AFTERNOON: Mass Apply — 20 applications today","LinkedIn (Easy Apply filter), Naukri, Instahyre, Cutshort, Wellfound","Referrals: message every college contact, ex-colleague at target companies","Message template: 'Hi [name], I came across [company] and was impressed by [specific thing]...'","EVENING: TUF+ Full sheet review — check off every problem you can solve cold","EVENING: Identify remaining gaps, make a list"], cpp: ["System Design: Uber — QuadTree, geospatial indexing, driver matching, surge pricing","Mass Apply: 20 applications + referral messages","TUF+: Full sheet review — identify remaining gaps"], resources: ["ByteByteGo — Design Uber (YouTube)","Gaurav Sen — Design Uber (YouTube)","linkedin.com","naukri.com","instahyre.com"] },
+      { label: "W8 SUN 🏋️ FULL DAY", mern: ["MORNING: LangChain intro — chains, agents, tools, memory","pip install langchain openai chromadb","Build: simple chain that summarizes a pasted document","What are embeddings? What is a vector database?","AFTERNOON: Build RAG (Retrieval Augmented Generation) system:","Input a PDF → chunk it → embed it → store in ChromaDB → query with natural language","This is the #1 AI skill that impresses interviewers at product companies","EVENING: DSA — Full LeetCode weekly contest simulation (past contest)","EVENING: Do all 4 problems timed — review solutions, understand patterns used"], cpp: ["LangChain + RAG: PDF chunking, embedding, ChromaDB, natural language queries","DSA: Full LeetCode weekly contest simulation — all 4 problems timed"], resources: ["python.langchain.com","pinecone.io","chromadb.com","Patrick Loeber — LangChain Crash Course (YouTube)","LeetCode contests"] }
+    ]
+  },
+  {
+    week: 9,
+    theme: "Advanced Topics + Active Job Search",
+    days: [
+      { label: "W9 MON", mern: ["Advanced TypeScript: generics, utility types (Partial, Pick, Omit, Record, Required)","Conditional types, mapped types, template literal types","Decorators (used in NestJS — mention in interviews)","Discriminated unions, exhaustive type checking"], cpp: ["TUF+: Graphs Hard (remaining problems)","Solve in C++: Floyd-Warshall (all-pairs shortest path)","Cheapest Flights Within K Stops (modified Dijkstra/Bellman-Ford)","Key: Floyd-Warshall dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]) for all k"], resources: ["typescriptlang.org/docs","TUF+ Graphs Hard"] },
+      { label: "W9 TUE", mern: ["Apply to 10 more companies","Follow up on all applications older than 7 days (LinkedIn message)","Research 5 target companies: tech stack, products, Glassdoor, recent news","Know your numbers: current CTC, expected CTC, notice period"], cpp: ["TUF+: Hard DP problems","Solve in C++: Scramble String, Egg Drop Problem, Painting the Fence","Count Palindromic Substrings using DP (Manacher's algorithm concept)"], resources: ["linkedin.com","naukri.com","glassdoor.com","TUF+ DP Hard"] },
+      { label: "W9 WED", mern: ["Research salaries: Naukri Salary Insights, LinkedIn Salary, Glassdoor, Levels.fyi","Know MERN dev salaries by: city, company type (startup vs MNC), years of experience","BATNA: know your walk-away number","Script responses to: 'What is your current CTC?' → 'I'm looking for a range of X-Y based on the role'","'What are your expectations?' → anchor high (20-30% above target)","Counter-offer: 'I was hoping for X. Is there any flexibility?'"], cpp: ["LeetCode: 2 hard problems timed — topics of your choice"], resources: ["levels.fyi","glassdoor.com","naukri.com salary","LinkedIn Salary"] },
+      { label: "W9 THU", mern: ["Node.js internals interviewers love:","V8 engine: JIT compilation, hidden classes, garbage collection","libuv: thread pool (4 threads default), event loop phases explained","Streams: readable, writable, transform — why they save memory","Cluster module: how it actually works, pm2 cluster mode"], cpp: ["TUF+: Attempt any 3 problems from the sheet marked as hard that you haven't solved","Use 30 min timer per problem — if stuck after 20 min: write approach then see solution"], resources: ["nodejs.org internals docs","pm2 docs","TUF+ Hard remaining"] },
+      { label: "W9 FRI", mern: ["Core Web Vitals: LCP, FID (INP), CLS — what they measure and how to improve","Run Lighthouse on both your deployed projects, fix all red flags","Code splitting: React.lazy + Suspense, dynamic import()","Web perf: debounce vs throttle, virtual scrolling, image optimization"], cpp: ["TUF+ SDE Sheet: attempt any remaining problems you haven't solved","Alternative: Codeforces Div 2 problem C (equivalent difficulty) timed"], resources: ["web.dev/vitals","react.dev/learn/performance","Lighthouse (Chrome DevTools)","Codeforces"] },
+      { label: "W9 SAT 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Google Drive / Dropbox","Blob storage (S3), chunking large files, deduplication (content hash)","Sync protocol, conflict resolution, sharing permissions, versioning","Watch ByteByteGo 'Design Google Drive' — write design doc","AFTERNOON: FULL mock interview (2nd one — you should be significantly better now)","Find a friend in tech OR use Pramp / Interviewing.io","Full 45-60 min: intro + project + C++ coding + system design","Record it if alone — watch back immediately","EVENING: DSA — 4 hard problems in 2 hours (contest simulation)","EVENING: Fix any weaknesses from the mock interview"], cpp: ["System Design: Google Drive — S3, chunking, deduplication, sync protocol","Full Mock Interview: 45-60 min loop","DSA: 4 hard problems in 2 hours"], resources: ["ByteByteGo — Design Google Drive (YouTube)","pramp.com","interviewing.io"] },
+      { label: "W9 SUN 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Search Autocomplete (Google Typeahead)","Trie data structure, top K suggestions, ranking, caching at CDN edge","Watch ByteByteGo 'Design Typeahead Suggestion' — write your own design","MORNING: System Design — Design a Web Crawler","BFS, URL frontier, robots.txt, deduplication, politeness","AFTERNOON: DSA Marathon — 8 problems in 3 hours (timed, mixed difficulty)","2 Easy + 4 Medium + 2 Hard from NeetCode Blind 75 (unseen ones)","No hints. Write brute force first then optimize.","EVENING: Apply to 10 more jobs, follow up","EVENING: Review ALL system design case studies done so far","EVENING: Make a 1-page cheat sheet of key SD concepts"], cpp: ["System Design: Search Autocomplete + Web Crawler","DSA Marathon: 8 problems in 3 hours — Blind 75 unseen problems","Apply + follow up, make 1-page system design cheat sheet"], resources: ["ByteByteGo — Design Typeahead (YouTube)","ByteByteGo — Web Crawler (YouTube)","NeetCode Blind 75","LeetCode"] }
+    ]
+  },
+  {
+    week: 10,
+    theme: "Final Review + Mass Apply + You Are Ready",
+    days: [
+      { label: "W10 MON", mern: ["Node.js checklist for interviews:","✅ Event loop phases, ✅ Streams, ✅ Clustering, ✅ Worker threads","✅ Memory leaks: detect with --inspect, ✅ pm2 monitoring","Express security checklist:","✅ helmet, ✅ CORS, ✅ rate limiting, ✅ input validation, ✅ JWT expiry, ✅ HTTPS","MongoDB performance checklist:","✅ Explain plans, ✅ Covered queries, ✅ Index types, ✅ Aggregation best practices"], cpp: ["2 hard problems timed — DO NOT look at solution until done"], resources: ["TUF+ full sheet","NeetCode.io roadmap"] },
+      { label: "W10 TUE", mern: ["React checklist for interviews:","✅ Re-render triggers, ✅ Reconciliation, ✅ Fiber, ✅ Concurrent mode concept","✅ useMemo vs useCallback, ✅ Code splitting, ✅ Error boundaries","C++ interview checklist:","✅ STL complexity cheatsheet, ✅ Smart pointers, ✅ Move semantics concept","✅ When to use map vs unordered_map, ✅ Stack vs heap memory"], cpp: ["NeetCode Blind 75: mark every problem Easy/Medium/Hard for you personally","Solve 2 that you marked as 'Hard for me' — no hints"], resources: ["react.dev","typescriptlang.org","NeetCode Blind 75","LeetCode"] },
+      { label: "W10 WED", mern: ["Quick review ALL case studies:","URL Shortener, Twitter Feed, Netflix, WhatsApp, Uber, Google Drive, Autocomplete, Web Crawler, Rate Limiter","Key concepts to nail:","✅ Load Balancing, ✅ Caching (Redis, CDN), ✅ SQL vs NoSQL","✅ Horizontal scaling, ✅ CAP Theorem, ✅ Message Queues (Kafka)","✅ Microservices, ✅ API Gateway, ✅ Rate Limiting, ✅ DB Sharding","Practice: explain CAP theorem out loud in 2 min, explain sharding in 2 min"], cpp: ["2 random hard LeetCode problems timed"], resources: ["excalidraw.com","ByteByteGo YouTube","Gaurav Sen YouTube","Alex Xu book"] },
+      { label: "W10 THU", mern: ["Update job tracker, follow up on all pending applications","Apply to 5 more companies"], cpp: ["TUF+: Go to your profile — find every unsolved/starred problem","Pick top 6 hardest remaining problems across all sheets","Solve 3 of them tonight (45 min each)","KEY HABIT: when stuck after 15 min → write approach in comments → code it → compare with optimal","Practice thinking out loud as you code (critical for interviews)"], resources: ["TUF+ sheet","LeetCode","NeetCode.io"] },
+      { label: "W10 FRI", mern: ["Do one final complete mock interview (record it):","2 min self-intro (polished, no filler words)","3 min project walkthrough (Project 2 — the AI one)","1 C++ coding problem: medium — talk through approach first, code second","1 system design: pick randomly from your list","3 smart questions you'd ask the interviewer","Watch recording immediately, rate yourself 1-10 on each section","Fix anything below 7"], cpp: ["1 easy warmup problem (keep the streak going)"], resources: ["pramp.com","interviewing.io","Loom (recording)"] },
+      { label: "W10 SAT 🏋️ FULL DAY", mern: ["MORNING: Final portfolio checklist:","✅ Both projects live and fully functional","✅ READMEs: description, tech stack, screenshots, live demo, setup steps","✅ GitHub profile README looks professional","✅ LinkedIn: Open to Work, all projects listed, 500+ connections target","✅ Resume: 1 page, ATS-friendly, no typos, quantified bullets","✅ Postman collection saved for both projects","AFTERNOON: Mass Apply — 20 applications today","LinkedIn: 'MERN Developer', 'Node.js Developer', 'Full Stack Developer', 'SDE-2'","Filter: posted last 24hrs, Easy Apply","Naukri: update profile to get recruiter calls","Instahyre: AI-matched roles often pay well","Cutshort.io: good for startups","Wellfound / AngelList: startup ecosystem","Direct company career pages: Razorpay, Zepto, Swiggy, Meesho, BrowserStack, Postman","EVENING: DSA — last contest simulation","Celebrate: 2 AI-powered apps, MERN mastery, 200+ DSA problems, 10+ system design cases!"], cpp: ["Final portfolio checklist + Mass Apply: 20 applications","Direct company pages: Razorpay, Zepto, Swiggy, Meesho, BrowserStack, Postman","DSA: last contest simulation — celebrate your progress!"], resources: ["linkedin.com","naukri.com","instahyre.com","cutshort.io","wellfound.com","razorpay.com/careers","swiggy.com/careers"] },
+      { label: "W10 SUN 🏆 YOU MADE IT", mern: ["Write down: what you know now vs 10 weeks ago","Identify 3 areas to keep improving while interviewing","Set a daily schedule for the job hunt phase:","→ 2 TUF+ problems per day (keep C++ sharp)","→ 1 new system design read/watch per week","→ 5+ job applications per day","→ 1 mock interview per week","ONGOING RESOURCES TO KEEP USING:","📘 DSA: TUF+ sheet + Codeforces Div 2 for contest practice","📺 System Design: ByteByteGo YouTube (weekly), Gaurav Sen YouTube","💻 Backend Deep Dive: Hussein Nasser YouTube (networking, Node internals)","⚛️ React Advanced: Jack Herrington YouTube","🤖 AI/ML: Andrej Karpathy YouTube, fast.ai course","📚 Books: Clean Code (Martin) → DDIA (Kleppmann) → Pragmatic Programmer","INTERVIEW MINDSET: Rejections are data, not failure. Keep shipping. Network relentlessly."], cpp: ["YOU ARE READY. THE SWITCH IS COMING. 🏆","Keep: 2 TUF+ problems/day, 5 applications/day, 1 mock/week","Read: Clean Code → DDIA → Pragmatic Programmer"], resources: ["TUF+ sheet","ByteByteGo YouTube","Gaurav Sen YouTube","Hussein Nasser YouTube","Jack Herrington YouTube","Andrej Karpathy YouTube","fast.ai","Clean Code (book)","DDIA (book)","Codeforces"] }
+    ]
+  }
+];
+
+const BONUS_KEY = 'roadmap_bonus_read_v1';
+
+const bonusArticles = [
+  { id: 'netflix-chaos', icon: '🐒', company: 'NETFLIX', companyColor: '#e50914', title: 'How Netflix Tests Itself by Breaking Everything', tags: ['chaos engineering', 'distributed systems', 'resilience', 'AWS'], preview: "Netflix deliberately kills random servers in production every single day. Here's the insane engineering philosophy behind why.", sections: [ { heading: 'THE PROBLEM', color: '#e50914', text: "When Netflix moved from DVD rentals to streaming, they built a monolith on AWS. As they grew to millions of users, they split into microservices — but now they had a new problem. With hundreds of services talking to each other, one failure could cascade into a total outage. And you can't test resilience by hoping nothing breaks." }, { heading: 'THE INSIGHT', color: '#ffd700', callout: '"The best way to avoid failure is to fail constantly." — Netflix Engineering', text: "Netflix engineers asked: what if we intentionally broke things during business hours, when engineers are online and can react quickly? This forced every developer to write fault-tolerant code from day one. If your service could die at any moment, you'd build in fallbacks automatically." }, { heading: 'THE SIMIAN ARMY', color: '#e50914', steps: [ { num: '01', text: 'Chaos Monkey — randomly kills individual server instances in production. It runs continuously, every day.' }, { num: '02', text: 'Chaos Gorilla — kills an entire AWS Availability Zone. Tests if traffic reroutes correctly.' }, { num: '03', text: 'Chaos Kong — drops an entire AWS Region. Tests whether Netflix survives a massive regional outage.' }, { num: '04', text: 'Latency Monkey — injects artificial network latency to see how slow responses cascade.' }, { num: '05', text: 'Janitor Monkey — finds and cleans up unused cloud resources, saving cost automatically.' } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "Netflix classifies services into tiers. Video playback is Tier 1 (critical). Recommendations are Tier 2 (nice to have). If recommendations fail, the app degrades gracefully. Building graceful degradation is how they survive chaos. In interviews, this is your answer to 'how would you design a fault-tolerant system?'" } ] },
+  { id: 'zerodha-postgres', icon: '🐘', company: 'ZERODHA', companyColor: '#387ed1', title: "How Zerodha Scaled PostgreSQL to 20TB with 7 Million Tables", tags: ['postgresql', 'database scaling', 'sharding', 'fintech', 'india'], preview: "India's largest stock broker runs 20TB of financial data on a single PostgreSQL setup. Their approach is brilliantly boring — and that's the point.", sections: [ { heading: 'THE SCALE', color: '#387ed1', text: "Zerodha's Console DB stores hundreds of billions of rows of financial data — trades, P&L records, ledger entries across millions of users. Total data: close to 20TB across four sharded nodes. And they run this on PostgreSQL, self-hosted on EC2." }, { heading: 'THE PHILOSOPHY', color: '#ffd700', callout: '"Boring is generally battle-tested and well-understood sans novelty. Simple scales." — Kailash Nadh, CTO Zerodha', text: "When Zerodha outgrew their single master-replica setup, they considered Citus for distributed Postgres sharding. But Citus adds a reference ID column to every sharded table — meaning hundreds of query rewrites. So they did something more elegant." }, { heading: 'HOW THEY ACTUALLY SHARDED', color: '#387ed1', steps: [ { num: '01', text: "Sliced data by financial year — each year's data lives in its own PostgreSQL instance on its own EC2 node." }, { num: '02', text: "Linked all shards using PostgreSQL's built-in Foreign Data Wrapper (FDW) — no custom distributed magic needed." }, { num: '03', text: "Same schema, same queries across all shards. Zero rewrites. Engineers didn't even need to learn new tools." }, { num: '04', text: "Dropped foreign keys entirely for huge performance gains during EOD bulk imports of tens of millions of rows." }, { num: '05', text: "Denormalized aggressively — copied parent data into child tables to kill JOINs across billion-row tables." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "Engineering time is more expensive than infra cost. Zerodha used Foreign Data Wrappers (a PostgreSQL feature from 2013), yearly sharding, and manual VACUUM. The lesson: understand your database deeply before reaching for new tools." } ] },
+  { id: 'uber-location', icon: '📍', company: 'UBER', companyColor: '#000000', title: 'How Uber Tracks Millions of Drivers in Real-Time', tags: ['real-time systems', 'websockets', 'geospatial', 'pub-sub', 'GPS'], preview: "Every second, millions of drivers send their GPS coordinates to Uber. How does a system process all of that and show you a smooth moving car?", sections: [ { heading: 'THE NUMBERS', color: '#ff6b35', text: "Uber operates in 10,000+ cities. At peak, millions of drivers are simultaneously sending location updates every few seconds. That's billions of GPS coordinate events per day that must be processed, stored, and pushed back to rider devices — all with sub-second latency." }, { heading: 'THE DATA FLOW', color: '#ffd700', steps: [ { num: '01', text: "Driver's phone sends GPS coordinates every 4–5 seconds via WebSocket to Uber's backend." }, { num: '02', text: "The Location Service receives the update and publishes it to a Pub/Sub system (like Kafka). Each ride has its own channel." }, { num: '03', text: "The Rider's app is subscribed to that channel. The moment a driver location update is published, it's pushed to the rider." }, { num: '04', text: "Map Matching smooths out GPS noise: raw GPS has ~10-50m error. Uber snaps the location to the nearest road." }, { num: '05', text: "The rider's app interpolates between location updates to create smooth movement — the car doesn't jump, it glides." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "This is the exact system design question you'll face in FAANG interviews: 'Design Uber.' The key concepts: WebSockets for real-time bidirectional communication, Pub/Sub for decoupling location producers from consumers, geospatial indexing for efficient proximity search, and sensor fusion for GPS failures." } ] },
+  { id: 'whatsapp-encryption', icon: '🔐', company: 'WHATSAPP', companyColor: '#25d366', title: "How WhatsApp Encrypts Your Messages — And Why Even They Can't Read Them", tags: ['cryptography', 'signal protocol', 'security', 'end-to-end encryption'], preview: "WhatsApp encrypts 100 billion messages per day. The encryption keys never touch their servers. Here's the beautiful math behind it.", sections: [ { heading: 'THE KEY QUESTION', color: '#25d366', text: "When you send a message on WhatsApp, it travels through their servers. So how can WhatsApp genuinely not read your messages? The encryption keys are generated on your device and never transmitted. WhatsApp's servers are literally delivering boxes they can't open." }, { heading: 'THE SIGNAL PROTOCOL', color: '#ffd700', callout: "WhatsApp uses the Signal Protocol — open source and audited by cryptographers worldwide. It uses X3DH for key exchange, the Double Ratchet Algorithm for ongoing encryption, and Curve25519 + AES-256 + HMAC-SHA256 as crypto primitives.", text: "WhatsApp adopted it in 2016, rolling it out to over 1 billion users." }, { heading: 'HOW A MESSAGE IS SENT', color: '#25d366', steps: [ { num: '01', text: "When you install WhatsApp, your device generates a key pair: a public key (shared with WhatsApp's servers) and a private key (never leaves your device)." }, { num: '02', text: "When Alice wants to message Bob, her app fetches Bob's public key from WhatsApp's servers." }, { num: '03', text: "Using X3DH, Alice derives a shared secret session key with Bob — without ever transmitting the secret." }, { num: '04', text: "Alice's message is encrypted with AES-256 using this session key. The encrypted blob is sent to WhatsApp's servers." }, { num: '05', text: "WhatsApp delivers the encrypted blob to Bob's phone. Bob decrypts it with his private key. WhatsApp never sees plaintext." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "Key concepts: asymmetric cryptography, Diffie-Hellman key exchange, forward secrecy, and the difference between encryption-at-rest and end-to-end encryption. WhatsApp CAN see your metadata (who you message, how often) — just not the content." } ] },
+  { id: 'razorpay-payments', icon: '💳', company: 'RAZORPAY', companyColor: '#2d81f7', title: 'How Razorpay Processes Millions of Payments Without Losing a Single Rupee', tags: ['payments', 'idempotency', 'distributed systems', 'fintech', 'india'], preview: "Processing a payment involves 6+ systems that can all fail independently. Razorpay's architecture ensures money never disappears in the cracks.", sections: [ { heading: 'THE PROBLEM SPACE', color: '#2d81f7', text: "A payment isn't just one operation — it involves your bank, the payment gateway, the card network, the merchant's bank, RBI's systems, and fraud detection. Any of these can timeout, crash, or return ambiguous responses." }, { heading: 'IDEMPOTENCY KEYS: THE CORE PRIMITIVE', color: '#ffd700', callout: "An idempotent operation produces the same result no matter how many times you apply it. In payments, this means: retrying a timed-out payment should never charge you twice.", text: "Razorpay assigns every payment attempt a unique Idempotency Key. If a network timeout occurs and the payment is retried, the system recognizes the same key and returns the original result — without processing the payment again." }, { heading: 'THE PAYMENT FLOW', color: '#2d81f7', steps: [ { num: '01', text: "Customer clicks 'Pay' — Razorpay creates a payment record in state: CREATED with a unique idempotency key." }, { num: '02', text: "Request sent to the bank/card network. Payment state transitions to: PROCESSING." }, { num: '03', text: "Bank responds. Razorpay transitions to SUCCESS or FAILED and fires webhooks to the merchant." }, { num: '04', text: "If any step times out, a background reconciliation job checks the actual state from the bank." }, { num: '05', text: "The merchant receives a webhook. If delivery fails, Razorpay retries with exponential backoff for up to 24 hours." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "Idempotency is the most important concept in distributed payment systems. State machines (CREATED → PROCESSING → SUCCESS/FAILED) make payment flows debuggable. Webhook retry with exponential backoff ensures delivery through transient failures." } ] },
+  { id: 'google-spanner', icon: '🌍', company: 'GOOGLE', companyColor: '#4285f4', title: 'How Google Spanner Achieves Global Consistency Using Atomic Clocks', tags: ['distributed databases', 'spanner', 'CAP theorem', 'TrueTime', 'consistency'], preview: "Google Spanner is the world's only globally distributed database that offers external consistency. They built it using atomic clocks and GPS receivers in every data center.", sections: [ { heading: 'THE CAP THEOREM PROBLEM', color: '#4285f4', text: "The CAP theorem says a distributed system can only guarantee two of three: Consistency, Availability, and Partition tolerance. Google said: we want both consistency and availability at global scale. The community said that was impossible. Google built Spanner anyway." }, { heading: 'THE INSIGHT: TIME AS CONSISTENCY', color: '#ffd700', callout: '"If you can know the exact time to within a bounded uncertainty, you can guarantee global consistency without a central coordinator." — Google Spanner Paper (2012)', text: "If every data center has atomic clocks synchronized via GPS, and if you know the maximum clock drift, you can order transactions globally using timestamps — no central coordinator needed." }, { heading: 'TRUETIME: THE ATOMIC CLOCK API', color: '#4285f4', steps: [ { num: '01', text: "Every Google data center has GPS receivers and atomic clocks that synchronize to within ~7 milliseconds globally." }, { num: '02', text: "TrueTime exposes a simple API: TT.now() returns an interval [earliest, latest] — the uncertainty window." }, { num: '03', text: "Before committing a transaction, Spanner calls TT.now() and waits until the uncertainty window has passed (commit-wait)." }, { num: '04', text: "This guarantees any future transaction anywhere will have a timestamp strictly after this one." }, { num: '05', text: "Result: global external consistency without a central coordinator, at the cost of a ~7-14ms commit wait per write." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "The CAP theorem is a starting point, not a ceiling. Spanner shows that with enough investment in physical infrastructure, you can get very close to 'CA' at global scale. Know TrueTime, commit-wait, and external consistency — these are the details that make interviewers' eyes light up." } ] }
+];
+
+function renderBonusSection() {
+  const grid = document.getElementById('bonusGrid');
+  const readData = JSON.parse(localStorage.getItem(BONUS_KEY) || '{}');
+
+  grid.innerHTML = bonusArticles.map(a => {
+    const isRead = readData[a.id];
+    return `
+    <div class="bonus-card ${isRead ? 'read-done' : ''}" id="bcard-${a.id}">
+      <span class="bonus-read-badge">✓ READ</span>
+      <div class="bonus-card-header">
+        <div class="bonus-icon">${a.icon}</div>
+        <div class="bonus-meta">
+          <div class="bonus-company" style="color:${a.companyColor}">${a.company}</div>
+          <div class="bonus-title">${a.title}</div>
+        </div>
+      </div>
+      <div class="bonus-tags">
+        ${a.tags.map(t => `<span class="bonus-tag">${t}</span>`).join('')}
+      </div>
+      <div class="bonus-preview">${a.preview}</div>
+      <div class="bonus-body" id="bbody-${a.id}">
+        ${a.sections.map(s => `
+          <div class="bonus-section">
+            <div class="bonus-section-title" style="color:${s.color}">${s.heading}</div>
+            ${s.callout ? `<div class="bonus-callout">${s.callout}</div>` : ''}
+            ${s.steps ? s.steps.map(st => `
+              <div class="bonus-step">
+                <span class="bonus-step-num" style="color:${s.color}">${st.num}</span>
+                <span class="bonus-step-text">${st.text}</span>
+              </div>
+            `).join('') : ''}
+            ${s.text ? `<div class="bonus-text">${s.text}</div>` : ''}
+          </div>
+        `).join('')}
+        <div style="margin-top:1.5rem; display:flex; gap:0.8rem; align-items:center;">
+          <button onclick="markRead('${a.id}')" style="background:rgba(0,212,170,0.1);border:1px solid var(--mern);color:var(--mern);font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;">✓ MARK AS READ</button>
+          <button onclick="toggleBonus('${a.id}')" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.65rem;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;">COLLAPSE ↑</button>
+        </div>
+      </div>
+      <button class="bonus-toggle-btn" onclick="toggleBonus('${a.id}')">
+        <span>READ DEEP DIVE</span><span>↓</span>
+      </button>
+    </div>`;
+  }).join('');
+}
+
+function toggleBonus(id) {
+  const body = document.getElementById('bbody-' + id);
+  const btn = body.closest('.bonus-card').querySelector('.bonus-toggle-btn span:last-child');
+  const isOpen = body.classList.toggle('open');
+  if (btn) btn.textContent = isOpen ? '↑' : '↓';
+}
+
+function markRead(id) {
+  const data = JSON.parse(localStorage.getItem(BONUS_KEY) || '{}');
+  data[id] = true;
+  localStorage.setItem(BONUS_KEY, JSON.stringify(data));
+  const card = document.getElementById('bcard-' + id);
+  if (card) card.classList.add('read-done');
+}
+
+// PROJECTS DATA & RENDER
+const projects = [
+  {
+    num: "01",
+    name: "TASK MANAGER",
+    level: "BEGINNER",
+    levelColor: "#00d4aa",
+    stack: "HTML + CSS + JS → Rebuild in React",
+    week: "W1–W2", weekColor: "#00d4aa",
+    desc: "A todo app with categories, priority levels, due dates, and localStorage persistence. Build it first in vanilla JS to feel DOM manipulation, then rebuild in React to experience the component thinking shift.",
+    why: "💡 Every interviewer expects this — make yours stand out with drag-and-drop reordering. Proves you understand fundamentals before jumping to frameworks.",
+    features: ["CRUD tasks","Filter by status & priority","Due dates","Drag to reorder (@dnd-kit)","Dark mode toggle","localStorage persistence","Responsive design","Keyboard shortcuts"]
+  },
+  {
+    num: "02",
+    name: "BLOG PLATFORM",
+    level: "INTERMEDIATE",
+    levelColor: "#a78bfa",
+    stack: "MERN + JWT Auth + Multer + Quill.js",
+    week: "W3", weekColor: "#ff6b35",
+    desc: "A full blogging platform — users register, write posts with a rich text editor, comment, and like posts. Your first true full-stack project covering auth flow, file uploads, and real data relationships.",
+    why: "💡 Covers the entire MERN loop: auth, protected routes, file uploads, and relationships (users → posts → comments). Proves you can build a real product end-to-end.",
+    features: ["JWT register & login","Rich text editor (Quill.js)","Image upload (Multer)","Pagination & search","User profiles","Likes & bookmarks","Comment threads","Admin dashboard"]
+  },
+  {
+    num: "03",
+    name: "REAL-TIME CHAT",
+    level: "INTERMEDIATE+",
+    levelColor: "#f59e0b",
+    stack: "MERN + Socket.io + Redis",
+    week: "W6", weekColor: "#a855f7",
+    desc: "A WhatsApp-style chat app with rooms, real-time messaging, online presence indicators, and message history. Very few portfolio projects include real-time — this one gets noticed immediately.",
+    why: "💡 Demonstrates WebSockets, event-driven architecture, and Redis for active user tracking — exactly what interviewers probe when they ask 'Design WhatsApp'.",
+    features: ["Room-based chat","Online/offline indicators","Typing indicators","Message history (MongoDB)","Redis active user tracking","Read receipts","File sharing","Emoji reactions"]
+  },
+  {
+    num: "04",
+    name: "AI RESUME BUILDER",
+    level: "ADVANCED",
+    levelColor: "#ff6b35",
+    stack: "MERN + OpenAI API + PDFKit + Redux",
+    week: "W4–W5", weekColor: "#ff6b35",
+    desc: "Users input their experience and AI rewrites bullet points, suggests skills, and generates a downloadable PDF resume. Combines full-stack with AI — the exact combination that makes you hireable right now.",
+    why: "💡 PDF generation (pdfkit/puppeteer) is a backend skill most devs haven't touched. AI streaming + resume output = the #1 project impressing interviewers at product companies.",
+    features: ["OpenAI bullet rewriting","Multiple resume templates","PDF export (pdfkit)","Real-time AI streaming","Saved versions in MongoDB","ATS score checker","Skills gap analysis","Cover letter generator"]
+  },
+  {
+    num: "05",
+    name: "JOB QUEUE DASHBOARD",
+    level: "ADVANCED+",
+    levelColor: "#ef4444",
+    stack: "MERN + BullMQ + Redis + WebSockets + Docker",
+    week: "W6–W7", weekColor: "#ffd700",
+    desc: "Users submit long-running background jobs (image processing, bulk emails, reports) and watch them process live on a real-time dashboard. The project that gets you interviews at Razorpay, Swiggy, and Meesho-level companies.",
+    why: "💡 Distributed systems thinking + Redis + worker processes + Docker = things most junior devs have never built. This signals senior-level engineering instincts.",
+    features: ["Job submission API","BullMQ workers","Real-time progress (WebSockets)","Retry on failure","Job priority queues","Docker Compose setup","Live queue depth dashboard","Throughput & latency metrics"]
+  }
+];
+
+function renderProjects() {
+  const grid = document.getElementById("projectsGrid");
+  if (!grid) return;
+  grid.innerHTML = projects.map(p => `
+    <div class="project-card" style="border-top: 3px solid ${p.levelColor}">
+      <div class="project-card-inner">
+        <div class="project-num-col">
+          <span class="project-num" style="color:${p.levelColor}">${p.num}</span>
+        </div>
+        <div class="project-main">
+          <div class="project-header">
+            <span class="project-level-badge" style="background:${p.levelColor}18;color:${p.levelColor};border:1px solid ${p.levelColor}44">${p.level}</span>
+            <span class="project-week-tag"><span class="project-week-dot" style="background:${p.weekColor}"></span>BUILD IN ${p.week}</span>
+          </div>
+          <div class="project-name">${p.name}</div>
+          <div class="project-stack">// ${p.stack}</div>
+          <div class="project-desc">${p.desc}</div>
+          <div class="project-why">${p.why}</div>
+        </div>
+        <div class="project-expand-col">
+          <button class="project-expand-btn" onclick="toggleProject(this,'${p.name.replace(/\s/g,'_')}')">FEATURES ↓</button>
+        </div>
+      </div>
+      <div class="project-features" id="pf-${p.name.replace(/\s/g,'_')}">
+        <div class="project-features-title" style="color:${p.levelColor}">FEATURE LIST</div>
+        <div class="features-list">${p.features.map(f=>`<span class="feature-chip">${f}</span>`).join("")}</div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function toggleProject(btn, id) {
+  const el = document.getElementById("pf-" + id);
+  const isOpen = el.classList.toggle("open");
+  btn.textContent = isOpen ? "FEATURES ↑" : "FEATURES ↓";
+}
+
+renderBonusSection();
 renderWeeks([1,2,3,4,5,6,7,8,9,10]);
+renderProjects();
 </script>
 </body>
 </html>
