@@ -3,1317 +3,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crack Any Role — Study Roadmap</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>AI Engineer Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --border: #1e1e2e;
-    --mern: #00d4aa;
-    --cpp: #ff6b35;
-    --gold: #ffd700;
-    --text: #e8e8f0;
-    --muted: #6b6b8a;
-    --card: #13131f;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
-
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -200px; left: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 70%);
-    animation: pulse 6s ease-in-out infinite;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -200px; right: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%);
-    animation: pulse 6s ease-in-out infinite reverse;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.7; }
-  }
-
-  .badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    padding: 0.4rem 1rem;
-    border-radius: 100px;
-    margin-bottom: 2rem;
-    animation: fadeIn 0.8s ease forwards;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 12vw, 10rem);
-    line-height: 0.9;
-    letter-spacing: 0.02em;
-    animation: fadeIn 0.8s ease 0.1s both;
-  }
-
-  .hero h1 span.g1 { color: var(--mern); }
-  .hero h1 span.g2 { color: var(--cpp); }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--muted);
-    margin-top: 1.5rem;
-    max-width: 500px;
-    line-height: 1.6;
-    animation: fadeIn 0.8s ease 0.2s both;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-    margin-top: 3rem;
-    animation: fadeIn 0.8s ease 0.3s both;
-  }
-
-  .stat { text-align: center; }
-
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5rem;
-    line-height: 1;
-  }
-
-  .stat-num.mern-col { color: var(--mern); }
-  .stat-num.cpp-col { color: var(--cpp); }
-
-  .stat-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--muted);
-    margin-top: 0.3rem;
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--muted);
-    animation: bounce 2s ease-in-out infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-8px); }
-  }
-
-  section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-  }
-
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    line-height: 1;
-    margin-bottom: 3rem;
-  }
-
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-  }
-
-  @media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
-
-  .compare-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-  }
-
-  .compare-card:hover { transform: translateY(-4px); }
-  .compare-card.mern-card { border-top: 3px solid var(--mern); }
-  .compare-card.mern-card:hover { border-color: var(--mern); }
-  .compare-card.cpp-card { border-top: 3px solid var(--cpp); }
-  .compare-card.cpp-card:hover { border-color: var(--cpp); }
-
-  .compare-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 100px;
-    opacity: 0.05;
-    pointer-events: none;
-  }
-
-  .mern-card::before { background: linear-gradient(180deg, var(--mern), transparent); }
-  .cpp-card::before { background: linear-gradient(180deg, var(--cpp), transparent); }
-
-  .card-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    padding: 0.3rem 0.8rem;
-    border-radius: 100px;
-    margin-bottom: 1.2rem;
-    display: inline-block;
-  }
-
-  .mern-tag { background: rgba(0,212,170,0.12); color: var(--mern); }
-  .cpp-tag { background: rgba(255,107,53,0.12); color: var(--cpp); }
-
-  .card-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-desc {
-    color: var(--muted);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .card-pros {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .card-pros li {
-    font-size: 0.85rem;
-    color: #b0b0c8;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    line-height: 1.4;
-  }
-
-  .card-pros li::before {
-    content: '→';
-    flex-shrink: 0;
-    margin-top: 0.05rem;
-  }
-
-  .mern-card .card-pros li::before { color: var(--mern); }
-  .cpp-card .card-pros li::before { color: var(--cpp); }
-
-  .recommended-badge {
-    position: absolute;
-    top: 1.2rem; right: 1.2rem;
-    background: var(--gold);
-    color: #000;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 0.25rem 0.6rem;
-    border-radius: 100px;
-  }
-
-  .verdict-box {
-    background: linear-gradient(135deg, rgba(0,212,170,0.05), rgba(255,107,53,0.05));
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2.5rem;
-    margin-bottom: 5rem;
-  }
-
-  .verdict-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: var(--gold);
-  }
-
-  .verdict-text {
-    color: #b0b0c8;
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
-
-  .verdict-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  @media (max-width: 768px) { .verdict-grid { grid-template-columns: 1fr; } }
-
-  .verdict-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-  }
-
-  .verdict-item-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-  }
-
-  .mern-col { color: var(--mern); }
-  .cpp-col { color: var(--cpp); }
-
-  .verdict-item p {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  .timeline-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .toggle-btn {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    padding: 0.5rem 1.2rem;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .toggle-btn.active-mern {
-    background: rgba(0,212,170,0.1);
-    border-color: var(--mern);
-    color: var(--mern);
-  }
-
-  .toggle-btn.active-cpp {
-    background: rgba(255,107,53,0.1);
-    border-color: var(--cpp);
-    color: var(--cpp);
-  }
-
-  .weeks-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .week-group {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: border-color 0.2s ease;
-  }
-
-  .week-group:hover { border-color: #2e2e4e; }
-
-  .week-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: var(--card);
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .week-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    min-width: 4rem;
-  }
-
-  .week-theme {
-    font-size: 0.9rem;
-    color: #b0b0c8;
-    flex: 1;
-  }
-
-  .week-days-count {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
-
-  .week-chevron {
-    color: var(--muted);
-    transition: transform 0.2s ease;
-    font-size: 0.8rem;
-  }
-
-  .week-group.open .week-chevron { transform: rotate(180deg); }
-
-  .week-body {
-    display: none;
-    border-top: 1px solid var(--border);
-  }
-
-  .week-group.open .week-body { display: block; }
-
-  .day-row {
-    display: grid;
-    grid-template-columns: 48px 120px 1fr 1fr;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s ease;
-  }
-
-  .day-row:last-child { border-bottom: none; }
-  .day-row:hover { background: rgba(255,255,255,0.02); }
-
-  @media (max-width: 700px) {
-    .day-row { grid-template-columns: 48px 1fr; }
-    .day-mern, .day-cpp { grid-column: 2; border-right: none; }
-    .day-label { grid-column: 2; border-right: none; font-size: 0.6rem; }
-  }
-
-  .day-label {
-    padding: 1rem 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    border-right: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-  }
-
-  .day-mern, .day-cpp {
-    padding: 1rem 1.5rem;
-    font-size: 0.82rem;
-    line-height: 1.5;
-    border-right: 1px solid var(--border);
-  }
-
-  .day-cpp { border-right: none; }
-
-  .col-header {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.3rem;
-  }
-
-  .mern-label { color: var(--mern); }
-  .cpp-label { color: var(--cpp); }
-
-  .day-topic { color: #c8c8e0; }
-
-  .task-bullet {
-    color: #c0c0da;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    padding: 0.1rem 0;
-    padding-left: 0.9rem;
-    position: relative;
-  }
-  .task-bullet::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--mern);
-    font-weight: 700;
-  }
-  .task-bullet:first-child { padding-top: 0; }
-
-  .day-row.completed .task-bullet {
-    opacity: 0.35;
-    text-decoration: line-through;
-    text-decoration-color: var(--mern);
-  }
-
-  .phases {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .phase-btn {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    padding: 0.4rem 1rem;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .phase-btn:hover, .phase-btn.active {
-    background: rgba(255,215,0,0.1);
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-
-  .progress-bar-wrap {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--border);
-    z-index: 1000;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--mern), var(--cpp));
-    transition: width 0.4s ease;
-  }
-
-  .progress-widget {
-    position: fixed;
-    top: 1.2rem; right: 1.5rem;
-    z-index: 1001;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 0.6rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    backdrop-filter: blur(10px);
-  }
-
-  .progress-pct {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    line-height: 1;
-    background: linear-gradient(135deg, var(--mern), var(--cpp));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .progress-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    line-height: 1.4;
-  }
-
-  .reset-btn {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
-    padding: 0.25rem 0.5rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .reset-btn:hover { border-color: #ff4444; color: #ff4444; }
-
-  .day-row { position: relative; }
-
-  .day-check {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    border-right: 1px solid var(--border);
-  }
-
-  .check-input {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 18px; height: 18px;
-    border: 2px solid var(--border);
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-  }
-
-  .check-input:hover { border-color: var(--mern); }
-
-  .check-input:checked {
-    background: var(--mern);
-    border-color: var(--mern);
-  }
-
-  .check-input:checked::after {
-    content: '✓';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    font-size: 11px;
-    font-weight: 900;
-    line-height: 1;
-  }
-
-  .day-row.completed .day-label,
-  .day-row.completed .day-topic { opacity: 0.4; text-decoration: line-through; text-decoration-color: var(--mern); }
-
-  .day-row.completed { background: rgba(0,212,170,0.03) !important; }
-
-  .week-progress-mini {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--muted);
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .mini-dots { display: flex; gap: 2px; }
-
-  .mini-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--border);
-    transition: background 0.2s;
-  }
-
-  .mini-dot.done { background: var(--mern); }
-
-  .day-row-wrap { border-bottom: 1px solid var(--border); }
-  .day-row-wrap:last-child { border-bottom: none; }
-  .day-row { border-bottom: none; }
-
-  .resources-row {
-    display: none;
-    padding: 0.75rem 1.5rem 0.75rem calc(48px + 120px + 1.5rem);
-    background: rgba(255,215,0,0.03);
-    border-top: 1px dashed rgba(255,215,0,0.15);
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .resources-row.open { display: flex; }
-
-  .res-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    margin-right: 0.5rem;
-    white-space: nowrap;
-  }
-
-  .res-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    background: rgba(255,215,0,0.07);
-    border: 1px solid rgba(255,215,0,0.2);
-    color: #d4b800;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    cursor: default;
-  }
-
-  .res-toggle {
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
-    transition: color 0.2s;
-    white-space: nowrap;
-  }
-
-  .res-toggle:hover { color: var(--gold); }
-
-  .bonus-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .bonus-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    cursor: pointer;
-  }
-
-  .bonus-card:hover { transform: translateY(-4px); }
-
-  .bonus-card-header {
-    padding: 1.5rem 1.5rem 1rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .bonus-icon { font-size: 2rem; line-height: 1; flex-shrink: 0; }
-
-  .bonus-meta { flex: 1; }
-
-  .bonus-company {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    margin-bottom: 0.4rem;
-  }
-
-  .bonus-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    line-height: 1.1;
-    color: var(--text);
-  }
-
-  .bonus-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    padding: 0 1.5rem 1rem;
-  }
-
-  .bonus-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    padding: 0.2rem 0.6rem;
-    border-radius: 100px;
-    background: rgba(255,255,255,0.05);
-    color: var(--muted);
-  }
-
-  .bonus-preview {
-    padding: 0 1.5rem 1rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .bonus-body { display: none; padding: 1.5rem; }
-  .bonus-body.open { display: block; }
-
-  .bonus-section { margin-bottom: 1.5rem; }
-  .bonus-section:last-child { margin-bottom: 0; }
-
-  .bonus-section-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.6rem;
-  }
-
-  .bonus-text {
-    font-size: 0.85rem;
-    color: #b8b8d0;
-    line-height: 1.75;
-  }
-
-  .bonus-callout {
-    background: rgba(255,215,0,0.06);
-    border-left: 3px solid var(--gold);
-    padding: 0.8rem 1rem;
-    border-radius: 0 8px 8px 0;
-    margin: 1rem 0;
-    font-size: 0.82rem;
-    color: #c8b800;
-    line-height: 1.6;
-    font-style: italic;
-  }
-
-  .bonus-step {
-    display: flex;
-    gap: 0.8rem;
-    margin-bottom: 0.8rem;
-    align-items: flex-start;
-  }
-
-  .bonus-step-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
-    line-height: 1;
-    flex-shrink: 0;
-    min-width: 1.5rem;
-  }
-
-  .bonus-step-text {
-    font-size: 0.83rem;
-    color: #b8b8d0;
-    line-height: 1.6;
-    padding-top: 0.1rem;
-  }
-
-  .bonus-toggle-btn {
-    width: 100%;
-    background: none;
-    border: none;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    padding: 0.8rem 1.5rem;
-    cursor: pointer;
-    text-align: left;
-    transition: color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .bonus-toggle-btn:hover { color: var(--gold); }
-
-  .bonus-read-badge {
-    display: none;
-    position: absolute;
-    top: 1rem; right: 1rem;
-    background: rgba(0,212,170,0.15);
-    border: 1px solid var(--mern);
-    color: var(--mern);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
-    padding: 0.2rem 0.5rem;
-    border-radius: 100px;
-  }
-
-  .bonus-card.read-done { border-color: rgba(0,212,170,0.3); }
-  .bonus-card.read-done .bonus-read-badge { display: block; }
-  .bonus-card { position: relative; }
-
-  /* PROJECTS SECTION STYLES */
-  .projects-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: border-color 0.3s ease, transform 0.3s ease;
-    position: relative;
-  }
-
-  .project-card:hover { transform: translateY(-3px); }
-
-  .project-card-inner {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    align-items: start;
-  }
-
-  @media (max-width: 700px) {
-    .project-card-inner { grid-template-columns: 50px 1fr auto; }
-  }
-
-  .project-num-col {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 2rem 0;
-    border-right: 1px solid var(--border);
-  }
-
-  .project-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5rem;
-    line-height: 1;
-  }
-
-  .project-main { padding: 1.5rem 2rem; flex: 1; }
-
-  .project-header {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .project-level-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    padding: 0.2rem 0.7rem;
-    border-radius: 100px;
-  }
-
-  .project-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    line-height: 1;
-  }
-
-  .project-stack {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 0.8rem;
-  }
-
-  .project-desc {
-    font-size: 0.88rem;
-    color: #b0b0c8;
-    line-height: 1.65;
-    margin-bottom: 1rem;
-  }
-
-  .project-why {
-    background: rgba(255,215,0,0.05);
-    border-left: 2px solid rgba(255,215,0,0.4);
-    padding: 0.6rem 1rem;
-    border-radius: 0 8px 8px 0;
-    font-size: 0.82rem;
-    color: #c0aa00;
-    line-height: 1.55;
-    margin-bottom: 1rem;
-    font-style: italic;
-  }
-
-  .project-features {
-    display: none;
-    padding: 1rem 2rem 1.5rem;
-    border-top: 1px solid var(--border);
-    background: rgba(0,0,0,0.2);
-  }
-
-  .project-features.open { display: block; }
-
-  .project-features-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    margin-bottom: 0.8rem;
-  }
-
-  .features-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-
-  .feature-chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.05em;
-    padding: 0.3rem 0.8rem;
-    border-radius: 100px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    color: #a0a0c0;
-    transition: all 0.2s ease;
-  }
-
-  .feature-chip:hover { background: rgba(255,255,255,0.08); color: var(--text); }
-
-  .project-expand-col {
-    padding: 2rem 1.5rem;
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .project-expand-btn {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .project-expand-btn:hover { border-color: var(--gold); color: var(--gold); }
-
-  .project-week-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .project-week-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
-
-  footer {
-    border-top: 1px solid var(--border);
-    text-align: center;
-    padding: 3rem 2rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
-
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 0 2rem;
-  }
-
-  .accent-line {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--mern), transparent);
-    margin: 0 auto 5rem;
-    max-width: 600px;
-    opacity: 0.3;
-  }
-
-  .accent-line.cpp-line {
-    background: linear-gradient(90deg, transparent, var(--cpp), transparent);
-  }
+:root {
+  --bg: #0b0b0f;
+  --s0: #0f0f14;
+  --s1: #141419;
+  --s2: #1a1a22;
+  --bdr: #21212d;
+  --bdr2: #2a2a38;
+  --text: #dddde8;
+  --muted: #5a5a78;
+  --muted2: #8888aa;
+  --ind: #818cf8;
+  --ml: #34d399;
+  --llm: #fb923c;
+  --gold: #fbbf24;
+  --r: 8px;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { background:var(--bg); color:var(--text); font-family:var(--font-sans); font-size:15px; line-height:1.6; overflow-x:hidden; }
+
+/* ── PROGRESS BAR ── */
+#top-bar { position:fixed; top:0; left:0; right:0; height:2px; background:var(--bdr); z-index:900; }
+#top-fill { height:100%; background:linear-gradient(90deg,var(--ind),var(--ml),var(--llm)); width:0; transition:width .5s; }
+
+/* ── SIDE WIDGET ── */
+#prog-widget {
+  position:fixed; top:1rem; right:1rem; z-index:901;
+  background:var(--s1); border:1px solid var(--bdr2);
+  border-radius:var(--r); padding:.55rem .9rem;
+  display:flex; align-items:center; gap:.75rem;
+  font-family:var(--font-mono); font-size:.7rem;
+  backdrop-filter:blur(8px);
+}
+#prog-pct { font-size:1.35rem; font-weight:600; background:linear-gradient(135deg,var(--ind),var(--ml)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1; }
+.pw-label { color:var(--muted); font-size:.58rem; letter-spacing:.08em; line-height:1.5; }
+.pw-count { color:var(--text); font-size:.75rem; }
+#reset-btn { border:1px solid var(--bdr2); background:none; color:var(--muted); font-family:var(--font-mono); font-size:.52rem; letter-spacing:.08em; padding:.2rem .5rem; border-radius:5px; cursor:pointer; transition:all .2s; }
+#reset-btn:hover { border-color:#f87171; color:#f87171; }
+
+/* ── HERO ── */
+.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:5rem 2rem 3rem; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:600px; height:400px; background:radial-gradient(ellipse,rgba(129,140,248,.07) 0%,transparent 70%); pointer-events:none; }
+.hero-eyebrow { font-family:var(--font-mono); font-size:.68rem; letter-spacing:.22em; color:var(--muted); border:1px solid var(--bdr2); padding:.3rem .85rem; border-radius:100px; display:inline-block; margin-bottom:2.5rem; animation:fadeUp .6s .05s both; }
+.hero-title { font-family:var(--font-mono); font-size:clamp(2.8rem,9vw,7.5rem); font-weight:600; line-height:.95; letter-spacing:-.02em; animation:fadeUp .6s .1s both; }
+.hero-title .t1 { display:block; color:var(--ind); }
+.hero-title .t2 { display:block; color:var(--text); }
+.hero-title .t3 { display:block; color:var(--ml); }
+.hero-sub { margin-top:1.5rem; color:var(--muted2); font-size:.95rem; max-width:460px; line-height:1.7; animation:fadeUp .6s .15s both; }
+.hero-schedule { margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; animation:fadeUp .6s .2s both; }
+.sched-card { background:var(--s1); border:1px solid var(--bdr); border-radius:var(--r); padding:.85rem 1.4rem; text-align:center; }
+.sched-day { font-family:var(--font-mono); font-size:.62rem; letter-spacing:.15em; color:var(--muted); margin-bottom:.3rem; }
+.sched-time { font-family:var(--font-mono); font-size:.9rem; font-weight:500; color:var(--text); }
+.sched-hrs { font-size:.75rem; color:var(--gold); margin-top:.15rem; }
+.hero-stats { display:flex; gap:2.5rem; margin-top:2.5rem; flex-wrap:wrap; justify-content:center; animation:fadeUp .6s .25s both; }
+.stat-num { font-family:var(--font-mono); font-size:2rem; font-weight:600; line-height:1; }
+.stat-lbl { font-family:var(--font-mono); font-size:.58rem; letter-spacing:.15em; color:var(--muted); margin-top:.2rem; }
+.scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); font-family:var(--font-mono); font-size:.58rem; letter-spacing:.2em; color:var(--muted); animation:bob 2s ease-in-out infinite; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-5px)} }
+
+/* ── LAYOUT ── */
+.container { max-width:1100px; margin:0 auto; padding:0 1.5rem; }
+.section { padding:5rem 0; }
+.section + .section { border-top:1px solid var(--bdr); }
+.sec-eyebrow { font-family:var(--font-mono); font-size:.62rem; letter-spacing:.2em; color:var(--muted); margin-bottom:.6rem; }
+.sec-title { font-family:var(--font-mono); font-size:clamp(1.6rem,4vw,2.8rem); font-weight:600; line-height:1.1; margin-bottom:2rem; }
+
+/* ── TRACKS ── */
+.tracks-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+.track-card { background:var(--s1); border:1px solid var(--bdr); border-radius:var(--r); padding:1.6rem; }
+.track-icon { font-size:1.5rem; margin-bottom:.9rem; display:block; }
+.track-name { font-family:var(--font-mono); font-size:1rem; font-weight:600; margin-bottom:.5rem; }
+.track-desc { font-size:.85rem; color:var(--muted2); line-height:1.65; margin-bottom:1rem; }
+.chips { display:flex; flex-wrap:wrap; gap:.35rem; }
+.chip { font-family:var(--font-mono); font-size:.58rem; letter-spacing:.04em; padding:.18rem .55rem; border-radius:100px; background:var(--s2); border:1px solid var(--bdr2); color:var(--muted2); }
+
+/* ── PHASE PILLS ── */
+.phase-bar { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+.phase-pill { font-family:var(--font-mono); font-size:.6rem; letter-spacing:.08em; padding:.35rem .9rem; border-radius:100px; background:var(--s1); border:1px solid var(--bdr); color:var(--muted); cursor:pointer; transition:all .2s; }
+.phase-pill:hover,.phase-pill.active { background:var(--s2); border-color:var(--ind); color:var(--ind); }
+
+/* ── WEEK ACCORDION ── */
+.weeks-list { display:flex; flex-direction:column; gap:.5rem; }
+.week-block { border:1px solid var(--bdr); border-radius:var(--r); overflow:hidden; }
+.week-head { display:flex; align-items:center; gap:1rem; padding:.85rem 1.2rem; background:var(--s1); cursor:pointer; user-select:none; }
+.week-head:hover { background:var(--s2); }
+.w-num { font-family:var(--font-mono); font-size:1.1rem; font-weight:600; min-width:3rem; }
+.w-theme { font-size:.85rem; color:var(--muted2); flex:1; }
+.w-dots { display:flex; gap:2px; }
+.w-dot { width:5px; height:5px; border-radius:50%; background:var(--bdr2); transition:background .2s; }
+.w-dot.done { background:var(--ind); }
+.w-count { font-family:var(--font-mono); font-size:.58rem; color:var(--muted); min-width:2.5rem; text-align:right; }
+.w-chevron { color:var(--muted); font-size:.7rem; transition:transform .2s; margin-left:.25rem; }
+.week-block.open .w-chevron { transform:rotate(180deg); }
+.week-body { display:none; border-top:1px solid var(--bdr); }
+.week-block.open .week-body { display:block; }
+
+/* ── COL HEADER ROW ── */
+.col-header { display:grid; grid-template-columns:36px 90px 1fr 1fr; background:var(--s0); border-bottom:1px solid var(--bdr); }
+.col-h { padding:.55rem 1rem; font-family:var(--font-mono); font-size:.58rem; letter-spacing:.12em; color:var(--muted); }
+.col-h:not(:last-child) { border-right:1px solid var(--bdr); }
+
+/* ── SESSION ROWS ── */
+.session-wrap { border-bottom:1px solid var(--bdr); }
+.session-wrap:last-child { border-bottom:none; }
+.session-row { display:grid; grid-template-columns:36px 90px 1fr 1fr; transition:background .15s; }
+.session-row:hover { background:rgba(255,255,255,.012); }
+.session-row.done { background:rgba(129,140,248,.03); }
+.s-check { display:flex; align-items:center; justify-content:center; border-right:1px solid var(--bdr); }
+.chk { appearance:none; -webkit-appearance:none; width:15px; height:15px; border:1.5px solid var(--bdr2); border-radius:4px; cursor:pointer; position:relative; transition:all .18s; }
+.chk:hover { border-color:var(--ind); }
+.chk:checked { background:var(--ind); border-color:var(--ind); }
+.chk:checked::after { content:'✓'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#000; font-size:9px; font-weight:700; line-height:1; }
+.s-day { padding:.9rem 1rem; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.08em; color:var(--muted); border-right:1px solid var(--bdr); display:flex; align-items:flex-start; padding-top:.95rem; }
+.s-col { padding:.9rem 1rem; font-size:.8rem; line-height:1.55; border-right:1px solid var(--bdr); }
+.s-col:last-child { border-right:none; }
+.task { padding-left:.85rem; position:relative; color:#c8c8de; padding-bottom:.18rem; line-height:1.55; }
+.task::before { content:'›'; position:absolute; left:0; color:var(--ind); font-weight:600; }
+.session-row.done .s-day,
+.session-row.done .task { opacity:.3; text-decoration:line-through; text-decoration-color:var(--ind); }
+
+/* weekend row accent */
+.session-row.weekend-row { background:rgba(251,191,36,.014); }
+.session-row.weekend-row:hover { background:rgba(251,191,36,.025); }
+.session-row.weekend-row.done { background:rgba(129,140,248,.03); }
+
+/* resources */
+.res-bar { display:none; padding:.5rem 1rem .5rem calc(36px + 90px + 1rem); background:rgba(251,191,36,.025); border-top:1px dashed rgba(251,191,36,.12); flex-wrap:wrap; gap:.35rem; align-items:center; }
+.res-bar.open { display:flex; }
+.res-label { font-family:var(--font-mono); font-size:.55rem; letter-spacing:.12em; color:var(--gold); margin-right:.35rem; }
+.res-chip { font-family:var(--font-mono); font-size:.6rem; padding:.15rem .5rem; border-radius:100px; background:rgba(251,191,36,.06); border:1px solid rgba(251,191,36,.18); color:#b8900a; }
+.res-btn { background:none; border:none; color:var(--muted); font-family:var(--font-mono); font-size:.5rem; letter-spacing:.08em; cursor:pointer; padding:.1rem .4rem; border-radius:3px; transition:color .2s; white-space:nowrap; }
+.res-btn:hover { color:var(--gold); }
+
+/* ── PROJECTS ── */
+.proj-list { display:flex; flex-direction:column; gap:1rem; }
+.proj-card { background:var(--s1); border:1px solid var(--bdr); border-radius:var(--r); overflow:hidden; transition:transform .2s; }
+.proj-card:hover { transform:translateY(-2px); }
+.proj-inner { display:grid; grid-template-columns:60px 1fr auto; align-items:start; }
+.proj-num-col { display:flex; align-items:flex-start; justify-content:center; padding:1.4rem 0; border-right:1px solid var(--bdr); }
+.proj-num { font-family:var(--font-mono); font-size:2rem; font-weight:600; line-height:1; }
+.proj-body { padding:1.2rem 1.5rem; }
+.proj-meta { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin-bottom:.35rem; }
+.proj-badge { font-family:var(--font-mono); font-size:.55rem; letter-spacing:.12em; padding:.18rem .55rem; border-radius:100px; }
+.proj-week { font-family:var(--font-mono); font-size:.55rem; color:var(--muted); letter-spacing:.08em; }
+.proj-name { font-family:var(--font-mono); font-size:1.35rem; font-weight:600; line-height:1; margin-bottom:.3rem; }
+.proj-stack { font-family:var(--font-mono); font-size:.62rem; color:var(--muted); margin-bottom:.65rem; }
+.proj-desc { font-size:.83rem; color:var(--muted2); line-height:1.65; margin-bottom:.7rem; }
+.proj-why { background:rgba(251,191,36,.05); border-left:2px solid rgba(251,191,36,.35); padding:.45rem .85rem; border-radius:0 5px 5px 0; font-size:.78rem; color:#b08900; line-height:1.55; font-style:italic; }
+.proj-actions { padding:1.2rem 1rem; }
+.feat-btn { background:none; border:1px solid var(--bdr2); color:var(--muted); font-family:var(--font-mono); font-size:.55rem; letter-spacing:.08em; padding:.3rem .65rem; border-radius:6px; cursor:pointer; transition:all .2s; white-space:nowrap; }
+.feat-btn:hover { border-color:var(--gold); color:var(--gold); }
+.proj-features { display:none; padding:.8rem 1.5rem 1.2rem; border-top:1px solid var(--bdr); background:var(--s0); }
+.proj-features.open { display:block; }
+.feat-title { font-family:var(--font-mono); font-size:.6rem; letter-spacing:.15em; margin-bottom:.55rem; }
+.feat-chips { display:flex; flex-wrap:wrap; gap:.35rem; }
+.feat-chip { font-family:var(--font-mono); font-size:.6rem; padding:.22rem .6rem; border-radius:100px; background:var(--s2); border:1px solid var(--bdr2); color:var(--muted2); transition:all .2s; }
+.feat-chip:hover { background:var(--s1); color:var(--text); }
+
+/* ── BONUS READS ── */
+.bonus-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:1rem; }
+.bonus-card { background:var(--s1); border:1px solid var(--bdr); border-radius:var(--r); overflow:hidden; transition:transform .2s; position:relative; }
+.bonus-card:hover { transform:translateY(-2px); }
+.bonus-card.read-done { border-color:rgba(129,140,248,.35); }
+.b-read-badge { display:none; position:absolute; top:.8rem; right:.8rem; background:rgba(129,140,248,.12); border:1px solid var(--ind); color:var(--ind); font-family:var(--font-mono); font-size:.5rem; letter-spacing:.1em; padding:.15rem .4rem; border-radius:100px; }
+.bonus-card.read-done .b-read-badge { display:block; }
+.b-head { padding:1.2rem 1.2rem .8rem; display:flex; gap:.8rem; }
+.b-icon { font-size:1.5rem; line-height:1; flex-shrink:0; }
+.b-co { font-family:var(--font-mono); font-size:.58rem; letter-spacing:.18em; margin-bottom:.25rem; }
+.b-title { font-family:var(--font-mono); font-size:1rem; font-weight:600; line-height:1.2; }
+.b-tags { display:flex; flex-wrap:wrap; gap:.3rem; padding:0 1.2rem .8rem; }
+.b-tag { font-family:var(--font-mono); font-size:.56rem; letter-spacing:.06em; padding:.15rem .45rem; border-radius:100px; background:var(--s2); color:var(--muted); }
+.b-preview { padding:0 1.2rem .8rem; font-size:.8rem; color:var(--muted2); line-height:1.65; border-bottom:1px solid var(--bdr); }
+.b-body { display:none; padding:1.2rem; }
+.b-body.open { display:block; }
+.b-sec-title { font-family:var(--font-mono); font-size:.6rem; letter-spacing:.15em; margin-bottom:.45rem; margin-top:.9rem; }
+.b-sec-title:first-child { margin-top:0; }
+.b-callout { background:rgba(251,191,36,.05); border-left:2px solid rgba(251,191,36,.35); padding:.5rem .8rem; border-radius:0 5px 5px 0; font-size:.78rem; color:#b08900; line-height:1.55; font-style:italic; margin:.65rem 0; }
+.b-text { font-size:.8rem; color:var(--muted2); line-height:1.75; }
+.b-step { display:flex; gap:.6rem; margin-bottom:.5rem; align-items:flex-start; }
+.b-snum { font-family:var(--font-mono); font-size:.7rem; font-weight:600; flex-shrink:0; min-width:1.5rem; color:var(--muted); }
+.b-stxt { font-size:.8rem; color:var(--muted2); line-height:1.6; }
+.b-toggle { width:100%; background:none; border:none; border-top:1px solid var(--bdr); color:var(--muted); font-family:var(--font-mono); font-size:.6rem; letter-spacing:.1em; padding:.65rem 1.2rem; cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; transition:color .2s; }
+.b-toggle:hover { color:var(--ind); }
+.b-actions { display:flex; gap:.6rem; margin-top:1rem; }
+.mark-read-btn { background:rgba(129,140,248,.1); border:1px solid var(--ind); color:var(--ind); font-family:var(--font-mono); font-size:.58rem; letter-spacing:.1em; padding:.4rem .8rem; border-radius:6px; cursor:pointer; transition:all .2s; }
+.mark-read-btn:hover { background:rgba(129,140,248,.2); }
+.collapse-btn { background:none; border:1px solid var(--bdr2); color:var(--muted); font-family:var(--font-mono); font-size:.58rem; padding:.4rem .8rem; border-radius:6px; cursor:pointer; transition:all .2s; }
+.collapse-btn:hover { border-color:var(--muted2); color:var(--muted2); }
+
+/* ── FOOTER ── */
+footer { border-top:1px solid var(--bdr); text-align:center; padding:3rem 1.5rem; font-family:var(--font-mono); font-size:.62rem; color:var(--muted); letter-spacing:.1em; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:680px) {
+  .session-row,.col-header { grid-template-columns:36px 70px 1fr; }
+  .s-col:last-child,.col-h:last-child { display:none; }
+  .proj-inner { grid-template-columns:48px 1fr auto; }
+  .proj-num { font-size:1.5rem; }
+}
 </style>
 </head>
 <body>
 
-<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
-<div class="progress-widget">
+<div id="top-bar"><div id="top-fill"></div></div>
+
+<div id="prog-widget">
   <div>
-    <div class="progress-pct" id="progressPct">0%</div>
-    <div class="progress-label">SESSIONS<br>DONE</div>
+    <div id="prog-pct">0%</div>
+    <div class="pw-label">DONE</div>
   </div>
   <div>
-    <div class="progress-label" id="progressCount" style="font-size:0.75rem; color: var(--text)">0/70</div>
-    <div class="progress-label">TOTAL</div>
+    <div class="pw-count" id="prog-count">0/0</div>
+    <div class="pw-label">SESSIONS</div>
   </div>
-  <button class="reset-btn" onclick="resetProgress()">RESET</button>
+  <button id="reset-btn">RESET</button>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="badge">10-WEEK STUDY CALENDAR — CRACK ANY ROLE</div>
-  <h1>
-    <span class="g1">MERN</span><br>
-    <span style="color: var(--text)">+ AI +</span><br>
-    <span class="g2">C++ DSA</span>
-  </h1>
-  <p class="hero-sub">Two battle-tested roadmaps to land your dream SDE role — from JS basics to system design, in 10 focused weeks.</p>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num mern-col">70</div>
-      <div class="stat-label">DAILY EVENTS</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num" style="color:var(--gold)">10</div>
-      <div class="stat-label">WEEKS</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num cpp-col">2</div>
-      <div class="stat-label">ROADMAPS</div>
-    </div>
-  </div>
-  <div class="scroll-hint">↓ SCROLL TO EXPLORE</div>
-</div>
-
-<div class="accent-line"></div>
-
-<!-- COMPARE -->
-<section>
-  <div class="section-label">// 01 — CHOOSE YOUR PATH</div>
-  <div class="section-title">WHICH ROADMAP?</div>
-
-  <div class="compare-grid">
-    <div class="compare-card mern-card">
-      <span class="card-tag mern-tag">ROADMAP A</span>
-      <div class="card-name">MERN + AI</div>
-      <p class="card-desc">Pure full-stack focus. JavaScript, React, Node, MongoDB, with AI (OpenAI API) integrated in Week 4+. LeetCode DSA runs alongside.</p>
-      <ul class="card-pros">
-        <li>Best for startup / full-stack / frontend roles</li>
-        <li>Faster path to building portfolio projects</li>
-        <li>AI features make your projects stand out</li>
-        <li>Deploy real apps by Week 3 (Render + Vercel)</li>
-        <li>NeetCode-style LeetCode progression</li>
-      </ul>
-    </div>
-
-    <div class="compare-card cpp-card">
-      <span class="recommended-badge">★ RECOMMENDED</span>
-      <span class="card-tag cpp-tag">ROADMAP B</span>
-      <div class="card-name">MERN + AI + C++ DSA</div>
-      <p class="card-desc">Same MERN+AI track but with a parallel C++ DSA lane using Striver's TUF sheet — the gold standard for product company interviews.</p>
-      <ul class="card-pros">
-        <li>Best for FAANG / product companies / SDE-2 roles</li>
-        <li>C++ STL from Day 1 — industry interview standard</li>
-        <li>TUF (Striver's) sheet — battle-tested by 100k+ students</li>
-        <li>Covers arrays → graphs → DP → tries systematically</li>
-        <li>Same projects + stronger DSA = full package</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="verdict-box">
-    <div class="verdict-title">⚡ THE VERDICT</div>
-    <p class="verdict-text">Both roadmaps share the same MERN + AI curriculum. The difference is in the DSA track. If you're targeting companies where the coding round is the real filter — pick Roadmap B. Roadmap A is still solid if you're focused purely on full-stack / startup ecosystem roles.</p>
-    <div class="verdict-grid">
-      <div class="verdict-item">
-        <div class="verdict-item-title mern-col">PICK ROADMAP A IF...</div>
-        <p>You're targeting startups, SaaS companies, frontend-heavy roles, or just want to build a strong portfolio ASAP.</p>
-      </div>
-      <div class="verdict-item">
-        <div class="verdict-item-title cpp-col">PICK ROADMAP B IF...</div>
-        <p>You're targeting Amazon, Google, Flipkart, Dream11, or any company where DSA rounds are elimination rounds. This is your weapon.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="accent-line cpp-line"></div>
-
-<!-- WEEK TIMELINE -->
-<section>
-  <div class="section-label">// 02 — FULL CURRICULUM</div>
-  <div class="section-title">10-WEEK BREAKDOWN</div>
-
-  <div class="phases" id="phases">
-    <button class="phase-btn active" onclick="filterPhase('all', this)">ALL WEEKS</button>
-    <button class="phase-btn" onclick="filterPhase('1,2', this)">⚡ PHASE 1 — FOUNDATIONS (W1-2)</button>
-    <button class="phase-btn" onclick="filterPhase('3,4', this)">🛠️ PHASE 2 — BUILD + AI (W3-4)</button>
-    <button class="phase-btn" onclick="filterPhase('5,6', this)">🚀 PHASE 3 — ADVANCED (W5-6)</button>
-    <button class="phase-btn" onclick="filterPhase('7,8,9,10', this)">💼 PHASE 4 — INTERVIEW GRIND (W7-10)</button>
-  </div>
-
-  <div class="weeks-grid" id="weeksGrid"></div>
-</section>
-
-<div class="accent-line"></div>
-
-<!-- BONUS SECTION -->
-<section id="bonus">
-  <div class="section-label">// 03 — BONUS READING</div>
-  <div class="section-title">HOW REAL<br>SYSTEMS WORK</div>
-  <p style="color:var(--muted); max-width:560px; margin-bottom:3rem; line-height:1.7; font-size:0.95rem;">Deep dives into real engineering decisions made by top companies. Read one a day — these stories will make your system design answers unforgettable.</p>
-
-  <div class="bonus-grid" id="bonusGrid"></div>
-</section>
-
-<div class="accent-line cpp-line"></div>
-
-<!-- PROJECTS SECTION -->
-<section id="projects">
-  <div class="section-label">// 04 — BUILD ORDER</div>
-  <div class="section-title">5 PORTFOLIO<br>PROJECTS</div>
-  <p style="color:var(--muted); max-width:560px; margin-bottom:3rem; line-height:1.7; font-size:0.95rem;">Build these in order. Each one introduces one new hard concept so your portfolio tells a story — not just the same CRUD app repeated five times.</p>
-
-  <div class="projects-grid" id="projectsGrid"></div>
-</section>
-
-<footer>
-  CRACK ANY ROLE ROADMAP &nbsp;|&nbsp; 10 WEEKS &nbsp;|&nbsp; 70 SESSIONS &nbsp;|&nbsp; VALORANT 🎮 EVERY NIGHT
-</footer>
+<div id="app"></div>
+<!-- CONFIG -->
 
 <script>
-const STORAGE_KEY = 'roadmap_progress_v1';
-const TOTAL = 70;
+let CFG;
+let TOTAL;
+const SK = 'ai_roadmap_v2';
+const BK = 'ai_bonus_v2';
 
-const phaseMap = {
-  'all': [1,2,3,4,5,6,7,8,9,10],
-  '1,2': [1,2],
-  '3,4': [3,4],
-  '5,6': [5,6],
-  '7,8,9,10': [7,8,9,10]
+fetch("./config.json")
+  .then(r => r.json())
+  .then(cfg => {
+    CFG = cfg;
+    TOTAL = CFG.meta.totalSessions;
+
+    init();
+  });
+
+
+
+
+// ─── PROGRESS STORE ────────────────────────────────────────────────────────
+function gp() { try { return JSON.parse(localStorage.getItem(SK)) || {}; } catch { return {}; } }
+function sp(d) { localStorage.setItem(SK, JSON.stringify(d)); }
+function gb() { try { return JSON.parse(localStorage.getItem(BK)) || {}; } catch { return {}; } }
+function sb(d) { localStorage.setItem(BK, JSON.stringify(d)); }
+
+function syncUI() {
+  const d = gp();
+  const done = Object.values(d).filter(Boolean).length;
+  const pct = Math.round((done / TOTAL) * 100);
+  document.getElementById('top-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-count').textContent = done + '/' + TOTAL;
+}
+
+document.getElementById('reset-btn').onclick = () => {
+  if (!confirm('Reset all progress?')) return;
+  localStorage.removeItem(SK);
+  localStorage.removeItem(BK);
+  document.querySelectorAll('.chk').forEach(c => c.checked = false);
+  document.querySelectorAll('.session-row.done').forEach(r => r.classList.remove('done'));
+  document.querySelectorAll('.w-dot.done').forEach(d => d.classList.remove('done'));
+  document.querySelectorAll('.bonus-card.read-done').forEach(c => c.classList.remove('read-done'));
+  syncUI();
 };
 
-function getProgress() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
-}
-function saveProgress(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
-function getDayKey(weekNum, dayIdx) { return `w${weekNum}_d${dayIdx}`; }
-
-function updateProgressUI() {
-  const data = getProgress();
-  const done = Object.values(data).filter(Boolean).length;
-  const pct = Math.round((done / TOTAL) * 100);
-  document.getElementById('progressBar').style.width = pct + '%';
-  document.getElementById('progressPct').textContent = pct + '%';
-  document.getElementById('progressCount').textContent = done + '/' + TOTAL;
-}
-
-function toggleDay(weekNum, dayIdx, checked) {
-  const data = getProgress();
-  const key = getDayKey(weekNum, dayIdx);
-  data[key] = checked;
-  saveProgress(data);
-  updateProgressUI();
-  const row = document.getElementById('row-' + key);
-  if (row) row.classList.toggle('completed', checked);
-  renderWeekDots(weekNum);
-}
-
-function renderWeekDots(weekNum) {
-  const data = getProgress();
-  const w = weeks.find(x => x.week === weekNum);
-  if (!w) return;
-  const dotsEl = document.getElementById('dots-w' + weekNum);
-  if (!dotsEl) return;
-  dotsEl.innerHTML = w.days.map((_, i) => {
-    const key = getDayKey(weekNum, i);
-    return `<div class="mini-dot ${data[key] ? 'done' : ''}"></div>`;
-  }).join('');
-  const doneCount = w.days.filter((_, i) => data[getDayKey(weekNum, i)]).length;
-  const countEl = document.getElementById('count-w' + weekNum);
-  if (countEl) countEl.textContent = doneCount + '/' + w.days.length;
-}
-
-function resetProgress() {
-  if (!confirm('Reset all progress? This cannot be undone.')) return;
-  localStorage.removeItem(STORAGE_KEY);
-  updateProgressUI();
-  document.querySelectorAll('.check-input').forEach(cb => cb.checked = false);
-  document.querySelectorAll('.day-row.completed').forEach(r => r.classList.remove('completed'));
-  document.querySelectorAll('.mini-dot').forEach(d => d.classList.remove('done'));
-  document.querySelectorAll('[id^="count-w"]').forEach(el => {
-    const weekNum = parseInt(el.id.replace('count-w',''));
-    const w = weeks.find(x => x.week === weekNum);
-    if (w) el.textContent = '0/' + w.days.length;
-  });
-}
-
-function formatTasks(val) {
-  if (!val) return '';
-  if (Array.isArray(val)) {
-    return val.map(t => `<div class="task-bullet">${t}</div>`).join('');
+// ─── PHASE COLORS ──────────────────────────────────────────────────────────
+function phaseColor(wn) {
+  for (const ph of CFG.phases) {
+    if (ph.weeks.includes(wn)) return ph.color;
   }
-  return `<span class="day-topic">${val}</span>`;
+  return '#818cf8';
 }
 
-function renderWeeks(weekNums) {
-  const grid = document.getElementById('weeksGrid');
-  grid.innerHTML = '';
-  const data = getProgress();
-  const phaseColors = { 1:'#00d4aa', 2:'#00d4aa', 3:'#ff6b35', 4:'#ff6b35', 5:'#a855f7', 6:'#a855f7', 7:'#ffd700', 8:'#ffd700', 9:'#ffd700', 10:'#ffd700' };
+// ─── RENDER HELPERS ────────────────────────────────────────────────────────
+function renderTasks(arr) {
+  if (!arr || !arr.length) return '';
+  return arr.map(t => `<div class="task">${escHtml(t)}</div>`).join('');
+}
 
-  weeks.filter(w => weekNums.includes(w.week)).forEach(w => {
-    const doneCount = w.days.filter((_, i) => data[getDayKey(w.week, i)]).length;
-    const col = phaseColors[w.week] || '#fff';
+function escHtml(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
 
-    const group = document.createElement('div');
-    group.className = 'week-group';
-    group.innerHTML = `
-      <div class="week-header" onclick="toggleWeek(this.parentElement)">
-        <span class="week-num" style="color:${col}">W${w.week}</span>
-        <span class="week-theme">${w.theme}</span>
-        <div class="week-progress-mini">
-          <div class="mini-dots" id="dots-w${w.week}">
-            ${w.days.map((_, i) => `<div class="mini-dot ${data[getDayKey(w.week, i)] ? 'done' : ''}"></div>`).join('')}
+function weekDots(week, data) {
+  return week.sessions.map(s =>
+    `<div class="w-dot ${data[s.id] ? 'done' : ''}" data-sid="${escHtml(s.id)}"></div>`
+  ).join('');
+}
+
+function doneCount(week, data) {
+  return week.sessions.filter(s => data[s.id]).length;
+}
+
+// ─── BUILD WEEK HTML ───────────────────────────────────────────────────────
+function buildWeekHtml(week) {
+  const data = gp();
+  const col = phaseColor(week.week);
+  const dc = doneCount(week, data);
+
+  const rows = week.sessions.map(s => {
+    const isWeekend = s.type === 'weekend';
+    const checked = data[s.id] ? 'checked' : '';
+    const doneClass = data[s.id] ? ' done' : '';
+    const wkClass = isWeekend ? ' weekend-row' : '';
+    const resId = 'res-' + s.id;
+    const hasRes = s.resources && s.resources.length > 0;
+    const resHtml = hasRes
+      ? s.resources.map(r => `<span class="res-chip">${escHtml(r)}</span>`).join('')
+      : '';
+
+    return `
+      <div class="session-wrap">
+        <div class="session-row${doneClass}${wkClass}" id="row-${escHtml(s.id)}">
+          <div class="s-check">
+            <input type="checkbox" class="chk" ${checked}
+              data-sid="${escHtml(s.id)}" data-week="${week.week}"
+              onchange="toggleSession('${escHtml(s.id)}', ${week.week}, this.checked)">
           </div>
-          <span id="count-w${w.week}">${doneCount}/${w.days.length}</span>
+          <div class="s-day">${escHtml(s.day)}</div>
+          <div class="s-col">${renderTasks(s.mern)}</div>
+          <div class="s-col">
+            ${renderTasks(s.ai)}
+            ${hasRes ? `<button class="res-btn" onclick="toggleRes('${escHtml(resId)}')">📚 resources</button>` : ''}
+          </div>
         </div>
-        <span class="week-chevron" style="margin-left:0.5rem">▼</span>
+        ${hasRes ? `<div class="res-bar" id="${escHtml(resId)}"><span class="res-label">RESOURCES</span>${resHtml}</div>` : ''}
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="week-block" id="week-${week.week}">
+      <div class="week-head" onclick="toggleWeek(${week.week})">
+        <span class="w-num" style="color:${col}">W${week.week}</span>
+        <span class="w-theme">${escHtml(week.theme)}</span>
+        <div class="w-dots" id="dots-${week.week}">
+          ${weekDots(week, data)}
+        </div>
+        <span class="w-count" id="cnt-${week.week}">${dc}/${week.sessions.length}</span>
+        <span class="w-chevron">▼</span>
       </div>
       <div class="week-body">
-        <div class="day-row" style="background: rgba(255,255,255,0.02)">
-          <div style="border-right:1px solid var(--border)"></div>
-          <div class="day-label" style="color:var(--muted);font-size:0.6rem;letter-spacing:0.15em">SESSION</div>
-          <div class="day-mern"><span class="col-header mern-label">MERN + AI TRACK</span></div>
-          <div class="day-cpp"><span class="col-header cpp-label">C++ DSA (TUF) TRACK</span></div>
+        <div class="col-header">
+          <div class="col-h"></div>
+          <div class="col-h">SESSION</div>
+          <div class="col-h" style="color:var(--ind)">MERN + FULL-STACK</div>
+          <div class="col-h" style="color:var(--ml)">ML / LLM / AI TRACK</div>
         </div>
-        ${w.days.map((d, i) => {
-          const key = getDayKey(w.week, i);
-          const checked = data[key] ? 'checked' : '';
-          const resId = 'res-' + key;
-          const resHtml = d.resources && d.resources.length
-            ? d.resources.map(r => `<span class="res-chip">${r}</span>`).join('') : '';
-          return `
-          <div class="day-row-wrap">
-            <div class="day-row ${data[key] ? 'completed' : ''}" id="row-${key}">
-              <div class="day-check">
-                <input type="checkbox" class="check-input" ${checked}
-                  onchange="toggleDay(${w.week}, ${i}, this.checked)" title="Mark as done">
-              </div>
-              <div class="day-label">${d.label}</div>
-              <div class="day-mern">${formatTasks(d.mern)}</div>
-              <div class="day-cpp">
-                ${formatTasks(d.cpp)}
-                ${resHtml ? `<button class="res-toggle" onclick="toggleRes('${resId}')">📚 resources</button>` : ''}
-              </div>
-            </div>
-            ${resHtml ? `<div class="resources-row" id="${resId}"><span class="res-label">📚 RESOURCES</span>${resHtml}</div>` : ''}
-          </div>`;
-        }).join('')}
+        ${rows}
       </div>
-    `;
-    grid.appendChild(group);
-  });
-  updateProgressUI();
+    </div>`;
+}
+
+// ─── TOGGLE SESSION ────────────────────────────────────────────────────────
+function toggleSession(sid, weekNum, checked) {
+  const d = gp(); d[sid] = checked; sp(d);
+  const row = document.getElementById('row-' + sid);
+  if (row) row.classList.toggle('done', checked);
+  refreshWeekDots(weekNum);
+  syncUI();
+}
+
+function refreshWeekDots(weekNum) {
+  const week = CFG.weeks.find(w => w.week === weekNum);
+  if (!week) return;
+  const data = gp();
+  const dotsEl = document.getElementById('dots-' + weekNum);
+  const cntEl = document.getElementById('cnt-' + weekNum);
+  if (dotsEl) dotsEl.innerHTML = weekDots(week, data);
+  if (cntEl) cntEl.textContent = doneCount(week, data) + '/' + week.sessions.length;
+}
+
+function toggleWeek(wn) {
+  const block = document.getElementById('week-' + wn);
+  if (block) block.classList.toggle('open');
 }
 
 function toggleRes(id) {
@@ -1321,318 +389,239 @@ function toggleRes(id) {
   if (el) el.classList.toggle('open');
 }
 
-function toggleWeek(el) { el.classList.toggle('open'); }
-
-function filterPhase(key, btn) {
-  document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
+// ─── FILTER PHASES ─────────────────────────────────────────────────────────
+function filterPhase(phaseId, btn) {
+  document.querySelectorAll('.phase-pill').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  renderWeeks(phaseMap[key]);
+
+  const weeks = phaseId === 'all'
+    ? CFG.weeks
+    : CFG.weeks.filter(w => {
+        const ph = CFG.phases.find(p => p.id === phaseId);
+        return ph && ph.weeks.includes(w.week);
+      });
+
+  const container = document.getElementById('weeks-container');
+  container.innerHTML = weeks.map(buildWeekHtml).join('');
 }
 
-const weeks = [
-  {
-    week: 1,
-    theme: "JS Foundations + Node.js + Express + Arrays DSA",
-    days: [
-      { label: "W1 MON", mern: ["Install VS Code, Node.js (LTS), Git, Postman","javascript.info: Variables, Data Types, Functions, Scope","ES6: arrow functions, template literals, destructuring, spread/rest"], cpp: ["TUF+: Watch 'C++ STL Complete' video","Practice: vectors, pairs, maps, sets, priority_queue","LeetCode setup: set language to C++"], resources: ["javascript.info","nodejs.org","LeetCode","VS Code","Postman","TUF+ C++ STL video"] },
-      { label: "W1 TUE", mern: ["Promises, async/await, try/catch","Array methods: map, filter, reduce, find, some, every","Closures and scope chain deep dive"], cpp: ["TUF+: Step 3 — Arrays Easy sheet","Solve in C++: Largest Element, Second Largest, Check Sorted, Remove Duplicates from Sorted Array","Focus: use vectors, for loops, STL max_element"], resources: ["javascript.info","TUF+ Step 3 Arrays Easy"] },
-      { label: "W1 WED", mern: ["Event loop: call stack, task queue, microtask queue — watch Philip Roberts JSConf talk","Node.js: modules (require/import), fs module, path, os, events","Build: CLI word-frequency counter using Node fs"], cpp: ["TUF+: Arrays Medium sheet","Solve in C++: Left Rotate Array by K, Move Zeroes","Use: rotate() from <algorithm>, two pointer approach"], resources: ["Philip Roberts JSConf talk (YouTube)","nodejs.org docs","TUF+ Arrays Medium"] },
-      { label: "W1 THU", mern: ["Express: routing, middleware chain, request-response cycle","REST principles: HTTP verbs, status codes, resource naming","Build: CRUD REST API for 'books' resource (in-memory array)"], cpp: ["TUF+: Arrays Medium cont.","Solve in C++: Union of Two Sorted Arrays, Missing Number, Maximum Consecutive Ones","Key: two pointer pattern, frequency array using unordered_map"], resources: ["expressjs.com","restfulapi.net","TUF+ Arrays Medium"] },
-      { label: "W1 FRI", mern: ["Express: custom middleware, error-handling middleware (4 params), morgan logger","Add pagination to GET route (query params: page & limit)","Add search with query param using .filter()"], cpp: ["TUF+: Arrays Hard sheet","Solve in C++: Two Sum, Best Time to Buy and Sell Stock","Key: unordered_map for O(1) lookup, single pass solution"], resources: ["expressjs.com","morgan npm","TUF+ Arrays Hard"] },
-      { label: "W1 SAT 🏋️ FULL DAY", mern: ["MORNING: MongoDB Atlas — create free cluster, connect, CRUD via Atlas UI","MORNING: Mongoose — connect from Express, define Schema, create User model","MORNING: Build full CRUD API with Express + Mongoose (Notes app), test in Postman","AFTERNOON: TUF+ complete Arrays Hard — 3Sum (sort + two pointer), Kadane's Algorithm, Merge Sorted Arrays","AFTERNOON: Key insight: always think brute force first → optimize → write clean C++ code","EVENING: System Design Intro — watch 'System Design for Beginners' NeetCode YouTube (1 hr)","EVENING: Read: What is HTTP? How DNS works? Client-Server architecture","EVENING: Push all week's MERN code to GitHub"], cpp: ["TUF+: Complete Arrays Hard sheet","3Sum (sort + two pointer), Kadane's Algorithm (max subarray), Merge Sorted Arrays","System Design Intro: 'System Design for Beginners' NeetCode YouTube"], resources: ["mongodb.com/docs","Mongoose docs","NeetCode — System Design for Beginners (YouTube)","Postman","TUF+ Arrays Hard"] },
-      { label: "W1 SUN 🏋️ FULL DAY", mern: ["MORNING: Prototypes and prototype chain in JS","MORNING: 'this' keyword — global, function, arrow, class context","MORNING: Revise all week 1 JS — write a personal cheat sheet (Notion or paper)","AFTERNOON: TUF+ Step 4 — Binary Search on Arrays: Binary Search, Floor & Ceil, First & Last Position","AFTERNOON: Key: while(lo <= hi) template, careful with mid = lo + (hi-lo)/2 to avoid overflow","EVENING: TUF+ Binary Search on Answers (intro) — Find Sqrt, Koko Eating Bananas"], cpp: ["TUF+: Step 4 — Binary Search on Arrays","Binary Search, Floor & Ceil in Sorted Array, First & Last Position","Binary Search on Answers: Find Sqrt, Koko Eating Bananas"], resources: ["javascript.info","TUF+ Step 4 Binary Search"] }
-    ]
-  },
-  {
-    week: 2,
-    theme: "MongoDB Advanced + JWT Auth + React + Linked Lists DSA",
-    days: [
-      { label: "W2 MON", mern: ["MongoDB: embedding vs referencing — when to use each","Indexing: createIndex, compound index, explain() to check query plan","Aggregation pipeline: $match, $group, $sort, $project, $lookup (joins)"], cpp: ["TUF+: Binary Search Hard","Solve in C++: Median of Two Sorted Arrays, Minimise Maximum Distance Between Gas Stations","Key: binary search on floating point answers, while(hi-lo > 1e-6)"], resources: ["MongoDB docs — Aggregation Pipeline","TUF+ Binary Search Hard"] },
-      { label: "W2 TUE", mern: ["JWT: header.payload.signature, verify flow, when to use","bcryptjs: hash on register, compare on login","Auth middleware: extract JWT from Authorization header, verify, attach user to req","Refresh token concept (read only — implement later)"], cpp: ["TUF+: Strings section","Solve in C++: Reverse Words in a String, Largest Odd Number in String, Longest Common Prefix","Key: string methods — substr(), find(), stoi(), to_string()"], resources: ["jwt.io","bcryptjs npm docs","TUF+ Strings"] },
-      { label: "W2 WED", mern: ["React (use Vite: npm create vite@latest): JSX, components, props, children","useState: state updates, re-renders, lifting state up","Conditional rendering, list rendering (.map() + keys)","Build: simple Todo UI in React"], cpp: ["TUF+: Step 6 — Linked Lists","Solve in C++: Reverse Linked List, Middle of Linked List, Detect Cycle (Floyd's)","Key: struct Node{int data; Node* next;}; — fast-slow pointer pattern"], resources: ["react.dev","Vite","TUF+ Step 6 Linked Lists"] },
-      { label: "W2 THU", mern: ["useEffect: side effects, dependency array, cleanup function","useRef: DOM refs, persisting values without re-render","useContext: global state without prop drilling (build a ThemeContext)","Fetch data from JSONPlaceholder with useEffect and display in React"], cpp: ["TUF+: Linked Lists Medium","Solve in C++: Merge Two Sorted Lists, Remove Nth Node from End, Add Two Numbers","Key: dummy node trick, two pointer for Nth from end"], resources: ["react.dev/learn/hooks","Fireship — React Hooks (YouTube)","TUF+ Linked Lists Medium"] },
-      { label: "W2 FRI", mern: ["React Router v6: BrowserRouter, Routes, Route, Link, useNavigate, useParams","Protected Routes: redirect if no token in context/localStorage","React Hook Form: register, handleSubmit, formState.errors"], cpp: ["TUF+: Linked Lists Hard","Solve in C++: Reverse Nodes in K-Group, Flatten a Linked List, LRU Cache (list + unordered_map)","Key: LRU is a VERY common interview question — understand it cold"], resources: ["reactrouter.com v6 docs","React Hook Form docs","TUF+ Linked Lists Hard"] },
-      { label: "W2 SAT 🏋️ FULL DAY", mern: ["MORNING: Connect React to Express with Axios, handle CORS (install cors package)","MORNING: Login page in React → POST to Express → get JWT → store in context","MORNING: Display MongoDB data in React components","AFTERNOON: TUF+ Step 7 — Stacks & Queues: Valid Parentheses, Implement Stack using Queue, Next Greater Element, Min Stack, Infix to Postfix","EVENING: System Design — Load Balancers, CDN, DNS in depth","EVENING: Watch 'Load Balancer vs Reverse Proxy' ByteByteGo YouTube","EVENING: System Design Primer on GitHub (star it, read intro)"], cpp: ["TUF+: Step 7 — Stacks and Queues","Valid Parentheses, Implement Stack using Queue, Next Greater Element, Min Stack","Load Balancers, CDN, DNS — System Design Primer (GitHub)"], resources: ["Axios docs","cors npm","ByteByteGo — Load Balancer vs Reverse Proxy (YouTube)","System Design Primer (GitHub)","TUF+ Step 7"] },
-      { label: "W2 SUN 🏋️ FULL DAY", mern: ["MORNING: Build end-to-end Notes App — React + Express + MongoDB + JWT auth","MORNING: Backend first (test in Postman) → then React frontend","MORNING: Deploy to Render (backend) + Vercel (frontend)","AFTERNOON: TUF+ Stacks Hard — Largest Rectangle in Histogram, Maximal Rectangle, Trapping Rain Water","AFTERNOON: Hardest stack problems — take your time, understand the monotonic stack pattern","EVENING: Write GitHub README for your Notes App","EVENING: System Design — Read CAP Theorem, ACID Properties, BASE"], cpp: ["TUF+: Stacks Hard","Largest Rectangle in Histogram, Maximal Rectangle, Trapping Rain Water","Key: monotonic stack pattern — hardest stack problems, take your time"], resources: ["render.com","vercel.com","Postman","TUF+ Stacks Hard"] }
-    ]
-  },
-  {
-    week: 3,
-    theme: "Project 1 Build (Job Board / Blog Platform) + Trees DSA",
-    days: [
-      { label: "W3 MON", mern: ["Choose: Job Board App OR Blog Platform (pick one you'd actually use)","Design MongoDB schemas (users, jobs or posts, comments)","List all API endpoints with HTTP methods, auth requirements","Wireframe on Excalidraw (excalidraw.com — free)"], cpp: ["TUF+: Step 8 — Trees Intro","Solve in C++: Inorder, Preorder, Postorder traversal (recursive + iterative)","Height of Binary Tree, Check Balanced, Diameter of Binary Tree","Key: struct TreeNode{int val; TreeNode *left, *right;}; — DFS recursion pattern"], resources: ["excalidraw.com","TUF+ Step 8 Trees"] },
-      { label: "W3 TUE", mern: ["Init backend: express, mongoose, bcryptjs, jsonwebtoken, dotenv, cors, morgan","Folder structure: /routes /controllers /models /middleware /config","Build User model + auth routes (register, login) + protect middleware"], cpp: ["TUF+: Trees Medium","Solve in C++: Level Order Traversal, Zigzag Traversal, Vertical Order Traversal","Max Width of Binary Tree, Boundary Traversal","Key: use queue<TreeNode*> for BFS, map<int,map<int,multiset<int>>> for vertical order"], resources: ["Mongoose docs","jsonwebtoken npm","TUF+ Trees Medium"] },
-      { label: "W3 WED", mern: ["Build all CRUD routes for main resource (jobs or posts)","Add: search with $text search or $regex, pagination (page+limit)","Test ALL endpoints in Postman, save Postman collection"], cpp: ["TUF+: Trees Hard","Solve in C++: Max Path Sum, Construct BT from Preorder+Inorder, Serialize & Deserialize BT","Lowest Common Ancestor, Count Complete Tree Nodes","Key: LCA is asked in almost EVERY product company interview — know it by heart"], resources: ["Postman","MongoDB $regex docs","TUF+ Trees Hard"] },
-      { label: "W3 THU", mern: ["Create React app with Vite + Tailwind CSS setup","React Router: all page components + route structure","Build reusable components: Navbar, Button, Card, Input, LoadingSpinner","shadcn/ui for beautiful ready-made components (shadcn.com)"], cpp: ["TUF+: BST section","Solve in C++: Search in BST, Insert in BST, Delete Node in BST","Validate BST, LCA in BST, Kth Smallest in BST","Key: BST property: left < root < right — use inorder for sorted output"], resources: ["tailwindcss.com","shadcn.com","TUF+ BST"] },
-      { label: "W3 FRI", mern: ["Build Login + Register pages with React Hook Form","Axios interceptors: auto-attach JWT to every request header","Auth context: store user globally, persist with localStorage","Protected Route component: redirect if no user"], cpp: ["TUF+: Step 9 — Heaps (Priority Queue)","Solve in C++: Kth Largest Element, Top K Frequent Elements, K Closest Points to Origin","Merge K Sorted Lists (use min-heap with pairs)","Key: priority_queue<int> is max-heap; priority_queue<int,vector<int>,greater<int>> is min-heap"], resources: ["Axios docs","React Hook Form docs","TUF+ Step 9 Heaps"] },
-      { label: "W3 SAT 🏋️ FULL DAY", mern: ["MORNING: Build main pages — Home, List page, Detail page, Create & Edit forms","MORNING: Connect all pages to Express APIs","MORNING: Add: loading states, error handling, react-hot-toast notifications","AFTERNOON: TUF+ Heaps Hard — Find Median from Data Stream (two heaps), Task Scheduler, Reorganize String","AFTERNOON: System Design — SQL vs NoSQL, Vertical vs Horizontal Scaling, Normalization (1NF-3NF)","AFTERNOON: Watch 'SQL vs NoSQL' Fireship YouTube, 'Database Indexing Explained' YouTube","EVENING: Finish Project 1 UI polish — responsive, mobile, empty states","EVENING: Deploy to Render + Vercel, test live URL"], cpp: ["TUF+: Heaps Hard — Find Median from Data Stream, Task Scheduler","System Design: SQL vs NoSQL, Normalization, Scaling","Watch: 'SQL vs NoSQL' Fireship YouTube, 'Database Indexing Explained' YouTube"], resources: ["react-hot-toast npm","Fireship — SQL vs NoSQL (YouTube)","Database Indexing Explained (YouTube)","TUF+ Heaps Hard","render.com","vercel.com"] },
-      { label: "W3 SUN 🏋️ FULL DAY", mern: ["MORNING: Final Project 1 fixes, bug hunt","MORNING: Write README — description, tech stack, screenshots, live demo link, setup instructions","MORNING: Push everything to GitHub, deploy final version","AFTERNOON: TUF+ Step 10 — Greedy: Assign Cookies, Jump Game I & II, N Meetings in One Room, Minimum Platforms, Job Sequencing","AFTERNOON: Key: greedy = local optimal leads to global optimal — always sort first","EVENING: TUF+ Greedy cont. — Fractional Knapsack, Activity Selection","EVENING: Add Project 1 to LinkedIn and GitHub profile with screenshots"], cpp: ["TUF+: Step 10 — Greedy Algorithms","Assign Cookies, Jump Game I & II, N Meetings, Minimum Platforms, Job Sequencing","Fractional Knapsack, Activity Selection — key: sort first"], resources: ["shields.io (README badges)","TUF+ Step 10 Greedy","LinkedIn"] }
-    ]
-  },
-  {
-    week: 4,
-    theme: "AI Integration (OpenAI API) + Redux + Graphs DSA",
-    days: [
-      { label: "W4 MON", mern: ["Create OpenAI account, get API key, read Chat Completions docs","Install openai npm package","Build Node.js script: send message, receive response, print it","Build Express endpoint /api/chat: takes user message, returns AI response"], cpp: ["TUF+: Step 11 — Graphs (start from beginning)","Graph representations: adjacency list, adjacency matrix in C++","Solve: BFS traversal, DFS traversal (iterative + recursive)","Key: vector<vector<int>> adj(n); — visited[] array, queue<int> for BFS"], resources: ["platform.openai.com docs","openai npm","TUF+ Step 11 Graphs"] },
-      { label: "W4 TUE", mern: ["Prompt engineering: zero-shot, few-shot, chain-of-thought","System prompts: give AI a persona + constraints","Parameters: temperature, max_tokens, top_p — when to tweak each","Build: coding assistant chatbot with custom system prompt"], cpp: ["TUF+: Graphs — Connected Components","Solve in C++: Number of Islands, Flood Fill, Rotten Oranges (BFS multi-source)","Detect Cycle in Undirected Graph (BFS + DFS)","Key: multi-source BFS = add all sources to queue before starting"], resources: ["OpenAI Prompt Engineering guide","TUF+ Graphs Connected Components"] },
-      { label: "W4 WED", mern: ["Build Chat UI: message bubbles (user vs AI), scrollable window, typing indicator","Connect to Express AI endpoint via Axios","Auto-scroll to bottom, Enter key to send, render markdown (react-markdown)"], cpp: ["TUF+: Topological Sort","Solve in C++: Topological Sort (DFS + Kahn's BFS algo)","Course Schedule I & II, Eventual Safe States","Key: Kahn's algo uses in-degree array — add 0-indegree nodes first"], resources: ["react-markdown npm","TUF+ Topological Sort"] },
-      { label: "W4 THU", mern: ["Build AI feature for Project 1:","→ Job Board: AI Job Description Generator","→ Blog: AI Post Summarizer / Title Suggester","Build backend route, frontend UI, test end-to-end","Handle API errors and rate limits gracefully"], cpp: ["TUF+: Shortest Path Algorithms","Solve in C++: Dijkstra's Algorithm, Bellman-Ford","Shortest Path in DAG, Network Delay Time","Key: use priority_queue<pair<int,int>,...,greater<>> for Dijkstra"], resources: ["OpenAI error handling docs","TUF+ Shortest Path"] },
-      { label: "W4 FRI", mern: ["OpenAI streaming: SSE (Server-Sent Events) from Express","React: read stream chunks, display word-by-word (like ChatGPT)","Add rate limiting to AI endpoint (express-rate-limit npm)","Add input validation (express-validator)"], cpp: ["TUF+: Minimum Spanning Tree + Disjoint Set (Union-Find)","Solve in C++: Kruskal's + Prim's Algorithm","Disjoint Set (Union by Rank + Path Compression)","Number of Operations to Make Network Connected, Redundant Connection","Key: Union-Find is asked A LOT in interviews — implement it cleanly"], resources: ["express-rate-limit npm","express-validator npm","TUF+ MST + Disjoint Set"] },
-      { label: "W4 SAT 🏋️ FULL DAY", mern: ["MORNING: Redux Toolkit — createSlice, configureStore, useSelector, useDispatch","MORNING: Refactor auth state to Redux","MORNING: RTK Query for data fetching (optional but impressive in interviews)","AFTERNOON: TUF+ Graphs Hard — Alien Dictionary, Strongly Connected Components (Kosaraju's), Bridges, Articulation Points","AFTERNOON: System Design: Caching — Redis, LRU, LFU, CDN, write-through vs write-back","AFTERNOON: Watch 'Redis in 100 Seconds' Fireship","EVENING: Redeploy Project 1 with AI feature + Redux, verify everything works on live URL"], cpp: ["TUF+: Graphs Hard — Alien Dictionary, Kosaraju's SCC, Bridges, Articulation Points","System Design: Caching — Redis, LRU/LFU, CDN, write-through vs write-back","Watch: 'Redis in 100 Seconds' Fireship"], resources: ["Redux Toolkit docs","Fireship — Redis in 100 Seconds (YouTube)","TUF+ Graphs Hard"] },
-      { label: "W4 SUN 🏋️ FULL DAY", mern: ["MORNING: Plan Project 2 — AI-Powered MERN App","Best options: AI Resume Builder, AI Interview Prep Tool, AI Cover Letter Generator, AI Smart Notes","MORNING: Design full schema, API routes, UI pages","MORNING: Look at competitors for UI inspiration","AFTERNOON: TUF+ Step 12 — DP: watch Striver's DP intro video first (mindset for DP)","AFTERNOON: Solve in C++: Climbing Stairs, Frog Jump, Frog Jump with K distances, House Robber I & II","AFTERNOON: Key: always try memoization (top-down) first, then tabulation (bottom-up)","EVENING: TUF+ DP on Grids — Unique Paths, Minimum Path Sum, Triangle (bottom-up)"], cpp: ["TUF+: Step 12 — Dynamic Programming (1D DP)","Watch Striver's DP intro video first (mindset)","Climbing Stairs, Frog Jump, House Robber I & II","DP on Grids: Unique Paths, Minimum Path Sum, Triangle"], resources: ["Striver's DP intro video (YouTube)","TUF+ Step 12 DP"] }
-    ]
-  },
-  {
-    week: 5,
-    theme: "Project 2 (AI-Powered App) Build + DP DSA",
-    days: [
-      { label: "W5 MON", mern: ["Set up Project 2 backend: Express, Mongoose, auth, folder structure","Build all MongoDB models","Build auth routes + main resource CRUD routes"], cpp: ["TUF+: DP on Subsequences","Solve in C++: Subset Sum, Partition Equal Subset Sum, Count Subsets with Sum K","0/1 Knapsack","Key: subset sum = knapsack — boolean dp[] or count dp[]"], resources: ["TUF+ DP on Subsequences"] },
-      { label: "W5 TUE", mern: ["Build the main AI-powered endpoint for Project 2","Store conversation history in MongoDB per user session","Add streaming support to AI responses","Test in Postman with different inputs"], cpp: ["TUF+: DP on Strings","Solve in C++: Longest Common Subsequence (LCS), Edit Distance, Longest Common Substring","Shortest Common Supersequence, Distinct Subsequences","Key: LCS is the base for many string DP problems — internalize it"], resources: ["OpenAI Streaming docs","Postman","TUF+ DP on Strings"] },
-      { label: "W5 WED", mern: ["Set up React + Vite + Tailwind for Project 2","Build all page components and routing","Add Framer Motion for smooth transitions (npm i framer-motion)","Build main AI feature UI"], cpp: ["TUF+: DP on Stocks","Solve in C++: Best Time to Buy Stock (I, II, III, IV)","Buy and Sell Stock with Cooldown, with Transaction Fee","Key: state machine DP — holding/not-holding, transactions remaining"], resources: ["framer-motion npm","TUF+ DP on Stocks"] },
-      { label: "W5 THU", mern: ["Connect React pages to backend APIs","Redux for auth: login, register, persist state","Protected routes, auto-redirect on JWT expiry","Handle all API errors gracefully in UI"], cpp: ["TUF+: DP on LIS (Longest Increasing Subsequence)","Solve in C++: LIS (O(n²) DP + O(n log n) binary search approach)","Longest Bitonic Subsequence, Number of LIS","Key: O(n log n) LIS uses lower_bound() on sorted array — very elegant"], resources: ["Redux Toolkit docs","TUF+ DP on LIS"] },
-      { label: "W5 FRI", mern: ["Complete responsive design for all pages","Empty states, skeleton loaders, error pages (404)","Test on mobile viewport in Chrome DevTools","Fix all bugs, remove console.logs"], cpp: ["TUF+: DP on Partition","Solve in C++: Matrix Chain Multiplication, Burst Balloons, Boolean Parenthesization","Palindrome Partitioning II","Key: interval DP pattern — dp[i][j] = answer for range i to j"], resources: ["Chrome DevTools","TUF+ DP on Partition"] },
-      { label: "W5 SAT 🏋️ FULL DAY", mern: ["MORNING: Deploy Project 2 to Render (backend) + Vercel (frontend)","MORNING: Set all environment variables, test every feature, auth flow, AI feature, mobile","MORNING: Write README with screenshots + GIF demo (use Loom) + tech stack","AFTERNOON: System Design: Database Deep Dive — Sharding, Replication, Master-Slave, Master-Master","AFTERNOON: Read: SQL joins, composite indexes, query optimization with EXPLAIN","AFTERNOON: Watch 'Database Sharding Explained' ByteByteGo YouTube","AFTERNOON: When to use Redis as primary DB vs cache","EVENING: TUF+ Mixed DP revision — revisit any DP problem you found hard this week","EVENING: Solve 3 DP problems from scratch without hints"], cpp: ["System Design: Sharding, Replication, Master-Slave, EXPLAIN query optimization","Watch: 'Database Sharding Explained' ByteByteGo YouTube","TUF+: Mixed DP revision — solve 3 problems without hints"], resources: ["ByteByteGo — Database Sharding (YouTube)","Loom (GIF demos)","render.com","vercel.com","TUF+ DP Hard"] },
-      { label: "W5 SUN 🏋️ FULL DAY", mern: ["MORNING: TypeScript — types, interfaces, enums, generics","MORNING: Convert Express backend to TypeScript (tsconfig, ts-node, @types)","MORNING: Type your Mongoose models and Express request/response","AFTERNOON: TUF+ Step 13 — Tries: Implement Trie, Count Words Equal To, Longest Word with All Prefixes","AFTERNOON: Maximum XOR of Two Numbers (XOR Trie)","AFTERNOON: Key: struct TrieNode{TrieNode* children[26]; bool isEnd;};","EVENING: TUF+ Segment Trees intro — Range Sum Query, Range Min Query","EVENING: Watch Striver's Segment Tree video if available"], cpp: ["TUF+: Step 13 — Tries","Implement Trie, Count Words Equal To, Longest Word with All Prefixes, Maximum XOR","Segment Trees intro: Range Sum Query, Range Min Query"], resources: ["typescriptlang.org/docs","Traversy Media — TypeScript Crash Course (YouTube)","TUF+ Step 13 Tries"] }
-    ]
-  },
-  {
-    week: 6,
-    theme: "Advanced Backend + DevOps + System Design Case Studies",
-    days: [
-      { label: "W6 MON", mern: ["Security: helmet.js, CORS config, NoSQL injection prevention","Input validation: express-validator deep dive","Performance: Node.js clustering, pm2 process manager","12-factor app principles (read: 12factor.net)"], cpp: ["TUF+: Step 5 — Recursion & Backtracking","Solve in C++: Subsets I & II, Permutations I & II","Combination Sum I & II","Key: pick/not-pick pattern for subsets, swap-based permutations"], resources: ["helmet npm","pm2 docs","12factor.net","TUF+ Step 5 Recursion"] },
-      { label: "W6 TUE", mern: ["Jest: unit tests, mock functions, describe + it + expect","Supertest: test API endpoints end-to-end","Write tests for auth routes + main CRUD routes","Code coverage with jest --coverage"], cpp: ["TUF+: Backtracking Hard","Solve in C++: N-Queens, Sudoku Solver, Word Search, Palindrome Partitioning","Key: N-Queens uses column, diagonal1, diagonal2 boolean arrays for O(1) check"], resources: ["jestjs.io","supertest npm","TUF+ Backtracking Hard"] },
-      { label: "W6 WED", mern: ["Docker: images, containers, Dockerfile, .dockerignore","Write Dockerfile for Express backend","docker-compose: run backend + MongoDB together locally","Watch: 'Docker in 100 Seconds' Fireship"], cpp: ["TUF+ / LeetCode: Two Pointer problems (revision + hard)","Solve in C++: 3Sum, 4Sum, Container With Most Water","Remove Duplicates II, Sort Colors (Dutch National Flag)","Key: two pointer on sorted array, three pointer for 3Sum"], resources: ["docs.docker.com","Fireship — Docker in 100 Seconds (YouTube)","TUF+ Two Pointers"] },
-      { label: "W6 THU", mern: ["GitHub Actions: create workflow, run tests on push","Add ESLint to workflow","Auto-deploy to Render on merge to main","Watch: 'GitHub Actions Tutorial' TechWorld with Nana"], cpp: ["TUF+ / LeetCode: Sliding Window (revision + hard)","Solve in C++: Longest Substring Without Repeating Chars, Minimum Window Substring","Sliding Window Maximum (monotonic deque), Max Consecutive Ones III","Key: use deque<int> for sliding window maximum (monotonic decreasing)"], resources: ["GitHub Actions docs","TechWorld with Nana — GitHub Actions (YouTube)","TUF+ Sliding Window"] },
-      { label: "W6 FRI", mern: ["WebSockets vs HTTP: when to use real-time","Socket.io: server setup, emit, on, rooms","Build: real-time notification feature or live chat","Watch: 'Socket.io Crash Course' Traversy Media"], cpp: ["TUF+: Monotonic Stack problems","Solve in C++: Next Greater Element I & II, Daily Temperatures","Sum of Subarray Minimums, Online Stock Span","Key: monotonic stack maintains increasing/decreasing order — pop when condition breaks"], resources: ["Socket.io docs","Traversy Media — Socket.io Crash Course (YouTube)","TUF+ Monotonic Stack"] },
-      { label: "W6 SAT 🏋️ FULL DAY", mern: ["MORNING: System Design Case Study 1 — URL Shortener (bit.ly)","Requirements, API design, DB schema, hashing (MD5, Base62), scaling","Watch: ByteByteGo 'Design a URL Shortener' — write your own design doc in Notion/Excalidraw","AFTERNOON: System Design Case Study 2 — Pastebin (text storage, expiry, paste uniqueness)","AFTERNOON: TUF+ Mixed hard problem session — solve 4 problems timed (30 min each)","EVENING: System Design — Message Queues, Event-Driven Architecture","EVENING: Kafka vs RabbitMQ: when and why, producer-consumer pattern","EVENING: Watch 'What is a Message Queue?' ByteByteGo"], cpp: ["System Design: URL Shortener, Pastebin, Message Queues, Kafka vs RabbitMQ","TUF+: Mixed hard problem session — 4 problems timed (30 min each)"], resources: ["ByteByteGo — Design URL Shortener (YouTube)","ByteByteGo — Message Queue (YouTube)","Alex Xu System Design Interview book","excalidraw.com"] },
-      { label: "W6 SUN 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Twitter/X Feed","Fanout on write vs fanout on read, timeline generation, Redis timeline cache","Watch 'Design Twitter' Gaurav Sen or NeetCode — draw architecture diagram in Excalidraw","AFTERNOON: NestJS intro — why it exists, modules, controllers, providers, dependency injection","NestJS is enterprise Node.js — many Indian companies use it (Razorpay, Zepto etc.)","AFTERNOON: Build a simple NestJS CRUD API — real differentiator on your resume","EVENING: TUF+ Revision session — go back to any sheet topic you scored < 80%","EVENING: Solve 3 unseen problems from those topics"], cpp: ["System Design: Twitter/X Feed — fanout on write vs read, Redis cache","NestJS intro: modules, controllers, providers, dependency injection","TUF+: Revision session — revisit weak topics, solve 3 unseen problems"], resources: ["nestjs.com docs","Gaurav Sen — Design Twitter (YouTube)","NeetCode — Design Twitter (YouTube)","excalidraw.com"] }
-    ]
-  },
-  {
-    week: 7,
-    theme: "Resume + LinkedIn + Start Applying + Technical Interview Prep",
-    days: [
-      { label: "W7 MON", mern: ["Resume structure: Contact, Summary, Skills, Projects, Experience, Education","Skills to list: C++, JavaScript, TypeScript, React, Node.js, Express, MongoDB, REST APIs, JWT, OpenAI API, Docker, Redux, Git, Socket.io","Projects: name, what it does, tech stack, live link, GitHub, 1-line impact","Experience: rewrite bullets with action verbs + numbers (reduced X by Y% / built X for Y users)","Use: Jake's Resume template on Overleaf / resume.io"], cpp: ["LeetCode: Solve 2 hard problems timed (35 min each — no hints)","Suggested: #124 Binary Tree Max Path Sum, #42 Trapping Rain Water"], resources: ["Jake's Resume (Overleaf)","resume.io","LeetCode #124 #42"] },
-      { label: "W7 TUE", mern: ["LinkedIn: headline, about, experience, skills, Open to Work","Headline: 'Full Stack Developer | MERN | AI Integration | C++ DSA'","GitHub profile README: intro, tech stack badges, GitHub stats widget","Pin 2 best projects, clean READMEs with screenshots + demo links","Make sure commit history looks active (commit daily even if small)"], cpp: ["LeetCode: 2 hard problems timed","Suggested: #23 Merge K Sorted Lists, #84 Largest Rectangle in Histogram"], resources: ["shields.io (badges)","GitHub Profile README generator","LeetCode #23 #84"] },
-      { label: "W7 WED", mern: ["Job tracker setup: Notion / Google Sheets (Company, Role, Date, Status, Notes)","Apply to 10 jobs: LinkedIn, Naukri, Instahyre, Cutshort.io, Wellfound","Roles: Full Stack Developer, MERN Stack Developer, Node.js Developer, React Developer, SDE-2","Customize resume skills order to match each JD"], cpp: ["Do 1 full timed interview simulation:","Set timer for 40 minutes — pick one medium + one easy problem you haven't seen","Solve both without looking at hints — think out loud as you code (practice this habit)"], resources: ["linkedin.com/jobs","naukri.com","instahyre.com","cutshort.io","wellfound.com"] },
-      { label: "W7 THU", mern: ["Most asked JS questions: var/let/const, hoisting, temporal dead zone","Closures, scope chain, IIFE, currying","Output-based questions: event loop, promises order","'this' in arrow vs regular, call, apply, bind","Prototype chain, class vs prototype-based OOP"], cpp: ["Common C++ interview questions:","STL internals: vector amortized growth, map vs unordered_map complexity","Smart pointers: unique_ptr, shared_ptr, weak_ptr","RAII pattern, memory management","When does std::sort use introsort?"], resources: ["javascript.info","LeetCode JS Interview Questions"] },
-      { label: "W7 FRI", mern: ["React: Virtual DOM, reconciliation, diffing algo, fiber architecture","React: hooks rules, useEffect gotchas, StrictMode double-invoke","React: useMemo vs useCallback vs React.memo — when to use each","Node.js: event loop phases (timers/I-O/check), streams, worker threads"], cpp: ["TUF+: Attempt any remaining unsolved hard problems from the sheet","Focus: problems you skipped before — come back with fresh eyes"], resources: ["react.dev/learn","Node.js docs","TUF+ Hard remaining"] },
-      { label: "W7 SAT 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Netflix / YouTube","Video upload pipeline, transcoding, CDN, adaptive bitrate streaming (HLS)","Recommendation engine concept, watch history storage","Watch ByteByteGo 'Design YouTube' — write full design doc with components diagram in Excalidraw","AFTERNOON: Mock Interview on Pramp.com (free — real person interviews you)","5 min intro, 10 min project walkthrough, 20 min coding problem, 10 min questions","Note ALL feedback","EVENING: Fix every weakness from mock interview","EVENING: DSA — 3 hard problems timed (related to your mock interview weak spots)"], cpp: ["System Design: Netflix / YouTube — HLS, CDN, transcoding, recommendation engine","Mock Interview on Pramp.com","DSA: 3 hard problems timed based on mock interview weak spots"], resources: ["ByteByteGo — Design YouTube (YouTube)","pramp.com (free mock interviews)","excalidraw.com","interviewing.io"] },
-      { label: "W7 SUN 🏋️ FULL DAY", mern: ["MORNING: System Design — Design WhatsApp / Chat Application","WebSockets, message delivery (at-most-once, at-least-once, exactly-once)","Read receipts, group chats, media storage (S3)","Watch 'Design WhatsApp' Gaurav Sen or ByteByteGo — write your own design doc","AFTERNOON: DSA Marathon — 6 problems in 3 hours (timed, no hints):","#15 3Sum, #11 Container With Most Water, #128 Longest Consecutive Sequence","#76 Minimum Window Substring, #239 Sliding Window Maximum, #295 Find Median from Data Stream","Review solutions — understand every approach","EVENING: Apply to 10 more companies","EVENING: Update job tracker, follow up on week 1 applications (7 days = follow up on LinkedIn)","EVENING: Prepare 3 smart questions to ask interviewers"], cpp: ["System Design: WhatsApp — WebSockets, message delivery guarantees, S3 media storage","DSA Marathon: #15 3Sum, #11 Container, #128 LCS, #76 Min Window, #239 SW Max, #295 Median","Apply to 10 more companies, prepare 3 smart interviewer questions"], resources: ["Gaurav Sen — Design WhatsApp (YouTube)","ByteByteGo — Design WhatsApp (YouTube)","LeetCode #15 #11 #128 #76 #239 #295"] }
-    ]
-  },
-  {
-    week: 8,
-    theme: "Interview Simulation Week — Full Mock Loops",
-    days: [
-      { label: "W8 MON", mern: ["MongoDB interview Qs: aggregation pipeline, indexing strategies, sharding concept","explain() query analysis, covered queries, write concern, read preference","REST API: versioning (v1/v2), idempotency, cursor vs offset pagination","REST security: HTTPS, CORS, rate limiting, JWT expiry, refresh tokens"], cpp: ["LeetCode Hard: Solve 2 problems timed (no hints, 35 min each)","Suggested: #41 First Missing Positive, #25 Reverse Nodes in K-Group"], resources: ["MongoDB docs","LeetCode #41 #25"] },
-      { label: "W8 TUE", mern: ["Design a Rate Limiter (very common interview question):","Algorithms: token bucket, leaky bucket, fixed window, sliding window counter","Watch ByteByteGo 'Design a Rate Limiter' — practice talking through it out loud for 20 min","Design a Notification System (push, email, SMS):","Prioritization, user preferences, retry logic, templates"], cpp: ["LeetCode: Contest simulation — pick a past weekly contest","Do the medium + hard problems timed"], resources: ["ByteByteGo — Design Rate Limiter (YouTube)","LeetCode contests archive"] },
-      { label: "W8 WED", mern: ["STAR method: Situation, Task, Action, Result","Prepare 8 STAR stories:","1. Conflict with teammate","2. Time you failed and recovered","3. Delivered under pressure / tight deadline","4. Went above and beyond","5. Learned something new quickly","6. Biggest technical challenge you solved","7. Disagreed with manager/lead and how you handled it","8. Proudest achievement so far","'Why switch?' — craft genuine positive answer (growth, tech stack, scale)"], cpp: ["Timed: 2 unseen medium problems (25 min each)","Explain approach out loud as you code — practice this habit"], resources: ["pramp.com","interviewing.io"] },
-      { label: "W8 THU", mern: ["For EACH project prepare answers to:","Walk me through your architecture (draw it while explaining)","What was your biggest challenge and how did you solve it?","How would you scale this to 1 million users?","What would you change if you built it again?","How do you handle security in this app?","What is your test coverage?","Practice: explain Project 2 in exactly 3 minutes — record yourself","Watch recording. Fix filler words, unclear parts. Re-record."], cpp: ["LeetCode Hard: #72 Edit Distance, #115 Distinct Subsequences (DP on Strings)"], resources: ["LeetCode #72 #115","Loom (self-recording)"] },
-      { label: "W8 FRI", mern: ["Do a FULL mock interview with a friend or on Pramp / Interviewing.io:","2 min self-intro (practiced, confident)","5 min project walkthrough (Project 2)","25 min coding problem in C++ (medium LeetCode)","15 min system design question","5 min your questions to interviewer","Review everything that went wrong immediately after"], cpp: ["Fix the exact type of problem you struggled with in the mock","1 easy warmup problem to keep the streak"], resources: ["pramp.com","interviewing.io"] },
-      { label: "W8 SAT 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Uber / Ride Sharing","Geospatial indexing: QuadTree, Google S2, H3","Driver location tracking (WebSockets), matching algorithm, surge pricing","Watch 'Design Uber' ByteByteGo or Gaurav Sen — write full design doc","AFTERNOON: Mass Apply — 20 applications today","LinkedIn (Easy Apply filter), Naukri, Instahyre, Cutshort, Wellfound","Referrals: message every college contact, ex-colleague at target companies","Message template: 'Hi [name], I came across [company] and was impressed by [specific thing]...'","EVENING: TUF+ Full sheet review — check off every problem you can solve cold","EVENING: Identify remaining gaps, make a list"], cpp: ["System Design: Uber — QuadTree, geospatial indexing, driver matching, surge pricing","Mass Apply: 20 applications + referral messages","TUF+: Full sheet review — identify remaining gaps"], resources: ["ByteByteGo — Design Uber (YouTube)","Gaurav Sen — Design Uber (YouTube)","linkedin.com","naukri.com","instahyre.com"] },
-      { label: "W8 SUN 🏋️ FULL DAY", mern: ["MORNING: LangChain intro — chains, agents, tools, memory","pip install langchain openai chromadb","Build: simple chain that summarizes a pasted document","What are embeddings? What is a vector database?","AFTERNOON: Build RAG (Retrieval Augmented Generation) system:","Input a PDF → chunk it → embed it → store in ChromaDB → query with natural language","This is the #1 AI skill that impresses interviewers at product companies","EVENING: DSA — Full LeetCode weekly contest simulation (past contest)","EVENING: Do all 4 problems timed — review solutions, understand patterns used"], cpp: ["LangChain + RAG: PDF chunking, embedding, ChromaDB, natural language queries","DSA: Full LeetCode weekly contest simulation — all 4 problems timed"], resources: ["python.langchain.com","pinecone.io","chromadb.com","Patrick Loeber — LangChain Crash Course (YouTube)","LeetCode contests"] }
-    ]
-  },
-  {
-    week: 9,
-    theme: "Advanced Topics + Active Job Search",
-    days: [
-      { label: "W9 MON", mern: ["Advanced TypeScript: generics, utility types (Partial, Pick, Omit, Record, Required)","Conditional types, mapped types, template literal types","Decorators (used in NestJS — mention in interviews)","Discriminated unions, exhaustive type checking"], cpp: ["TUF+: Graphs Hard (remaining problems)","Solve in C++: Floyd-Warshall (all-pairs shortest path)","Cheapest Flights Within K Stops (modified Dijkstra/Bellman-Ford)","Key: Floyd-Warshall dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]) for all k"], resources: ["typescriptlang.org/docs","TUF+ Graphs Hard"] },
-      { label: "W9 TUE", mern: ["Apply to 10 more companies","Follow up on all applications older than 7 days (LinkedIn message)","Research 5 target companies: tech stack, products, Glassdoor, recent news","Know your numbers: current CTC, expected CTC, notice period"], cpp: ["TUF+: Hard DP problems","Solve in C++: Scramble String, Egg Drop Problem, Painting the Fence","Count Palindromic Substrings using DP (Manacher's algorithm concept)"], resources: ["linkedin.com","naukri.com","glassdoor.com","TUF+ DP Hard"] },
-      { label: "W9 WED", mern: ["Research salaries: Naukri Salary Insights, LinkedIn Salary, Glassdoor, Levels.fyi","Know MERN dev salaries by: city, company type (startup vs MNC), years of experience","BATNA: know your walk-away number","Script responses to: 'What is your current CTC?' → 'I'm looking for a range of X-Y based on the role'","'What are your expectations?' → anchor high (20-30% above target)","Counter-offer: 'I was hoping for X. Is there any flexibility?'"], cpp: ["LeetCode: 2 hard problems timed — topics of your choice"], resources: ["levels.fyi","glassdoor.com","naukri.com salary","LinkedIn Salary"] },
-      { label: "W9 THU", mern: ["Node.js internals interviewers love:","V8 engine: JIT compilation, hidden classes, garbage collection","libuv: thread pool (4 threads default), event loop phases explained","Streams: readable, writable, transform — why they save memory","Cluster module: how it actually works, pm2 cluster mode"], cpp: ["TUF+: Attempt any 3 problems from the sheet marked as hard that you haven't solved","Use 30 min timer per problem — if stuck after 20 min: write approach then see solution"], resources: ["nodejs.org internals docs","pm2 docs","TUF+ Hard remaining"] },
-      { label: "W9 FRI", mern: ["Core Web Vitals: LCP, FID (INP), CLS — what they measure and how to improve","Run Lighthouse on both your deployed projects, fix all red flags","Code splitting: React.lazy + Suspense, dynamic import()","Web perf: debounce vs throttle, virtual scrolling, image optimization"], cpp: ["TUF+ SDE Sheet: attempt any remaining problems you haven't solved","Alternative: Codeforces Div 2 problem C (equivalent difficulty) timed"], resources: ["web.dev/vitals","react.dev/learn/performance","Lighthouse (Chrome DevTools)","Codeforces"] },
-      { label: "W9 SAT 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Google Drive / Dropbox","Blob storage (S3), chunking large files, deduplication (content hash)","Sync protocol, conflict resolution, sharing permissions, versioning","Watch ByteByteGo 'Design Google Drive' — write design doc","AFTERNOON: FULL mock interview (2nd one — you should be significantly better now)","Find a friend in tech OR use Pramp / Interviewing.io","Full 45-60 min: intro + project + C++ coding + system design","Record it if alone — watch back immediately","EVENING: DSA — 4 hard problems in 2 hours (contest simulation)","EVENING: Fix any weaknesses from the mock interview"], cpp: ["System Design: Google Drive — S3, chunking, deduplication, sync protocol","Full Mock Interview: 45-60 min loop","DSA: 4 hard problems in 2 hours"], resources: ["ByteByteGo — Design Google Drive (YouTube)","pramp.com","interviewing.io"] },
-      { label: "W9 SUN 🏋️ FULL DAY", mern: ["MORNING: System Design — Design Search Autocomplete (Google Typeahead)","Trie data structure, top K suggestions, ranking, caching at CDN edge","Watch ByteByteGo 'Design Typeahead Suggestion' — write your own design","MORNING: System Design — Design a Web Crawler","BFS, URL frontier, robots.txt, deduplication, politeness","AFTERNOON: DSA Marathon — 8 problems in 3 hours (timed, mixed difficulty)","2 Easy + 4 Medium + 2 Hard from NeetCode Blind 75 (unseen ones)","No hints. Write brute force first then optimize.","EVENING: Apply to 10 more jobs, follow up","EVENING: Review ALL system design case studies done so far","EVENING: Make a 1-page cheat sheet of key SD concepts"], cpp: ["System Design: Search Autocomplete + Web Crawler","DSA Marathon: 8 problems in 3 hours — Blind 75 unseen problems","Apply + follow up, make 1-page system design cheat sheet"], resources: ["ByteByteGo — Design Typeahead (YouTube)","ByteByteGo — Web Crawler (YouTube)","NeetCode Blind 75","LeetCode"] }
-    ]
-  },
-  {
-    week: 10,
-    theme: "Final Review + Mass Apply + You Are Ready",
-    days: [
-      { label: "W10 MON", mern: ["Node.js checklist for interviews:","✅ Event loop phases, ✅ Streams, ✅ Clustering, ✅ Worker threads","✅ Memory leaks: detect with --inspect, ✅ pm2 monitoring","Express security checklist:","✅ helmet, ✅ CORS, ✅ rate limiting, ✅ input validation, ✅ JWT expiry, ✅ HTTPS","MongoDB performance checklist:","✅ Explain plans, ✅ Covered queries, ✅ Index types, ✅ Aggregation best practices"], cpp: ["2 hard problems timed — DO NOT look at solution until done"], resources: ["TUF+ full sheet","NeetCode.io roadmap"] },
-      { label: "W10 TUE", mern: ["React checklist for interviews:","✅ Re-render triggers, ✅ Reconciliation, ✅ Fiber, ✅ Concurrent mode concept","✅ useMemo vs useCallback, ✅ Code splitting, ✅ Error boundaries","C++ interview checklist:","✅ STL complexity cheatsheet, ✅ Smart pointers, ✅ Move semantics concept","✅ When to use map vs unordered_map, ✅ Stack vs heap memory"], cpp: ["NeetCode Blind 75: mark every problem Easy/Medium/Hard for you personally","Solve 2 that you marked as 'Hard for me' — no hints"], resources: ["react.dev","typescriptlang.org","NeetCode Blind 75","LeetCode"] },
-      { label: "W10 WED", mern: ["Quick review ALL case studies:","URL Shortener, Twitter Feed, Netflix, WhatsApp, Uber, Google Drive, Autocomplete, Web Crawler, Rate Limiter","Key concepts to nail:","✅ Load Balancing, ✅ Caching (Redis, CDN), ✅ SQL vs NoSQL","✅ Horizontal scaling, ✅ CAP Theorem, ✅ Message Queues (Kafka)","✅ Microservices, ✅ API Gateway, ✅ Rate Limiting, ✅ DB Sharding","Practice: explain CAP theorem out loud in 2 min, explain sharding in 2 min"], cpp: ["2 random hard LeetCode problems timed"], resources: ["excalidraw.com","ByteByteGo YouTube","Gaurav Sen YouTube","Alex Xu book"] },
-      { label: "W10 THU", mern: ["Update job tracker, follow up on all pending applications","Apply to 5 more companies"], cpp: ["TUF+: Go to your profile — find every unsolved/starred problem","Pick top 6 hardest remaining problems across all sheets","Solve 3 of them tonight (45 min each)","KEY HABIT: when stuck after 15 min → write approach in comments → code it → compare with optimal","Practice thinking out loud as you code (critical for interviews)"], resources: ["TUF+ sheet","LeetCode","NeetCode.io"] },
-      { label: "W10 FRI", mern: ["Do one final complete mock interview (record it):","2 min self-intro (polished, no filler words)","3 min project walkthrough (Project 2 — the AI one)","1 C++ coding problem: medium — talk through approach first, code second","1 system design: pick randomly from your list","3 smart questions you'd ask the interviewer","Watch recording immediately, rate yourself 1-10 on each section","Fix anything below 7"], cpp: ["1 easy warmup problem (keep the streak going)"], resources: ["pramp.com","interviewing.io","Loom (recording)"] },
-      { label: "W10 SAT 🏋️ FULL DAY", mern: ["MORNING: Final portfolio checklist:","✅ Both projects live and fully functional","✅ READMEs: description, tech stack, screenshots, live demo, setup steps","✅ GitHub profile README looks professional","✅ LinkedIn: Open to Work, all projects listed, 500+ connections target","✅ Resume: 1 page, ATS-friendly, no typos, quantified bullets","✅ Postman collection saved for both projects","AFTERNOON: Mass Apply — 20 applications today","LinkedIn: 'MERN Developer', 'Node.js Developer', 'Full Stack Developer', 'SDE-2'","Filter: posted last 24hrs, Easy Apply","Naukri: update profile to get recruiter calls","Instahyre: AI-matched roles often pay well","Cutshort.io: good for startups","Wellfound / AngelList: startup ecosystem","Direct company career pages: Razorpay, Zepto, Swiggy, Meesho, BrowserStack, Postman","EVENING: DSA — last contest simulation","Celebrate: 2 AI-powered apps, MERN mastery, 200+ DSA problems, 10+ system design cases!"], cpp: ["Final portfolio checklist + Mass Apply: 20 applications","Direct company pages: Razorpay, Zepto, Swiggy, Meesho, BrowserStack, Postman","DSA: last contest simulation — celebrate your progress!"], resources: ["linkedin.com","naukri.com","instahyre.com","cutshort.io","wellfound.com","razorpay.com/careers","swiggy.com/careers"] },
-      { label: "W10 SUN 🏆 YOU MADE IT", mern: ["Write down: what you know now vs 10 weeks ago","Identify 3 areas to keep improving while interviewing","Set a daily schedule for the job hunt phase:","→ 2 TUF+ problems per day (keep C++ sharp)","→ 1 new system design read/watch per week","→ 5+ job applications per day","→ 1 mock interview per week","ONGOING RESOURCES TO KEEP USING:","📘 DSA: TUF+ sheet + Codeforces Div 2 for contest practice","📺 System Design: ByteByteGo YouTube (weekly), Gaurav Sen YouTube","💻 Backend Deep Dive: Hussein Nasser YouTube (networking, Node internals)","⚛️ React Advanced: Jack Herrington YouTube","🤖 AI/ML: Andrej Karpathy YouTube, fast.ai course","📚 Books: Clean Code (Martin) → DDIA (Kleppmann) → Pragmatic Programmer","INTERVIEW MINDSET: Rejections are data, not failure. Keep shipping. Network relentlessly."], cpp: ["YOU ARE READY. THE SWITCH IS COMING. 🏆","Keep: 2 TUF+ problems/day, 5 applications/day, 1 mock/week","Read: Clean Code → DDIA → Pragmatic Programmer"], resources: ["TUF+ sheet","ByteByteGo YouTube","Gaurav Sen YouTube","Hussein Nasser YouTube","Jack Herrington YouTube","Andrej Karpathy YouTube","fast.ai","Clean Code (book)","DDIA (book)","Codeforces"] }
-    ]
-  }
-];
-
-const BONUS_KEY = 'roadmap_bonus_read_v1';
-
-const bonusArticles = [
-  { id: 'netflix-chaos', icon: '🐒', company: 'NETFLIX', companyColor: '#e50914', title: 'How Netflix Tests Itself by Breaking Everything', tags: ['chaos engineering', 'distributed systems', 'resilience', 'AWS'], preview: "Netflix deliberately kills random servers in production every single day. Here's the insane engineering philosophy behind why.", sections: [ { heading: 'THE PROBLEM', color: '#e50914', text: "When Netflix moved from DVD rentals to streaming, they built a monolith on AWS. As they grew to millions of users, they split into microservices — but now they had a new problem. With hundreds of services talking to each other, one failure could cascade into a total outage. And you can't test resilience by hoping nothing breaks." }, { heading: 'THE INSIGHT', color: '#ffd700', callout: '"The best way to avoid failure is to fail constantly." — Netflix Engineering', text: "Netflix engineers asked: what if we intentionally broke things during business hours, when engineers are online and can react quickly? This forced every developer to write fault-tolerant code from day one. If your service could die at any moment, you'd build in fallbacks automatically." }, { heading: 'THE SIMIAN ARMY', color: '#e50914', steps: [ { num: '01', text: 'Chaos Monkey — randomly kills individual server instances in production. It runs continuously, every day.' }, { num: '02', text: 'Chaos Gorilla — kills an entire AWS Availability Zone. Tests if traffic reroutes correctly.' }, { num: '03', text: 'Chaos Kong — drops an entire AWS Region. Tests whether Netflix survives a massive regional outage.' }, { num: '04', text: 'Latency Monkey — injects artificial network latency to see how slow responses cascade.' }, { num: '05', text: 'Janitor Monkey — finds and cleans up unused cloud resources, saving cost automatically.' } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "Netflix classifies services into tiers. Video playback is Tier 1 (critical). Recommendations are Tier 2 (nice to have). If recommendations fail, the app degrades gracefully. Building graceful degradation is how they survive chaos. In interviews, this is your answer to 'how would you design a fault-tolerant system?'" } ] },
-  { id: 'zerodha-postgres', icon: '🐘', company: 'ZERODHA', companyColor: '#387ed1', title: "How Zerodha Scaled PostgreSQL to 20TB with 7 Million Tables", tags: ['postgresql', 'database scaling', 'sharding', 'fintech', 'india'], preview: "India's largest stock broker runs 20TB of financial data on a single PostgreSQL setup. Their approach is brilliantly boring — and that's the point.", sections: [ { heading: 'THE SCALE', color: '#387ed1', text: "Zerodha's Console DB stores hundreds of billions of rows of financial data — trades, P&L records, ledger entries across millions of users. Total data: close to 20TB across four sharded nodes. And they run this on PostgreSQL, self-hosted on EC2." }, { heading: 'THE PHILOSOPHY', color: '#ffd700', callout: '"Boring is generally battle-tested and well-understood sans novelty. Simple scales." — Kailash Nadh, CTO Zerodha', text: "When Zerodha outgrew their single master-replica setup, they considered Citus for distributed Postgres sharding. But Citus adds a reference ID column to every sharded table — meaning hundreds of query rewrites. So they did something more elegant." }, { heading: 'HOW THEY ACTUALLY SHARDED', color: '#387ed1', steps: [ { num: '01', text: "Sliced data by financial year — each year's data lives in its own PostgreSQL instance on its own EC2 node." }, { num: '02', text: "Linked all shards using PostgreSQL's built-in Foreign Data Wrapper (FDW) — no custom distributed magic needed." }, { num: '03', text: "Same schema, same queries across all shards. Zero rewrites. Engineers didn't even need to learn new tools." }, { num: '04', text: "Dropped foreign keys entirely for huge performance gains during EOD bulk imports of tens of millions of rows." }, { num: '05', text: "Denormalized aggressively — copied parent data into child tables to kill JOINs across billion-row tables." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "Engineering time is more expensive than infra cost. Zerodha used Foreign Data Wrappers (a PostgreSQL feature from 2013), yearly sharding, and manual VACUUM. The lesson: understand your database deeply before reaching for new tools." } ] },
-  { id: 'uber-location', icon: '📍', company: 'UBER', companyColor: '#000000', title: 'How Uber Tracks Millions of Drivers in Real-Time', tags: ['real-time systems', 'websockets', 'geospatial', 'pub-sub', 'GPS'], preview: "Every second, millions of drivers send their GPS coordinates to Uber. How does a system process all of that and show you a smooth moving car?", sections: [ { heading: 'THE NUMBERS', color: '#ff6b35', text: "Uber operates in 10,000+ cities. At peak, millions of drivers are simultaneously sending location updates every few seconds. That's billions of GPS coordinate events per day that must be processed, stored, and pushed back to rider devices — all with sub-second latency." }, { heading: 'THE DATA FLOW', color: '#ffd700', steps: [ { num: '01', text: "Driver's phone sends GPS coordinates every 4–5 seconds via WebSocket to Uber's backend." }, { num: '02', text: "The Location Service receives the update and publishes it to a Pub/Sub system (like Kafka). Each ride has its own channel." }, { num: '03', text: "The Rider's app is subscribed to that channel. The moment a driver location update is published, it's pushed to the rider." }, { num: '04', text: "Map Matching smooths out GPS noise: raw GPS has ~10-50m error. Uber snaps the location to the nearest road." }, { num: '05', text: "The rider's app interpolates between location updates to create smooth movement — the car doesn't jump, it glides." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "This is the exact system design question you'll face in FAANG interviews: 'Design Uber.' The key concepts: WebSockets for real-time bidirectional communication, Pub/Sub for decoupling location producers from consumers, geospatial indexing for efficient proximity search, and sensor fusion for GPS failures." } ] },
-  { id: 'whatsapp-encryption', icon: '🔐', company: 'WHATSAPP', companyColor: '#25d366', title: "How WhatsApp Encrypts Your Messages — And Why Even They Can't Read Them", tags: ['cryptography', 'signal protocol', 'security', 'end-to-end encryption'], preview: "WhatsApp encrypts 100 billion messages per day. The encryption keys never touch their servers. Here's the beautiful math behind it.", sections: [ { heading: 'THE KEY QUESTION', color: '#25d366', text: "When you send a message on WhatsApp, it travels through their servers. So how can WhatsApp genuinely not read your messages? The encryption keys are generated on your device and never transmitted. WhatsApp's servers are literally delivering boxes they can't open." }, { heading: 'THE SIGNAL PROTOCOL', color: '#ffd700', callout: "WhatsApp uses the Signal Protocol — open source and audited by cryptographers worldwide. It uses X3DH for key exchange, the Double Ratchet Algorithm for ongoing encryption, and Curve25519 + AES-256 + HMAC-SHA256 as crypto primitives.", text: "WhatsApp adopted it in 2016, rolling it out to over 1 billion users." }, { heading: 'HOW A MESSAGE IS SENT', color: '#25d366', steps: [ { num: '01', text: "When you install WhatsApp, your device generates a key pair: a public key (shared with WhatsApp's servers) and a private key (never leaves your device)." }, { num: '02', text: "When Alice wants to message Bob, her app fetches Bob's public key from WhatsApp's servers." }, { num: '03', text: "Using X3DH, Alice derives a shared secret session key with Bob — without ever transmitting the secret." }, { num: '04', text: "Alice's message is encrypted with AES-256 using this session key. The encrypted blob is sent to WhatsApp's servers." }, { num: '05', text: "WhatsApp delivers the encrypted blob to Bob's phone. Bob decrypts it with his private key. WhatsApp never sees plaintext." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "Key concepts: asymmetric cryptography, Diffie-Hellman key exchange, forward secrecy, and the difference between encryption-at-rest and end-to-end encryption. WhatsApp CAN see your metadata (who you message, how often) — just not the content." } ] },
-  { id: 'razorpay-payments', icon: '💳', company: 'RAZORPAY', companyColor: '#2d81f7', title: 'How Razorpay Processes Millions of Payments Without Losing a Single Rupee', tags: ['payments', 'idempotency', 'distributed systems', 'fintech', 'india'], preview: "Processing a payment involves 6+ systems that can all fail independently. Razorpay's architecture ensures money never disappears in the cracks.", sections: [ { heading: 'THE PROBLEM SPACE', color: '#2d81f7', text: "A payment isn't just one operation — it involves your bank, the payment gateway, the card network, the merchant's bank, RBI's systems, and fraud detection. Any of these can timeout, crash, or return ambiguous responses." }, { heading: 'IDEMPOTENCY KEYS: THE CORE PRIMITIVE', color: '#ffd700', callout: "An idempotent operation produces the same result no matter how many times you apply it. In payments, this means: retrying a timed-out payment should never charge you twice.", text: "Razorpay assigns every payment attempt a unique Idempotency Key. If a network timeout occurs and the payment is retried, the system recognizes the same key and returns the original result — without processing the payment again." }, { heading: 'THE PAYMENT FLOW', color: '#2d81f7', steps: [ { num: '01', text: "Customer clicks 'Pay' — Razorpay creates a payment record in state: CREATED with a unique idempotency key." }, { num: '02', text: "Request sent to the bank/card network. Payment state transitions to: PROCESSING." }, { num: '03', text: "Bank responds. Razorpay transitions to SUCCESS or FAILED and fires webhooks to the merchant." }, { num: '04', text: "If any step times out, a background reconciliation job checks the actual state from the bank." }, { num: '05', text: "The merchant receives a webhook. If delivery fails, Razorpay retries with exponential backoff for up to 24 hours." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "Idempotency is the most important concept in distributed payment systems. State machines (CREATED → PROCESSING → SUCCESS/FAILED) make payment flows debuggable. Webhook retry with exponential backoff ensures delivery through transient failures." } ] },
-  { id: 'google-spanner', icon: '🌍', company: 'GOOGLE', companyColor: '#4285f4', title: 'How Google Spanner Achieves Global Consistency Using Atomic Clocks', tags: ['distributed databases', 'spanner', 'CAP theorem', 'TrueTime', 'consistency'], preview: "Google Spanner is the world's only globally distributed database that offers external consistency. They built it using atomic clocks and GPS receivers in every data center.", sections: [ { heading: 'THE CAP THEOREM PROBLEM', color: '#4285f4', text: "The CAP theorem says a distributed system can only guarantee two of three: Consistency, Availability, and Partition tolerance. Google said: we want both consistency and availability at global scale. The community said that was impossible. Google built Spanner anyway." }, { heading: 'THE INSIGHT: TIME AS CONSISTENCY', color: '#ffd700', callout: '"If you can know the exact time to within a bounded uncertainty, you can guarantee global consistency without a central coordinator." — Google Spanner Paper (2012)', text: "If every data center has atomic clocks synchronized via GPS, and if you know the maximum clock drift, you can order transactions globally using timestamps — no central coordinator needed." }, { heading: 'TRUETIME: THE ATOMIC CLOCK API', color: '#4285f4', steps: [ { num: '01', text: "Every Google data center has GPS receivers and atomic clocks that synchronize to within ~7 milliseconds globally." }, { num: '02', text: "TrueTime exposes a simple API: TT.now() returns an interval [earliest, latest] — the uncertainty window." }, { num: '03', text: "Before committing a transaction, Spanner calls TT.now() and waits until the uncertainty window has passed (commit-wait)." }, { num: '04', text: "This guarantees any future transaction anywhere will have a timestamp strictly after this one." }, { num: '05', text: "Result: global external consistency without a central coordinator, at the cost of a ~7-14ms commit wait per write." } ] }, { heading: 'WHAT YOU SHOULD TAKE AWAY', color: '#ffd700', text: "The CAP theorem is a starting point, not a ceiling. Spanner shows that with enough investment in physical infrastructure, you can get very close to 'CA' at global scale. Know TrueTime, commit-wait, and external consistency — these are the details that make interviewers' eyes light up." } ] }
-];
-
-function renderBonusSection() {
-  const grid = document.getElementById('bonusGrid');
-  const readData = JSON.parse(localStorage.getItem(BONUS_KEY) || '{}');
-
-  grid.innerHTML = bonusArticles.map(a => {
-    const isRead = readData[a.id];
-    return `
-    <div class="bonus-card ${isRead ? 'read-done' : ''}" id="bcard-${a.id}">
-      <span class="bonus-read-badge">✓ READ</span>
-      <div class="bonus-card-header">
-        <div class="bonus-icon">${a.icon}</div>
-        <div class="bonus-meta">
-          <div class="bonus-company" style="color:${a.companyColor}">${a.company}</div>
-          <div class="bonus-title">${a.title}</div>
+// ─── RENDER HERO ───────────────────────────────────────────────────────────
+function renderHero() {
+  const m = CFG.meta;
+  return `
+    <div class="hero">
+      <div class="hero-eyebrow">${escHtml(m.totalWeeks)}-WEEK ROADMAP — BUILD REAL AI SYSTEMS</div>
+      <div class="hero-title">
+        <span class="t1">BECOME AN</span>
+        <span class="t2">AI</span>
+        <span class="t3">ENGINEER</span>
+      </div>
+      <p class="hero-sub">${escHtml(m.subtitle)}</p>
+      <div class="hero-schedule">
+        <div class="sched-card">
+          <div class="sched-day">${escHtml(m.schedule.weekdays.label)}</div>
+          <div class="sched-time">${escHtml(m.schedule.weekdays.hours)}</div>
+          <div class="sched-hrs">${m.schedule.weekdays.duration} hrs/day</div>
+        </div>
+        <div class="sched-card">
+          <div class="sched-day">${escHtml(m.schedule.weekend.label)}</div>
+          <div class="sched-time">${escHtml(m.schedule.weekend.hours)}</div>
+          <div class="sched-hrs">${m.schedule.weekend.duration} hrs/day</div>
         </div>
       </div>
-      <div class="bonus-tags">
-        ${a.tags.map(t => `<span class="bonus-tag">${t}</span>`).join('')}
-      </div>
-      <div class="bonus-preview">${a.preview}</div>
-      <div class="bonus-body" id="bbody-${a.id}">
-        ${a.sections.map(s => `
-          <div class="bonus-section">
-            <div class="bonus-section-title" style="color:${s.color}">${s.heading}</div>
-            ${s.callout ? `<div class="bonus-callout">${s.callout}</div>` : ''}
-            ${s.steps ? s.steps.map(st => `
-              <div class="bonus-step">
-                <span class="bonus-step-num" style="color:${s.color}">${st.num}</span>
-                <span class="bonus-step-text">${st.text}</span>
-              </div>
-            `).join('') : ''}
-            ${s.text ? `<div class="bonus-text">${s.text}</div>` : ''}
-          </div>
-        `).join('')}
-        <div style="margin-top:1.5rem; display:flex; gap:0.8rem; align-items:center;">
-          <button onclick="markRead('${a.id}')" style="background:rgba(0,212,170,0.1);border:1px solid var(--mern);color:var(--mern);font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;">✓ MARK AS READ</button>
-          <button onclick="toggleBonus('${a.id}')" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.65rem;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;">COLLAPSE ↑</button>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num" style="color:var(--ind)">${m.totalSessions}</div>
+          <div class="stat-lbl">SESSIONS</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" style="color:var(--gold)">${m.totalWeeks}</div>
+          <div class="stat-lbl">WEEKS</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" style="color:var(--ml)">${CFG.projects.length}</div>
+          <div class="stat-lbl">AI PROJECTS</div>
         </div>
       </div>
-      <button class="bonus-toggle-btn" onclick="toggleBonus('${a.id}')">
-        <span>READ DEEP DIVE</span><span>↓</span>
-      </button>
+      <div class="scroll-hint">↓ scroll</div>
     </div>`;
+}
+
+// ─── RENDER TRACKS ─────────────────────────────────────────────────────────
+function renderTracks() {
+  return `
+    <section class="section">
+      <div class="container">
+        <div class="sec-eyebrow">// 01 — WHAT YOU WILL MASTER</div>
+        <div class="sec-title">Three parallel tracks.</div>
+        <div class="tracks-grid">
+          ${CFG.tracks.map(t => `
+            <div class="track-card" style="border-top:2px solid ${escHtml(t.color)}">
+              <span class="track-icon">${t.icon}</span>
+              <div class="track-name" style="color:${escHtml(t.color)}">${escHtml(t.label)}</div>
+              <p class="track-desc">${escHtml(t.desc)}</p>
+              <div class="chips">${t.chips.map(c => `<span class="chip">${escHtml(c)}</span>`).join('')}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </section>`;
+}
+
+// ─── RENDER CURRICULUM ─────────────────────────────────────────────────────
+function renderCurriculum() {
+  const phasePills = `
+    <div class="phase-bar">
+      <button class="phase-pill active" onclick="filterPhase('all',this)">All weeks</button>
+      ${CFG.phases.map(p =>
+        `<button class="phase-pill" style="" onclick="filterPhase('${p.id}',this)">${escHtml(p.label)}</button>`
+      ).join('')}
+    </div>`;
+
+  const allWeeksHtml = CFG.weeks.map(buildWeekHtml).join('');
+
+  return `
+    <section class="section">
+      <div class="container">
+        <div class="sec-eyebrow">// 02 — FULL CURRICULUM</div>
+        <div class="sec-title">10-week breakdown.</div>
+        ${phasePills}
+        <div class="weeks-list" id="weeks-container">${allWeeksHtml}</div>
+      </div>
+    </section>`;
+}
+
+// ─── RENDER PROJECTS ───────────────────────────────────────────────────────
+function renderProjects() {
+  const cards = CFG.projects.map(p => {
+    const fid = 'pf-' + p.num;
+    return `
+      <div class="proj-card" style="border-top:2px solid ${escHtml(p.color)}">
+        <div class="proj-inner">
+          <div class="proj-num-col">
+            <span class="proj-num" style="color:${escHtml(p.color)}">${escHtml(p.num)}</span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-badge" style="background:${p.color}18;color:${escHtml(p.color)};border:1px solid ${p.color}44">${escHtml(p.level)}</span>
+              <span class="proj-week">Build in ${escHtml(p.buildWeek)}</span>
+            </div>
+            <div class="proj-name">${escHtml(p.name)}</div>
+            <div class="proj-stack">// ${escHtml(p.stack)}</div>
+            <p class="proj-desc">${escHtml(p.desc)}</p>
+            <div class="proj-why">${escHtml(p.why)}</div>
+          </div>
+          <div class="proj-actions">
+            <button class="feat-btn" onclick="toggleFeats('${fid}',this)">features ↓</button>
+          </div>
+        </div>
+        <div class="proj-features" id="${escHtml(fid)}">
+          <div class="feat-title" style="color:${escHtml(p.color)}">FEATURES</div>
+          <div class="feat-chips">${p.features.map(f => `<span class="feat-chip">${escHtml(f)}</span>`).join('')}</div>
+        </div>
+      </div>`;
   }).join('');
+
+  return `
+    <section class="section">
+      <div class="container">
+        <div class="sec-eyebrow">// 03 — BUILD ORDER</div>
+        <div class="sec-title">5 AI portfolio projects.</div>
+        <p style="color:var(--muted2);font-size:.88rem;max-width:480px;margin-bottom:2rem;line-height:1.7;">Each project introduces one new hard AI concept. Your portfolio tells a story of growing capability.</p>
+        <div class="proj-list">${cards}</div>
+      </div>
+    </section>`;
+}
+
+function toggleFeats(id, btn) {
+  const el = document.getElementById(id);
+  const o = el.classList.toggle('open');
+  btn.textContent = o ? 'features ↑' : 'features ↓';
+}
+
+// ─── RENDER BONUS READS ────────────────────────────────────────────────────
+function renderBonus() {
+  const bd = gb();
+  const cards = CFG.bonusReads.map(a => {
+    const bid = 'bb-' + a.id;
+    const isRead = bd[a.id];
+
+    const sections = a.sections.map(s => `
+      <div>
+        <div class="b-sec-title" style="color:${escHtml(s.color)}">${escHtml(s.heading)}</div>
+        ${s.callout ? `<div class="b-callout">${escHtml(s.callout)}</div>` : ''}
+        ${s.steps ? s.steps.map(st => `
+          <div class="b-step">
+            <span class="b-snum">${escHtml(String(s.steps.indexOf(st) + 1).padStart(2,'0'))}</span>
+            <span class="b-stxt">${escHtml(st)}</span>
+          </div>`).join('') : ''}
+        ${s.text ? `<div class="b-text">${escHtml(s.text)}</div>` : ''}
+      </div>`).join('');
+
+    return `
+      <div class="bonus-card ${isRead ? 'read-done' : ''}" id="bcard-${escHtml(a.id)}">
+        <span class="b-read-badge">✓ READ</span>
+        <div class="b-head">
+          <div class="b-icon">${a.icon}</div>
+          <div>
+            <div class="b-co" style="color:${escHtml(a.color)}">${escHtml(a.company)}</div>
+            <div class="b-title">${escHtml(a.title)}</div>
+          </div>
+        </div>
+        <div class="b-tags">${a.tags.map(t => `<span class="b-tag">${escHtml(t)}</span>`).join('')}</div>
+        <div class="b-preview">${escHtml(a.preview)}</div>
+        <div class="b-body" id="${escHtml(bid)}">
+          ${sections}
+          <div class="b-actions">
+            <button class="mark-read-btn" onclick="markRead('${escHtml(a.id)}')">✓ Mark as read</button>
+            <button class="collapse-btn" onclick="toggleBonus('${escHtml(a.id)}')">Collapse ↑</button>
+          </div>
+        </div>
+        <button class="b-toggle" onclick="toggleBonus('${escHtml(a.id)}')">
+          <span>Read deep dive</span><span>↓</span>
+        </button>
+      </div>`;
+  }).join('');
+
+  return `
+    <section class="section">
+      <div class="container">
+        <div class="sec-eyebrow">// 04 — DEEP DIVES</div>
+        <div class="sec-title">How real AI systems work.</div>
+        <p style="color:var(--muted2);font-size:.88rem;max-width:480px;margin-bottom:2rem;line-height:1.7;">Engineering decisions made by top AI teams. These make your interview answers unforgettable.</p>
+        <div class="bonus-grid">${cards}</div>
+      </div>
+    </section>`;
 }
 
 function toggleBonus(id) {
-  const body = document.getElementById('bbody-' + id);
-  const btn = body.closest('.bonus-card').querySelector('.bonus-toggle-btn span:last-child');
-  const isOpen = body.classList.toggle('open');
-  if (btn) btn.textContent = isOpen ? '↑' : '↓';
+  const b = document.getElementById('bb-' + id);
+  const btn = document.querySelector(`#bcard-${id} .b-toggle span:last-child`);
+  const o = b.classList.toggle('open');
+  if (btn) btn.textContent = o ? '↑' : '↓';
 }
 
 function markRead(id) {
-  const data = JSON.parse(localStorage.getItem(BONUS_KEY) || '{}');
-  data[id] = true;
-  localStorage.setItem(BONUS_KEY, JSON.stringify(data));
+  const d = gb(); d[id] = true; sb(d);
   const card = document.getElementById('bcard-' + id);
   if (card) card.classList.add('read-done');
 }
 
-// PROJECTS DATA & RENDER
-const projects = [
-  {
-    num: "01",
-    name: "TASK MANAGER",
-    level: "BEGINNER",
-    levelColor: "#00d4aa",
-    stack: "HTML + CSS + JS → Rebuild in React",
-    week: "W1–W2", weekColor: "#00d4aa",
-    desc: "A todo app with categories, priority levels, due dates, and localStorage persistence. Build it first in vanilla JS to feel DOM manipulation, then rebuild in React to experience the component thinking shift.",
-    why: "💡 Every interviewer expects this — make yours stand out with drag-and-drop reordering. Proves you understand fundamentals before jumping to frameworks.",
-    features: ["CRUD tasks","Filter by status & priority","Due dates","Drag to reorder (@dnd-kit)","Dark mode toggle","localStorage persistence","Responsive design","Keyboard shortcuts"]
-  },
-  {
-    num: "02",
-    name: "BLOG PLATFORM",
-    level: "INTERMEDIATE",
-    levelColor: "#a78bfa",
-    stack: "MERN + JWT Auth + Multer + Quill.js",
-    week: "W3", weekColor: "#ff6b35",
-    desc: "A full blogging platform — users register, write posts with a rich text editor, comment, and like posts. Your first true full-stack project covering auth flow, file uploads, and real data relationships.",
-    why: "💡 Covers the entire MERN loop: auth, protected routes, file uploads, and relationships (users → posts → comments). Proves you can build a real product end-to-end.",
-    features: ["JWT register & login","Rich text editor (Quill.js)","Image upload (Multer)","Pagination & search","User profiles","Likes & bookmarks","Comment threads","Admin dashboard"]
-  },
-  {
-    num: "03",
-    name: "REAL-TIME CHAT",
-    level: "INTERMEDIATE+",
-    levelColor: "#f59e0b",
-    stack: "MERN + Socket.io + Redis",
-    week: "W6", weekColor: "#a855f7",
-    desc: "A WhatsApp-style chat app with rooms, real-time messaging, online presence indicators, and message history. Very few portfolio projects include real-time — this one gets noticed immediately.",
-    why: "💡 Demonstrates WebSockets, event-driven architecture, and Redis for active user tracking — exactly what interviewers probe when they ask 'Design WhatsApp'.",
-    features: ["Room-based chat","Online/offline indicators","Typing indicators","Message history (MongoDB)","Redis active user tracking","Read receipts","File sharing","Emoji reactions"]
-  },
-  {
-    num: "04",
-    name: "AI RESUME BUILDER",
-    level: "ADVANCED",
-    levelColor: "#ff6b35",
-    stack: "MERN + OpenAI API + PDFKit + Redux",
-    week: "W4–W5", weekColor: "#ff6b35",
-    desc: "Users input their experience and AI rewrites bullet points, suggests skills, and generates a downloadable PDF resume. Combines full-stack with AI — the exact combination that makes you hireable right now.",
-    why: "💡 PDF generation (pdfkit/puppeteer) is a backend skill most devs haven't touched. AI streaming + resume output = the #1 project impressing interviewers at product companies.",
-    features: ["OpenAI bullet rewriting","Multiple resume templates","PDF export (pdfkit)","Real-time AI streaming","Saved versions in MongoDB","ATS score checker","Skills gap analysis","Cover letter generator"]
-  },
-  {
-    num: "05",
-    name: "JOB QUEUE DASHBOARD",
-    level: "ADVANCED+",
-    levelColor: "#ef4444",
-    stack: "MERN + BullMQ + Redis + WebSockets + Docker",
-    week: "W6–W7", weekColor: "#ffd700",
-    desc: "Users submit long-running background jobs (image processing, bulk emails, reports) and watch them process live on a real-time dashboard. The project that gets you interviews at Razorpay, Swiggy, and Meesho-level companies.",
-    why: "💡 Distributed systems thinking + Redis + worker processes + Docker = things most junior devs have never built. This signals senior-level engineering instincts.",
-    features: ["Job submission API","BullMQ workers","Real-time progress (WebSockets)","Retry on failure","Job priority queues","Docker Compose setup","Live queue depth dashboard","Throughput & latency metrics"]
-  }
-];
-
-function renderProjects() {
-  const grid = document.getElementById("projectsGrid");
-  if (!grid) return;
-  grid.innerHTML = projects.map(p => `
-    <div class="project-card" style="border-top: 3px solid ${p.levelColor}">
-      <div class="project-card-inner">
-        <div class="project-num-col">
-          <span class="project-num" style="color:${p.levelColor}">${p.num}</span>
-        </div>
-        <div class="project-main">
-          <div class="project-header">
-            <span class="project-level-badge" style="background:${p.levelColor}18;color:${p.levelColor};border:1px solid ${p.levelColor}44">${p.level}</span>
-            <span class="project-week-tag"><span class="project-week-dot" style="background:${p.weekColor}"></span>BUILD IN ${p.week}</span>
-          </div>
-          <div class="project-name">${p.name}</div>
-          <div class="project-stack">// ${p.stack}</div>
-          <div class="project-desc">${p.desc}</div>
-          <div class="project-why">${p.why}</div>
-        </div>
-        <div class="project-expand-col">
-          <button class="project-expand-btn" onclick="toggleProject(this,'${p.name.replace(/\s/g,'_')}')">FEATURES ↓</button>
-        </div>
-      </div>
-      <div class="project-features" id="pf-${p.name.replace(/\s/g,'_')}">
-        <div class="project-features-title" style="color:${p.levelColor}">FEATURE LIST</div>
-        <div class="features-list">${p.features.map(f=>`<span class="feature-chip">${f}</span>`).join("")}</div>
-      </div>
-    </div>
-  `).join("");
+// ─── RENDER FOOTER ─────────────────────────────────────────────────────────
+function renderFooter() {
+  return `<footer>AI ENGINEER ROADMAP &nbsp;·&nbsp; 10 WEEKS &nbsp;·&nbsp; ${CFG.meta.totalSessions} SESSIONS &nbsp;·&nbsp; BUILD THINGS THAT THINK 🧠<br><br><span style="font-size:.5rem;color:var(--muted)">To update content, edit config.json only. The HTML is a pure renderer.</span></footer>`;
 }
 
-function toggleProject(btn, id) {
-  const el = document.getElementById("pf-" + id);
-  const isOpen = el.classList.toggle("open");
-  btn.textContent = isOpen ? "FEATURES ↑" : "FEATURES ↓";
-}
+function init() {
+  document.getElementById('app').innerHTML =
+    renderHero() +
+    renderTracks() +
+    renderCurriculum() +
+    renderProjects() +
+    renderBonus() +
+    renderFooter();
 
-renderBonusSection();
-renderWeeks([1,2,3,4,5,6,7,8,9,10]);
-renderProjects();
+  syncUI();
+}
 </script>
 </body>
 </html>
