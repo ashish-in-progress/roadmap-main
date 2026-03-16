@@ -1,0 +1,2532 @@
+{
+  "meta": {
+    "title": "AI Engineer Roadmap",
+    "subtitle": "17 Weeks · Real Systems · Real-World Impact",
+    "startDate": "2026-03-17",
+    "schedule": {
+      "weekdays": { "label": "Mon–Fri", "hours": "9:00 – 11:00 AM", "duration": 2 },
+      "weekend": { "label": "Sat–Sun", "hours": "Flex", "duration": 5 }
+    },
+    "totalSessions": 119,
+    "totalWeeks": 17
+  },
+
+  "phases": [
+    { "id": "foundations", "label": "Phase 1 — Foundations", "weeks": [1,2], "color": "#818cf8" },
+    { "id": "ml-core",     "label": "Phase 2 — ML Core",    "weeks": [3,4], "color": "#34d399" },
+    { "id": "llm-deep",    "label": "Phase 3 — LLM Systems","weeks": [5,6], "color": "#fb923c" },
+    { "id": "ship",        "label": "Phase 4 — Ship & Hire", "weeks": [7,8,9,10], "color": "#fbbf24" },
+    { "id": "impact",      "label": "Phase 5 — Real-World Impact", "weeks": [11,12,13,14,15,16,17], "color": "#f472b6" }
+  ],
+
+  "tracks": [
+    {
+      "id": "mern",
+      "label": "MERN + TypeScript",
+      "color": "#818cf8",
+      "icon": "⚡",
+      "desc": "Full-stack infrastructure to ship AI products. Express, React, MongoDB, JWT, Docker, WebSockets, BullMQ job queues.",
+      "chips": ["React","Node.js","Express","MongoDB","TypeScript","Docker","Redis"]
+    },
+    {
+      "id": "ml",
+      "label": "ML Fundamentals",
+      "color": "#34d399",
+      "icon": "🧠",
+      "desc": "Python, NumPy, PyTorch, transformers, embeddings, loss, backprop, LoRA fine-tuning. Understand what's inside the models you deploy.",
+      "chips": ["Python","PyTorch","HuggingFace","Transformers","LoRA","PEFT","Scikit-learn"]
+    },
+    {
+      "id": "llm",
+      "label": "LLM Engineering",
+      "color": "#fb923c",
+      "icon": "🚀",
+      "desc": "RAG pipelines, vector DBs, prompt engineering, evals, agents with LangGraph, multi-agent systems, vLLM inference ops.",
+      "chips": ["LangChain","LangGraph","ChromaDB","Pinecone","OpenAI","vLLM","Ragas"]
+    }
+  ],
+
+  "weeks": [
+    {
+      "week": 1,
+      "theme": "JS + Node/Express + Python + NumPy + Neural Net Basics",
+      "phase": "foundations",
+      "sessions": [
+        {
+          "id": "w1-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "Install VS Code, Node.js LTS, Git, Postman",
+            "javascript.info — Variables, Data Types, Functions, Scope",
+            "ES6: arrow functions, destructuring, template literals, spread/rest"
+          ],
+          "ai": [
+            "Install Python 3.11+, pip, VS Code Python extension",
+            "Python basics: variables, lists, dicts, loops, functions",
+            "Script: count word frequency in a text file"
+          ],
+          "resources": ["javascript.info","python.org/docs","nodejs.org","VS Code","Postman"]
+        },
+        {
+          "id": "w1-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "Promises, async/await, try/catch",
+            "Array methods: map, filter, reduce, find, every",
+            "Closures and scope chain"
+          ],
+          "ai": [
+            "NumPy: arrays, broadcasting, reshape, dot product, slicing",
+            "Pandas: DataFrame, read_csv, groupby, filtering, describe()",
+            "Mini project: load Titanic CSV, compute mean/std/correlation"
+          ],
+          "resources": ["javascript.info","numpy.org","pandas.pydata.org","Kaggle Titanic CSV"]
+        },
+        {
+          "id": "w1-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "Node.js: modules, fs, path, events",
+            "Build: CLI word-frequency counter",
+            "Express: routing, middleware, request-response cycle"
+          ],
+          "ai": [
+            "Matplotlib + Seaborn: line chart, scatter, histogram",
+            "Visualise the Titanic dataset",
+            "Scikit-learn: train_test_split, fit, predict — KNN classifier"
+          ],
+          "resources": ["nodejs.org docs","matplotlib.org","seaborn.pydata.org","scikit-learn.org"]
+        },
+        {
+          "id": "w1-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "REST: HTTP verbs, status codes, resource naming",
+            "Build CRUD API for 'books' (in-memory array)",
+            "Add pagination (page+limit) and search via query params"
+          ],
+          "ai": [
+            "Scikit-learn: Linear Regression, Logistic Regression, accuracy_score",
+            "Titanic: predict survival — feature engineering, train/test split",
+            "Understand overfitting vs underfitting, train vs test loss"
+          ],
+          "resources": ["expressjs.com","scikit-learn.org","Kaggle Titanic notebook"]
+        },
+        {
+          "id": "w1-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "Custom middleware, error-handling middleware (4 params), morgan",
+            "MongoDB Atlas: create free cluster, CRUD via Atlas UI",
+            "Mongoose: connect from Express, Schema, User model"
+          ],
+          "ai": [
+            "What is a neural network? Neurons, layers, activation functions",
+            "Watch: 3Blue1Brown 'Neural Networks' series — all 4 videos",
+            "Implement: 2-layer net in raw NumPy — forward pass only"
+          ],
+          "resources": ["mongodb.com/docs","Mongoose docs","3Blue1Brown Neural Networks YouTube"]
+        },
+        {
+          "id": "w1-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "Build full CRUD API: Express + Mongoose (Notes app), test in Postman",
+            "JWT auth — header.payload.signature, how it works",
+            "bcryptjs: hash on register, compare on login — build auth routes",
+            "Add auth middleware: extract JWT, verify, attach user to req",
+            "Deploy backend to Render, test live URL",
+            "System Design Intro: NeetCode 'System Design for Beginners' (1 hr)",
+            "Push all code to GitHub"
+          ],
+          "ai": [
+            "PyTorch intro: tensors, autograd, .backward(), .grad",
+            "Build and train a small MLP on MNIST digit classification",
+            "Understand loss.backward() and optimizer.step() — the training loop",
+            "Plot training curve (loss vs epoch) — does your model learn?",
+            "HuggingFace Hub intro — browse models, datasets, spaces"
+          ],
+          "resources": ["render.com","PyTorch docs","MNIST PyTorch tutorial","NeetCode System Design YouTube"]
+        },
+        {
+          "id": "w1-sun",
+          "day": "SUN",
+          "type": "weekend",
+          "mern": [
+            "React (Vite): JSX, components, props, children, keys",
+            "useState: state updates, re-renders, lifting state up",
+            "Conditional rendering, list rendering (.map() + keys)",
+            "useEffect, useRef, useContext — build a ThemeContext",
+            "Build: Todo app in React, connect to your Notes API"
+          ],
+          "ai": [
+            "CNNs: filters, pooling, feature maps — intuition",
+            "Watch: Andrej Karpathy 'Let's Build a Neural Net from Scratch'",
+            "Build a small CNN in PyTorch on CIFAR-10 (free Colab T4 GPU)",
+            "HuggingFace: from transformers import pipeline — run sentiment analysis"
+          ],
+          "resources": ["react.dev","Andrej Karpathy YouTube","HuggingFace.co","Google Colab"]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "theme": "MERN Auth + React Advanced + Transformers + Embeddings + RAG Foundations",
+      "phase": "foundations",
+      "sessions": [
+        {
+          "id": "w2-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "React Router v6: Routes, Link, useNavigate, useParams",
+            "Protected Routes: redirect if no JWT",
+            "React Hook Form: register, handleSubmit, errors"
+          ],
+          "ai": [
+            "What is a transformer? Attention mechanism intuition",
+            "Watch: Yannic Kilcher 'Attention is All You Need' (YouTube)",
+            "Tokens, embeddings, positional encoding, multi-head attention"
+          ],
+          "resources": ["reactrouter.com v6","Yannic Kilcher YouTube","Andrej Karpathy YouTube"]
+        },
+        {
+          "id": "w2-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "Connect React to Express with Axios, handle CORS",
+            "Login/register pages → JWT → store in context + localStorage",
+            "Display MongoDB data in React, auth-protected pages"
+          ],
+          "ai": [
+            "HuggingFace Transformers: from transformers import pipeline",
+            "Run: sentiment analysis, text classification, NER, zero-shot",
+            "Understand: tokenizer.encode(), model.forward(), logits, softmax"
+          ],
+          "resources": ["Axios docs","HuggingFace Transformers docs","HuggingFace pipeline docs"]
+        },
+        {
+          "id": "w2-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "Redux Toolkit: createSlice, configureStore, useSelector, useDispatch",
+            "Refactor auth state from context to Redux",
+            "Build reusable: Navbar, Button, Card, Input, Spinner"
+          ],
+          "ai": [
+            "What are embeddings? Word2Vec intuition, sentence embeddings",
+            "sentence-transformers: model.encode() → vector",
+            "Cosine similarity: find most similar sentence from a list"
+          ],
+          "resources": ["Redux Toolkit docs","sentence-transformers docs","SBERT.net"]
+        },
+        {
+          "id": "w2-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "Tailwind CSS + shadcn/ui: install, build full Notes app UI",
+            "react-hot-toast, skeleton loaders, empty states",
+            "Deploy frontend to Vercel — test full stack live"
+          ],
+          "ai": [
+            "Vector databases: what problem do they solve? ANN search",
+            "ChromaDB: install, create collection, add embeddings, query",
+            "Build: semantic search over 50 sentences — no keywords"
+          ],
+          "resources": ["tailwindcss.com","shadcn.com","ChromaDB docs","vercel.com"]
+        },
+        {
+          "id": "w2-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "Docker: images, containers, Dockerfile for Express, .dockerignore",
+            "docker-compose: run backend + MongoDB together locally",
+            "Watch: 'Docker in 100 Seconds' Fireship (YouTube)"
+          ],
+          "ai": [
+            "OpenAI API: chat completions + embeddings endpoint",
+            "Your first RAG: embed doc chunks → store → embed query → retrieve → answer",
+            "This is the foundation of all production RAG — understand every step"
+          ],
+          "resources": ["docs.docker.com","Fireship Docker YouTube","OpenAI Embeddings docs","LangChain RAG quickstart"]
+        },
+        {
+          "id": "w2-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "Full-stack Notes App: React + Express + MongoDB + JWT + Redux — fully connected",
+            "Test all auth flows, all CRUD, deploy to Render + Vercel",
+            "System Design: Load Balancers, CDN, Redis Caching — ByteByteGo YouTube",
+            "Write README, push to GitHub, share on LinkedIn"
+          ],
+          "ai": [
+            "RAG deep dive: chunking strategies — fixed size, sentence, semantic",
+            "Chunk overlap: why it matters, how to tune it",
+            "Embedding model comparison: OpenAI ada-002 vs BAAI/bge vs sentence-transformers",
+            "Evaluate retrieval: precision@k, recall — does your search find the right chunks?",
+            "LangChain intro: chains, prompt templates, output parsers, LCEL"
+          ],
+          "resources": ["ByteByteGo YouTube","LangChain docs","RAGAS library","render.com","vercel.com"]
+        },
+        {
+          "id": "w2-sun",
+          "day": "SUN",
+          "type": "weekend",
+          "mern": [
+            "TypeScript intro: types, interfaces, generics, enums",
+            "Convert Express backend to TypeScript (tsconfig, ts-node, @types)",
+            "GitHub Actions: run tests on push, auto-deploy to Render on merge",
+            "Jest + Supertest: write tests for your auth routes"
+          ],
+          "ai": [
+            "LangChain LCEL: build a RAG chain over a PDF with source citations",
+            "Conversation memory: how to pass history without hitting context limit",
+            "LangSmith: sign up free, trace LangChain runs, debug prompt failures",
+            "Build: multi-turn Q&A chatbot with memory over uploaded document"
+          ],
+          "resources": ["typescriptlang.org","GitHub Actions docs","LangSmith docs","LangChain memory docs"]
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "theme": "Project 1 — RAG Eval Engine + Fine-tuning Foundations",
+      "phase": "ml-core",
+      "sessions": [
+        {
+          "id": "w3-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "Plan Project 1: Adaptive RAG Evaluation Engine",
+            "Design MongoDB schemas: corpora, experiments, eval_runs, golden_sets",
+            "API design: upload corpus → define golden Q&A → run eval → compare configs"
+          ],
+          "ai": [
+            "Fine-tuning vs RAG vs prompting — the key decision framework",
+            "LoRA: Low-Rank Adaptation — why efficient, what rank controls",
+            "Read: LoRA paper abstract + intro (arxiv)"
+          ],
+          "resources": ["excalidraw.com","LoRA paper arxiv","HuggingFace PEFT docs","Ragas docs"]
+        },
+        {
+          "id": "w3-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "Init backend: FastAPI (Python) for AI layer + Express (TS) for auth/data",
+            "Corpus upload pipeline: PDF → chunk → embed → store in Pinecone",
+            "Golden set API: CRUD for Q&A test pairs with expected answers"
+          ],
+          "ai": [
+            "HuggingFace PEFT: LoraConfig, get_peft_model, print_trainable_parameters",
+            "Load TinyLlama or Phi-2 on free Colab T4",
+            "Compare trainable params: base model vs LoRA — see the 99% reduction"
+          ],
+          "resources": ["PEFT docs","TinyLlama HuggingFace","Google Colab T4 GPU","FastAPI docs"]
+        },
+        {
+          "id": "w3-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "Experiment runner: accept config (chunk_size, overlap, top_k, embed_model, reranker)",
+            "Run eval: for each golden Q, retrieve → answer → score with Ragas",
+            "Store all results in MongoDB per experiment run"
+          ],
+          "ai": [
+            "Ragas deep dive: faithfulness, answer_relevancy, context_recall, context_precision",
+            "Understand each metric — what does a low faithfulness score actually mean?",
+            "Build: run Ragas on 20 golden Q&A pairs, log all 4 metrics"
+          ],
+          "resources": ["Ragas docs","Ragas metrics explainer","Pinecone docs"]
+        },
+        {
+          "id": "w3-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "React eval dashboard: experiment list, config diff view, metric bar charts",
+            "Side-by-side comparison: pick 2 experiments, see metric deltas highlighted",
+            "Auto-regression alert: badge if any metric drops >5% vs baseline"
+          ],
+          "ai": [
+            "Judge LLM: prompt GPT-4 as an evaluator — score answer quality 1-5 with reasoning",
+            "Build: judge pipeline that runs on every eval result and stores verdict",
+            "Compare: Ragas automated scores vs Judge LLM scores — do they agree?"
+          ],
+          "resources": ["OpenAI GPT-4 docs","LangSmith eval guide","react-chartjs-2"]
+        },
+        {
+          "id": "w3-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "Chunking strategy A/B: fixed-size vs sentence vs semantic — configurable per experiment",
+            "Embedding model swap: OpenAI ada-002 vs BAAI/bge — same corpus, different vectors",
+            "Add rate limiting and input validation — production quality"
+          ],
+          "ai": [
+            "Load fine-tuned LoRA adapter on base model — run inference",
+            "Compare: base model vs fine-tuned on same prompts",
+            "Merge adapter using merge_and_unload()"
+          ],
+          "resources": ["semantic-chunker LangChain","BAAI/bge HuggingFace","PEFT merge_and_unload docs"]
+        },
+        {
+          "id": "w3-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "Complete Project 1: deploy FastAPI + Express to Render, React to Vercel",
+            "Run 3 experiments with different configs, show eval dashboard with real data",
+            "Export eval report as PDF (pdfkit)",
+            "System Design: SQL vs NoSQL, Sharding, Replication",
+            "README with architecture diagram + demo GIF, push to GitHub, LinkedIn post"
+          ],
+          "ai": [
+            "Evaluate fine-tune: BERTScore, ROUGE vs base model on 20 test prompts",
+            "Quantization overview: INT8, INT4, GGUF format for llama.cpp",
+            "Watch: Sebastian Raschka 'Fine-tuning LLMs' YouTube — full video",
+            "HuggingFace Hub: upload your adapter, write a model card"
+          ],
+          "resources": ["BERTScore library","Sebastian Raschka YouTube","Loom","HuggingFace Hub","pdfkit"]
+        },
+        {
+          "id": "w3-sun",
+          "day": "SUN",
+          "type": "weekend",
+          "mern": [
+            "System Design: Design Twitter Feed — fanout on write vs read",
+            "Draw architecture in Excalidraw, explain every component",
+            "NestJS intro: modules, controllers, providers, DI — build a simple CRUD API",
+            "Socket.io: add real-time eval progress to Project 1"
+          ],
+          "ai": [
+            "Ollama: install, run llama3 / mistral locally",
+            "llama.cpp: understand GGUF quantization levels",
+            "Build: swap eval LLM backend to local Ollama — no OpenAI cost",
+            "Compare: GPT-4o judge vs local llama3-8b judge on your eval scores"
+          ],
+          "resources": ["ollama.ai","llama.cpp GitHub","nestjs.com","Gaurav Sen Design Twitter YouTube"]
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "theme": "Project 2 — LLM Inference Gateway + LLM Agents",
+      "phase": "ml-core",
+      "sessions": [
+        {
+          "id": "w4-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "Plan Project 2: LLM Inference Gateway",
+            "Study: how LiteLLM and Kong AI Gateway work — read their docs/source",
+            "Design: OpenAI-compatible API surface, routing rules, provider config schema"
+          ],
+          "ai": [
+            "Advanced RAG: hybrid search (BM25 + dense embeddings)",
+            "Reranking: cross-encoder — more accurate than dot product",
+            "Parent-child chunking: retrieve small, return large context"
+          ],
+          "resources": ["LiteLLM GitHub","Kong AI Gateway docs","LangChain advanced RAG guide","Cohere Rerank API"]
+        },
+        {
+          "id": "w4-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "Build FastAPI gateway: POST /v1/chat/completions — OpenAI-compatible",
+            "Provider routing: read model name → dispatch to OpenAI, Anthropic, or local vLLM",
+            "Middleware: log every request (provider, model, tokens, latency, cost)"
+          ],
+          "ai": [
+            "LlamaIndex: SimpleDirectoryReader, VectorStoreIndex, QueryEngine",
+            "LangChain vs LlamaIndex — when each is better",
+            "Build a RAG pipeline using LlamaIndex over 10 research papers"
+          ],
+          "resources": ["FastAPI docs","Anthropic API docs","LlamaIndex quickstart","vLLM OpenAI-compatible server"]
+        },
+        {
+          "id": "w4-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "Semantic cache: embed incoming prompt → cosine search in Redis — return cached response if similar",
+            "Per-API-key rate limiting: token bucket in Redis, configurable per key",
+            "Circuit breaker: if provider fails 3x in 60s, mark as down, stop routing"
+          ],
+          "ai": [
+            "Implement semantic cache using GPTCache library",
+            "Test: send near-duplicate prompts — verify cache hits logged",
+            "Measure: cache hit rate, latency reduction, cost savings per 100 requests"
+          ],
+          "resources": ["GPTCache GitHub","Redis token bucket pattern","circuit-breaker pattern blog","redis-py docs"]
+        },
+        {
+          "id": "w4-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "Fallback chain: primary → secondary → tertiary model, configurable per route",
+            "Prometheus metrics: request count, p50/p95 latency, cache hit %, error rate, cost",
+            "Grafana dashboard: import Prometheus data, build 4-panel dashboard"
+          ],
+          "ai": [
+            "LLM Agents: ReAct pattern (Reason + Act), tools, observation loop",
+            "Build a LangChain agent with tools: web_search, calculator",
+            "Watch agent reasoning in LangSmith traces — see every tool call"
+          ],
+          "resources": ["Prometheus Python client","Grafana Cloud free tier","LangChain agents docs","Tavily search API"]
+        },
+        {
+          "id": "w4-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "React dashboard: real-time metrics via WebSocket, provider health indicators",
+            "API key management UI: create/revoke keys, set rate limits, view usage",
+            "Docker Compose: gateway + Redis + Prometheus + Grafana — one command startup"
+          ],
+          "ai": [
+            "LangGraph: stateful agents with memory, loops, branching, checkpoints",
+            "Build: document processing workflow → classify → route → specialist agent",
+            "Human-in-the-loop node: agent pauses, asks user to confirm"
+          ],
+          "resources": ["LangGraph docs","Docker Compose docs","react-chartjs-2","LangGraph human-in-the-loop tutorial"]
+        },
+        {
+          "id": "w4-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "Complete Project 2: deploy gateway to Render, dashboard to Vercel",
+            "Test: route 50 requests through gateway, verify metrics in Grafana",
+            "System Design: Caching — Redis LRU, CDN, write-through vs write-back",
+            "Add streaming passthrough: SSE from provider → client through gateway",
+            "README + architecture diagram + demo GIF + LinkedIn post"
+          ],
+          "ai": [
+            "Build information extraction pipeline: invoice → structured JSON",
+            "Guardrails AI: add topic and safety rails to gateway output",
+            "Ragas library: evaluate RAG — faithfulness, answer relevancy, context recall",
+            "Integrate: plug Project 1 RAG Eval Engine into gateway as a backend"
+          ],
+          "resources": ["Ragas library","Guardrails AI docs","OpenAI JSON mode","render.com"]
+        },
+        {
+          "id": "w4-sun",
+          "day": "SUN",
+          "type": "weekend",
+          "mern": [
+            "Zod for TypeScript schema validation on all API inputs",
+            "Jest + Supertest: test all gateway API endpoints",
+            "Lighthouse on both projects — 90+ score target",
+            "System Design: Design Google Drive — blob storage, chunking, dedup"
+          ],
+          "ai": [
+            "LangSmith: trace every LLM call, find failure patterns",
+            "Cost tracking: token counter, cost-per-query calculator",
+            "Prompt caching: Anthropic caching + semantic caching (GPTCache)",
+            "Build eval harness: 20 Q&A gold pairs, run RAG, score precision"
+          ],
+          "resources": ["Ragas","LangSmith","GPTCache","Zod npm","ByteByteGo Google Drive YouTube"]
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "theme": "LLM Ops + Open-Source Models + Project 3 — Self-Critiquing Agent",
+      "phase": "llm-deep",
+      "sessions": [
+        {
+          "id": "w5-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "Security: helmet.js, CORS config, NoSQL injection prevention",
+            "pm2 process manager: cluster mode, monitoring, log management",
+            "12-factor app principles — read 12factor.net, apply to projects"
+          ],
+          "ai": [
+            "vLLM: PagedAttention, continuous batching, throughput vs latency",
+            "Deploy Mistral 7B with vLLM on RunPod ($1-2/hr GPU rental)",
+            "Benchmark: requests/sec, time-to-first-token, memory usage"
+          ],
+          "resources": ["vllm.ai docs","RunPod.io","12factor.net","vLLM benchmarks"]
+        },
+        {
+          "id": "w5-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "Plan Project 3: Autonomous Research Agent with Self-Critique",
+            "Design LangGraph state machine: plan → search → read → write → critique → retry loop",
+            "Schema: research_tasks, agent_runs, search_results, critiques, reports"
+          ],
+          "ai": [
+            "Read: Reflexion paper (arxiv) — self-reflection in language agents",
+            "Understand: verbal reinforcement vs RL — how critique improves agent output",
+            "Implement: simple Reflexion loop — agent answers, critiques, revises once"
+          ],
+          "resources": ["Reflexion paper arxiv","LangGraph docs","Tavily API","E2B docs"]
+        },
+        {
+          "id": "w5-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "Build Project 3 backend: task creation API, agent run logging",
+            "WebSocket: push live agent activity to frontend as it happens",
+            "Store full agent trace in MongoDB — reviewable later"
+          ],
+          "ai": [
+            "LangGraph: build the research agent state machine",
+            "Nodes: Planner, Searcher (Tavily), Reader, Writer, Critic, Router",
+            "Critic node: GPT-4 scores report on 5 rubric dimensions (coverage, citations, accuracy, contradictions, structure) — returns JSON scores"
+          ],
+          "resources": ["LangGraph multi-agent tutorial","Tavily API","LangSmith","OpenAI JSON mode"]
+        },
+        {
+          "id": "w5-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "Build Project 3 React UI: task input, live agent log stream, results viewer",
+            "Show: which node active, what tool called, what returned, critique scores",
+            "Report viewer: structured sections, citation chips, confidence indicators"
+          ],
+          "ai": [
+            "Retry logic: if any critic score < threshold, spawn targeted follow-up searches",
+            "Contradiction detector: compare claims across sources — flag disagreements",
+            "Human-in-the-loop: agent presents plan before searching — user can edit"
+          ],
+          "resources": ["LangGraph conditional edges","E2B Code Interpreter","LangGraph checkpoint docs"]
+        },
+        {
+          "id": "w5-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "Full trace viewer: replay any past agent run step-by-step",
+            "Add: task history sidebar, compare two research runs on same topic",
+            "Export report as markdown or PDF"
+          ],
+          "ai": [
+            "E2B sandbox: agent runs Python to parse tables, compute stats, plot charts",
+            "Multimodal: GPT-4V — agent can analyse images/charts in research sources",
+            "Whisper: transcribe audio sources — feed to research pipeline"
+          ],
+          "resources": ["OpenAI Vision docs","Whisper API","E2B Python sandbox"]
+        },
+        {
+          "id": "w5-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "Deploy Project 3 to Render + Vercel, test with 3 real complex research tasks",
+            "System Design: Message Queues — Kafka, RabbitMQ, event-driven architecture",
+            "ByteByteGo 'What is a Message Queue?' YouTube",
+            "README + 2-min Loom demo video showing critique loop in action"
+          ],
+          "ai": [
+            "AI safety: RLHF intuition, Constitutional AI, prompt injection",
+            "Red-team your agent: try 10 jailbreak techniques, note which work",
+            "OWASP LLM Top 10 — read all 10, identify which apply to your projects",
+            "Add: output safety filter on agent reports before delivery"
+          ],
+          "resources": ["ByteByteGo YouTube","OWASP LLM Top 10","Anthropic safety docs","Loom"]
+        },
+        {
+          "id": "w5-sun",
+          "day": "SUN",
+          "type": "weekend",
+          "mern": [
+            "Performance: React.lazy + Suspense, code splitting, bundle analysis",
+            "Core Web Vitals: LCP, CLS, INP — Lighthouse all 3 projects",
+            "Framer Motion: add smooth transitions to all three projects",
+            "Review all 3 projects — are they genuinely production-grade?"
+          ],
+          "ai": [
+            "Speech pipeline: Whisper transcription → LangChain RAG → OpenAI TTS",
+            "Build: full voice Q&A loop over a document",
+            "Stable Diffusion intuition: diffusion process, denoising — 30 min read"
+          ],
+          "resources": ["Whisper API","ElevenLabs API","Stability AI API","Lilian Weng diffusion blog"]
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "theme": "Project 4 — DPO Fine-Tuning Pipeline with Live A/B Testing + MLOps",
+      "phase": "llm-deep",
+      "sessions": [
+        {
+          "id": "w6-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "Plan Project 4: DPO Fine-Tuning Pipeline with Live A/B Testing",
+            "Architecture: dataset pipeline → SFT → DPO → vLLM multi-model serving → A/B proxy → eval dashboard",
+            "Design MongoDB schemas: preference_pairs, training_runs, ab_experiments, traffic_logs"
+          ],
+          "ai": [
+            "DPO paper: read abstract + sections 3-4 (loss function derivation) — arxiv",
+            "DPO vs RLHF: same goal, no reward model, no PPO — understand why simpler",
+            "KL divergence penalty in DPO loss — what does it prevent?"
+          ],
+          "resources": ["DPO paper arxiv","TRL DPOTrainer docs","HuggingFace PEFT docs"]
+        },
+        {
+          "id": "w6-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "Build dataset curation UI: side-by-side prompt + chosen/rejected response editor",
+            "Crowdsource preference annotations: show same prompt to model A and B, user picks winner",
+            "Export dataset to HuggingFace datasets format (JSONL)"
+          ],
+          "ai": [
+            "Build SFT dataset first: 300+ instruction-response pairs in ChatML format",
+            "Run SFTTrainer on Phi-3-mini on RunPod — monitor W&B loss curve",
+            "Save SFT checkpoint — this becomes the reference model for DPO"
+          ],
+          "resources": ["TRL SFTTrainer docs","Weights & Biases","RunPod A100","ChatML format guide"]
+        },
+        {
+          "id": "w6-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "Build A/B traffic proxy: 80% → SFT model, 20% → DPO model (shadow mode)",
+            "Log every request: which model, latency, user feedback (thumbs up/down)",
+            "Real-time win rate calculator: DPO wins / total judged — update live"
+          ],
+          "ai": [
+            "Build preference dataset: 200+ chosen/rejected pairs from your domain",
+            "Format for DPO: {prompt, chosen, rejected} — verify format with TRL",
+            "Run DPOTrainer: set beta (KL coefficient), lr, batch_size — log to W&B"
+          ],
+          "resources": ["TRL DPOTrainer tutorial","DPO beta explained blog","Weights & Biases"]
+        },
+        {
+          "id": "w6-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "Build eval dashboard: SFT vs DPO vs GPT-3.5 on 30-prompt benchmark",
+            "Metric cards: win rate, avg latency, cost/1k tokens, eval score per model",
+            "MLflow: log all 3 training runs (base, SFT, DPO) with hyperparams + metrics"
+          ],
+          "ai": [
+            "Monitor DPO training: reward margin (chosen - rejected) should increase",
+            "If margin not improving: check data quality, increase beta, reduce LR",
+            "Merge DPO LoRA adapter into base model weights"
+          ],
+          "resources": ["MLflow docs","DPO training debugging guide","PEFT merge_and_unload"]
+        },
+        {
+          "id": "w6-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "vLLM multi-model serving: serve SFT and DPO models simultaneously on different ports",
+            "Gateway routes traffic by model name — A/B proxy sits above gateway",
+            "End-to-end test: user request → proxy → model → response → log → dashboard update"
+          ],
+          "ai": [
+            "Evaluate: 30-prompt benchmark — SFT vs DPO vs GPT-3.5 scored by Judge LLM",
+            "Push both adapters to HuggingFace Hub with detailed model cards",
+            "Run lm-evaluation-harness on TruthfulQA subset — official metrics"
+          ],
+          "resources": ["vLLM multi-model docs","lm-evaluation-harness GitHub","HuggingFace Hub model card guide"]
+        },
+        {
+          "id": "w6-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "Deploy Project 4 to production — full stack on Render + Vercel",
+            "Send live URL to 3 friends, watch them use it, fix every confusion",
+            "System Design: Design a Fine-Tuning Platform at Scale",
+            "Components: dataset registry, training scheduler, checkpoint storage, eval pipeline, serving",
+            "README + 2-min demo video (Loom), LinkedIn post"
+          ],
+          "ai": [
+            "MLflow: compare all experiments in UI — pick best checkpoint by eval score",
+            "GPTCache: add semantic caching to inference layer, measure cache hit rate",
+            "System Design: ML-specific patterns — model serving, semantic caching, eval pipelines"
+          ],
+          "resources": ["MLflow experiment comparison","GPTCache","Loom"]
+        },
+        {
+          "id": "w6-sun",
+          "day": "SUN",
+          "type": "weekend",
+          "mern": [
+            "System Design: Design a Real-Time AI Inference System",
+            "Load balancing GPU instances, request batching, cold start handling",
+            "Review all 4 projects — each should show a clearly distinct skill"
+          ],
+          "ai": [
+            "AI infra: GPU clusters, CUDA, tensor vs pipeline parallelism overview",
+            "HuggingFace TGI: deploy, benchmark vs vLLM",
+            "Personal cheat sheet: every AI system design pattern from Weeks 3–6"
+          ],
+          "resources": ["HuggingFace TGI docs","Modal.com blog","Andrej Karpathy LLM overview"]
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "theme": "Resume + Job Search Launch + AI Interview Prep",
+      "phase": "ship",
+      "sessions": [
+        {
+          "id": "w7-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "Resume: Contact, Summary, Skills, Projects, Experience, Education",
+            "Skills: Python, TypeScript, React, Node.js, LangChain, PyTorch, HuggingFace, RAG, LoRA, DPO, vLLM, Docker, Redis",
+            "Projects: AI problem solved, tech stack, live link, 1-line impact metric",
+            "Use Jake's Resume template on Overleaf"
+          ],
+          "ai": [
+            "AI interview types: ML coding, AI system design, ML theory, behavioral",
+            "ML coding: implement attention, backprop — no library",
+            "AI system design: design a RAG system, model serving layer",
+            "Behavioral: 'tell me about a time your model failed in production'"
+          ],
+          "resources": ["Jake's Resume Overleaf","resume.io","Chip Huyen ML interviews guide"]
+        },
+        {
+          "id": "w7-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "LinkedIn: headline 'AI Engineer | LLM Systems | RAG Evals | DPO Fine-Tuning | MERN'",
+            "GitHub README: intro, skill badges, project screenshots, stats",
+            "Pin top 2 projects — READMEs with architecture diagrams + demo GIFs",
+            "Connect with AI engineers, ML researchers, founders — target 500+"
+          ],
+          "ai": [
+            "Implement from scratch (Python, no PyTorch):",
+            "→ Softmax function",
+            "→ Cross-entropy loss",
+            "→ Backpropagation on a 2-layer MLP",
+            "Know these cold — asked at Google, Meta, DeepMind"
+          ],
+          "resources": ["shields.io badges","GitHub Profile README generator","Andrej Karpathy micrograd"]
+        },
+        {
+          "id": "w7-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "Job tracker: Notion or Sheets — Company, Role, Date, Status",
+            "Apply to 10 jobs: LinkedIn, Naukri, Instahyre, Wellfound, Cutshort",
+            "Target: AI Engineer, LLM Engineer, GenAI Engineer, ML Engineer"
+          ],
+          "ai": [
+            "Implement from scratch (NumPy):",
+            "→ Single-head self-attention (Q, K, V matrices)",
+            "→ Sinusoidal positional encoding",
+            "Study: Andrej Karpathy 'Let's Build GPT from Scratch' YouTube — code along"
+          ],
+          "resources": ["linkedin.com","naukri.com","wellfound.com","Andrej Karpathy GPT YouTube"]
+        },
+        {
+          "id": "w7-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "AI system design interview practice:",
+            "Q: 'Design a RAG evaluation platform' — draw every component",
+            "Q: 'How do you A/B test two fine-tuned models in production?' — shadow mode, traffic splitting, metrics",
+            "Q: 'How do you reduce hallucination?' — grounding, citation, retrieval",
+            "Practice each project's AI architecture in exactly 3 minutes"
+          ],
+          "ai": [
+            "ML theory — know all of these:",
+            "→ Attention: Q, K, V — what do they represent?",
+            "→ DPO: what does the loss function actually optimize?",
+            "→ Temperature vs top-p — when to use each?",
+            "→ What is perplexity? How does it relate to cross-entropy?",
+            "→ RLHF vs DPO — how does each align a model?"
+          ],
+          "resources": ["Jay Alammar 'Illustrated Transformer' blog","Chip Huyen ML interviews book","DPO paper"]
+        },
+        {
+          "id": "w7-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "STAR stories — 8 ready:",
+            "1. RAG eval metric dropped — what did you detect and fix?",
+            "2. Chose DPO over SFT — why?",
+            "3. Gateway semantic cache reduced cost 40% — how did you measure it?",
+            "4. Agent critique loop caught a hallucination — what happened?",
+            "5. Disagreed on model choice — what happened?",
+            "6-8. Delivered under deadline, went above scope, hardest challenge"
+          ],
+          "ai": [
+            "Python coding for AI interviews:",
+            "→ Implement binary search (used in vector retrieval, beam search)",
+            "→ BFS / DFS (used in LangGraph, knowledge graphs)",
+            "→ TopK with heap (used in embedding retrieval)",
+            "→ Trie (used in token autocomplete systems)"
+          ],
+          "resources": ["pramp.com","interviewing.io","LeetCode Python"]
+        },
+        {
+          "id": "w7-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "System Design: Production RAG Eval System — full answer, all components",
+            "Corpus ingestion → chunking → embedding → retrieval → reranking → LLM → judge eval → regression alerts",
+            "Draw full architecture in Excalidraw, every component labelled",
+            "Mock interview on Pramp.com — full 45-min loop, record it",
+            "Fix every weakness from mock, mass apply: 20 more jobs"
+          ],
+          "ai": [
+            "System Design: LLM Fine-tuning Platform with A/B Testing",
+            "Components: dataset registry, SFT/DPO trainer, checkpoint storage, A/B proxy, eval pipeline, serving",
+            "Mock technical section: explain DPO loss from scratch on whiteboard",
+            "Apply to AI-focused: Sarvam AI, Krutrim, Together.ai, Modal, Unify, AI21"
+          ],
+          "resources": ["excalidraw.com","pramp.com","sarvam.ai","together.ai","modal.com"]
+        },
+        {
+          "id": "w7-sun",
+          "day": "SUN",
+          "type": "weekend",
+          "mern": [
+            "System Design: LLM Inference Gateway at Scale",
+            "Load balancing, semantic caching, fallback chains, autoscaling, cost optimization",
+            "Deep dive the 2 system design topics you feel weakest on",
+            "Apply 10 more jobs, follow up on week 1 applications"
+          ],
+          "ai": [
+            "Paper reading practice: read 'Self-RAG' or 'REALM' in 30 min",
+            "Technique: abstract → conclusion → figures → intro → skip math",
+            "Implement: query expansion using HyDE (Hypothetical Document Embeddings)",
+            "Test: does HyDE improve your Ragas scores? Log results in MLflow",
+            "Summarize paper in 5 bullets — common interview ask"
+          ],
+          "resources": ["Self-RAG arxiv","HyDE paper","Semantic Scholar","MLflow"]
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "theme": "Interview Simulation + Project 5 — AI Code Intelligence Platform",
+      "phase": "ship",
+      "sessions": [
+        {
+          "id": "w8-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "MongoDB advanced: aggregation pipeline, explain(), covered queries",
+            "REST: versioning, idempotency, pagination patterns, security",
+            "Node.js internals: V8, libuv, event loop phases, streams"
+          ],
+          "ai": [
+            "BERT (encoder) vs GPT (decoder) vs T5 (encoder-decoder)",
+            "When to use which: classification, generation, summarization",
+            "Implement: causal self-attention vs masked self-attention in NumPy"
+          ],
+          "resources": ["Jay Alammar BERT blog","The Illustrated GPT-2 (Jay Alammar)","Node.js event loop docs"]
+        },
+        {
+          "id": "w8-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "Plan Project 5: AI Code Intelligence Platform",
+            "Study: tree-sitter — AST parsing, language grammars, node types for Python + JS/TS",
+            "Design: code graph schema (functions, classes, calls, imports), vector index strategy"
+          ],
+          "ai": [
+            "Advanced retrieval: HyDE, step-back prompting",
+            "Self-querying: LLM generates metadata filters from natural language",
+            "Multi-hop retrieval: chain multiple queries for complex questions"
+          ],
+          "resources": ["tree-sitter docs","tree-sitter Python bindings","LangChain self-query retrieval","HyDE paper"]
+        },
+        {
+          "id": "w8-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "Build AST parser: tree-sitter → extract all functions, classes, import statements per file",
+            "Build code graph: nodes = functions/classes, edges = calls + imports",
+            "Store graph in Neo4j (or NetworkX for simpler start) — query: 'what calls function X?'"
+          ],
+          "ai": [
+            "Build vector index of code: embed function signatures + docstrings + body",
+            "Hybrid retrieval: graph traversal (structural) + embedding search (semantic)",
+            "Test: 'find functions related to authentication' — does hybrid beat pure embedding?"
+          ],
+          "resources": ["tree-sitter npm","Neo4j free tier","NetworkX docs","LangChain code splitter"]
+        },
+        {
+          "id": "w8-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "GitHub API: clone repo programmatically, watch for new commits, re-index changed files",
+            "Build repo ingestion pipeline: clone → parse AST → build graph → embed → index",
+            "Progress WebSocket: show ingestion status live (files parsed, functions indexed)"
+          ],
+          "ai": [
+            "Build LangGraph agent for code Q&A:",
+            "→ Planner: decompose complex query into sub-queries",
+            "→ Graph traverser: cypher/networkx query for structural questions",
+            "→ Semantic retriever: embedding search for conceptual questions",
+            "→ Synthesizer: combine results into answer with code references"
+          ],
+          "resources": ["PyGithub library","LangGraph docs","LangSmith","Cypher query language"]
+        },
+        {
+          "id": "w8-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "Impact analysis: 'what breaks if I change function X?' — graph BFS from node X",
+            "Auto-generate tests: agent writes pytest unit tests → E2B executes → returns pass/fail",
+            "PR creation: GitHub API — agent opens PR with suggested fix + generated tests"
+          ],
+          "ai": [
+            "Build observability: log every agent query to LangSmith, trace all sub-queries",
+            "Unit test code intelligence utilities: AST parser, graph builder, hybrid retrieval",
+            "Error recovery: if graph query fails, fall back to pure embedding search"
+          ],
+          "resources": ["E2B Code Interpreter","GitHub Actions docs","PyTest docs","LangSmith"]
+        },
+        {
+          "id": "w8-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "Build Project 5 React UI — make it visually stunning",
+            "Code graph visualizer: interactive force-directed graph (D3.js or react-force-graph)",
+            "Chat interface: query the codebase in natural language, see source references",
+            "Full mock interview — record (45-60 min):",
+            "2-min intro, 5-min P5 walkthrough, 20-min AI system design, 15-min ML concepts"
+          ],
+          "ai": [
+            "Deploy Project 5 to Render + Vercel, test on a real open-source repo",
+            "Review all 5 projects — each should show a distinct AI skill:",
+            "✅ P1: RAG eval engine  ✅ P2: inference gateway  ✅ P3: self-critiquing agent",
+            "✅ P4: DPO pipeline with A/B  ✅ P5: code intelligence platform",
+            "Screenshot all, ensure live URLs work, update LinkedIn"
+          ],
+          "resources": ["react-force-graph npm","D3.js","pramp.com","render.com","vercel.com"]
+        },
+        {
+          "id": "w8-sun",
+          "day": "SUN",
+          "type": "weekend",
+          "mern": [
+            "System Design: AI-Powered Code Review Pipeline",
+            "PR webhook → AST diff → impact analysis → LLM review → GitHub comment",
+            "Draw full components diagram in Excalidraw",
+            "Mass apply — 20 applications, direct pages: Zepto, Swiggy, Razorpay, Sarvam AI, Krutrim",
+            "Follow up on all applications older than 7 days"
+          ],
+          "ai": [
+            "Responsible AI: bias in models, fairness metrics, toxicity detection",
+            "Build: toxicity classifier wrapper using HuggingFace 'unitary/toxic-bert'",
+            "AI product thinking: when NOT to use AI — deterministic rules cost/benefit",
+            "Write 500-word 'AI Engineering Philosophy' — your view on when to use AI"
+          ],
+          "resources": ["HuggingFace toxic-bert","Google PAIR Explorables","Chip Huyen ML Systems book ch.1"]
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "theme": "Advanced Topics + Active Job Search + Interview Loop Practice",
+      "phase": "ship",
+      "sessions": [
+        {
+          "id": "w9-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "TypeScript advanced: generics, conditional types, mapped types, decorators",
+            "GraphQL intro: schema, resolvers — add a GraphQL endpoint to Project 4 dashboard",
+            "These appear in senior AI engineering JDs at enterprise companies"
+          ],
+          "ai": [
+            "Long-context models: Claude 200k, Gemini 1M — strategies and limits",
+            "Lost-in-the-middle problem: why models forget middle-of-context content",
+            "RAPTOR, contextual retrieval, late chunking — advanced long-doc strategies"
+          ],
+          "resources": ["typescriptlang.org advanced","Apollo Server docs","Anthropic long context guide"]
+        },
+        {
+          "id": "w9-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "Apply 10 more jobs, follow up on all 7+ day applications",
+            "Research 5 target companies: AI stack, recent blog posts",
+            "Know their AI usage — does Zepto use LLMs? What for?"
+          ],
+          "ai": [
+            "Mixture of Experts (MoE): Mixtral architecture, sparse routing",
+            "Flash Attention: I/O-aware algorithm — why it makes training faster",
+            "DPO: simpler than RLHF — loss function on preference pairs (reinforce your understanding)"
+          ],
+          "resources": ["Mixtral paper","Flash Attention paper","DPO paper arxiv","glassdoor.com"]
+        },
+        {
+          "id": "w9-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "Salary negotiation: know MERN + AI salaries at targets (Levels.fyi, Glassdoor)",
+            "BATNA: your walk-away number",
+            "Script: 'I'm targeting X-Y based on scope and my RAG eval + DPO fine-tuning experience'"
+          ],
+          "ai": [
+            "Streaming + SSE deep dive: how do LLM APIs stream tokens internally?",
+            "Speculative decoding: draft model + verifier — why it reduces latency",
+            "Build: ultra-low-latency streaming UI — measure time-to-first-token, target < 500ms"
+          ],
+          "resources": ["levels.fyi","OpenAI streaming docs","speculative decoding paper"]
+        },
+        {
+          "id": "w9-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "Node.js performance: memory leak detection (--inspect + Chrome DevTools)",
+            "pm2 monitoring: CPU, memory, restarts, log rotation",
+            "Streams: why they save memory for large LLM output piping"
+          ],
+          "ai": [
+            "Universal tool-use agent: define any REST API as JSON schema → LLM calls it",
+            "Extend Project 3 agent: add GitHub API + Slack API as agent tools",
+            "Toolformer paper: how LLMs learn to use tools — read abstract + results"
+          ],
+          "resources": ["GitHub REST API","Anthropic tool use docs","Toolformer paper arxiv","Slack API"]
+        },
+        {
+          "id": "w9-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "Lighthouse on all 5 projects — fix any remaining performance issues",
+            "Code splitting: React.lazy + Suspense — all heavy components",
+            "Verify: all live URLs, mobile responsive, all AI features working"
+          ],
+          "ai": [
+            "Automated code review bot: PR diff in → Project 5 code intel → AI review → GitHub comment via Actions",
+            "GitHub Actions: trigger on PR open, call AI endpoint, post results",
+            "This workflow impresses engineering managers at product companies"
+          ],
+          "resources": ["GitHub Actions docs","PyGithub library","OpenAI code review prompts"]
+        },
+        {
+          "id": "w9-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "System Design: Multi-Tenant AI SaaS Platform",
+            "User management, API keys, usage quotas + billing, model routing per tier",
+            "Draw architecture — every component, every tradeoff",
+            "Full mock interview #3 — record, find someone in tech or use Pramp",
+            "Fix weaknesses from mock, apply 10 more companies"
+          ],
+          "ai": [
+            "Emerging: structured output and tool use across providers",
+            "Build: provider-agnostic tool-use wrapper (works with OpenAI, Anthropic, Gemini) — add to your gateway",
+            "DPO fine-tuning: build 10-pair preference dataset, run TRL DPOTrainer on a second domain",
+            "Compare: DPO model vs SFT model on your 20-question eval benchmark — log to MLflow"
+          ],
+          "resources": ["pramp.com","TRL DPOTrainer docs","DPO tutorial HuggingFace"]
+        },
+        {
+          "id": "w9-sun",
+          "day": "SUN",
+          "type": "weekend",
+          "mern": [
+            "System Design: Model Evaluation Platform",
+            "A/B testing, traffic splitting, metric collection, rollback triggers, shadow mode",
+            "Components: proxy → shadow runner → metric store → dashboard → alerts",
+            "Apply 10 more jobs, follow up on all pending, review system design cheat sheets"
+          ],
+          "ai": [
+            "Read a cutting-edge paper: 'Agent S' or 'LLM Compiler' or 'Self-Play Fine-Tuning'",
+            "Technique: abstract → conclusion → figures → intro (30 min total)",
+            "Build: implement the key idea from the paper as a small prototype",
+            "Summarize in 5 bullets — 'what papers have you read?' is a top AI interview question"
+          ],
+          "resources": ["arxiv.org","Semantic Scholar","LeetCode Python","Andrej Karpathy paper tips"]
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "theme": "Final Review + Mass Apply + You Are Ready",
+      "phase": "ship",
+      "sessions": [
+        {
+          "id": "w10-mon",
+          "day": "MON",
+          "type": "weekday",
+          "mern": [
+            "Full-stack AI checklist:",
+            "✅ 5 live projects with demos and READMEs",
+            "✅ TypeScript everywhere, Docker on all backends",
+            "✅ CI/CD pipeline on all projects",
+            "✅ Lighthouse 90+ on all projects"
+          ],
+          "ai": [
+            "AI engineering checklist:",
+            "✅ Explain RAG evals, DPO, self-critiquing agents without notes",
+            "✅ Implement attention from scratch in 10 min",
+            "✅ Understand vLLM, quantization, LoRA + DPO internals",
+            "✅ HuggingFace profile with SFT + DPO adapters uploaded",
+            "✅ Ragas eval numbers + A/B test win rate for your projects"
+          ],
+          "resources": ["HuggingFace profile","NeetCode.io Python"]
+        },
+        {
+          "id": "w10-tue",
+          "day": "TUE",
+          "type": "weekday",
+          "mern": [
+            "React checklist: reconciliation, fiber, useMemo vs useCallback, error boundaries",
+            "Node.js checklist: event loop phases, streams, clustering",
+            "TypeScript: generics, utility types (Partial, Pick, Omit, Record)"
+          ],
+          "ai": [
+            "LLM master checklist — explain any in 2 min:",
+            "✅ Attention, tokenization, temperature, top-p, context window",
+            "✅ RAG vs fine-tuning vs prompting — decision framework",
+            "✅ LoRA, DPO, quantization, vLLM, streaming — implementation level",
+            "✅ Multi-agent, tools, LangGraph, self-critique loops"
+          ],
+          "resources": ["Jay Alammar blog","Lilian Weng blog","Chip Huyen interview prep"]
+        },
+        {
+          "id": "w10-wed",
+          "day": "WED",
+          "type": "weekday",
+          "mern": [
+            "System Design review — all 10 case studies in sequence:",
+            "RAG Eval Pipeline, LLM Inference Gateway, Fine-tuning Platform, Twitter Feed, Google Drive",
+            "Rate Limiter, Model Eval Platform, Multi-Tenant SaaS, AI Search Engine, Notifications",
+            "Timed: explain any one in 5 minutes — use a timer"
+          ],
+          "ai": [
+            "AI system design patterns cheat sheet (memorize these):",
+            "→ Semantic cache: avoid re-querying LLM for similar prompts",
+            "→ Hybrid retrieval: BM25 + dense always beats one alone",
+            "→ Reranking: cheap retrieval → expensive reranker pattern",
+            "→ Eval-driven: measure before and after every change",
+            "→ Graceful degradation: AI fails → fall back to deterministic",
+            "→ Shadow A/B: route 20% to new model, compare metrics before promoting"
+          ],
+          "resources": ["excalidraw.com","ByteByteGo YouTube","Chip Huyen blog"]
+        },
+        {
+          "id": "w10-thu",
+          "day": "THU",
+          "type": "weekday",
+          "mern": [
+            "Update job tracker, follow up on all pending applications",
+            "Apply 10 more: Sarvam AI, Krutrim, Haptik, Yellow.ai, Observe.ai, Unify.ai, Together.ai, Modal.com"
+          ],
+          "ai": [
+            "Prepare: 'Tell me about the most challenging AI problem you solved'",
+            "Structure: context → what failed → hypothesis → experiment → result → lesson",
+            "Your hardest moment: DPO reward margin flat, agent critique loop, gateway cache miss — pick the best"
+          ],
+          "resources": ["sarvam.ai/careers","krutrim.com","modal.com","together.ai"]
+        },
+        {
+          "id": "w10-fri",
+          "day": "FRI",
+          "type": "weekday",
+          "mern": [
+            "Final mock interview — record it:",
+            "✅ 2-min polished intro (no filler words)",
+            "✅ 3-min Project 4 walkthrough (DPO + A/B testing)",
+            "✅ 20-min AI system design (RAG eval pipeline or inference gateway)",
+            "✅ 10-min ML concepts (DPO, attention, self-critique agents)",
+            "✅ 3 smart questions for the interviewer",
+            "Score each section 1-10, fix anything below 7"
+          ],
+          "ai": [
+            "Warmup: implement softmax + cross-entropy in NumPy from scratch",
+            "No hints. Target: < 10 min. This should feel easy now."
+          ],
+          "resources": ["pramp.com","interviewing.io","Loom"]
+        },
+        {
+          "id": "w10-sat",
+          "day": "SAT",
+          "type": "weekend",
+          "mern": [
+            "Final portfolio audit:",
+            "✅ All 5 projects live + demo GIFs + architecture diagrams",
+            "✅ GitHub profile README: professional, active commit graph",
+            "✅ LinkedIn: Open to Work, all 5 projects, 500+ connections",
+            "✅ Resume: 1 page, quantified impact, ATS clean, no typos",
+            "MASS APPLY — 25 applications today:",
+            "LinkedIn: 'AI Engineer', 'LLM Engineer', 'GenAI Engineer'",
+            "Direct: Razorpay, Zepto, Swiggy, Meesho, BrowserStack, Sarvam AI, Krutrim, Haptik",
+            "🎉 Celebrate — 5 hard AI products shipped, RAG evals + DPO + agents + infra mastered"
+          ],
+          "ai": [
+            "HuggingFace profile: SFT + DPO adapters uploaded, model cards written, demos running",
+            "LinkedIn post about your AI journey — authentic, specific, with screenshots",
+            "DM 5 AI engineers you admire — genuine question about their work",
+            "You are ready. Keep shipping."
+          ],
+          "resources": ["linkedin.com","naukri.com","wellfound.com","HuggingFace Hub"]
+        },
+        {
+          "id": "w10-sun",
+          "day": "SUN 🏆",
+          "type": "weekend",
+          "mern": [
+            "Reflect: what you know now vs 10 weeks ago",
+            "Daily routine for job hunt:",
+            "→ 5 applications/day",
+            "→ 1 paper skim/week (15 min: abstract + conclusion + figures)",
+            "→ 1 small AI experiment/week",
+            "→ 1 mock interview/week",
+            "KEEP USING:",
+            "📺 Andrej Karpathy YouTube — deep model understanding",
+            "📺 Yannic Kilcher YouTube — paper walkthroughs",
+            "📚 Chip Huyen 'Designing ML Systems' — read cover to cover",
+            "📚 DDIA (Kleppmann) — for system design depth"
+          ],
+          "ai": [
+            "YOU ARE READY. 🧠",
+            "5 hard AI products. RAG pipelines evaluated. DPO-aligned models on HuggingFace.",
+            "Deployed agents with self-critique. An inference gateway with semantic caching.",
+            "A code intelligence platform that understands ASTs and call graphs.",
+            "That is not a portfolio. That is a career.",
+            "The field moves fast — curiosity is your most valuable asset.",
+            "Keep shipping. Keep reading. Keep experimenting."
+          ],
+          "resources": ["arxiv.org","Andrej Karpathy YouTube","Yannic Kilcher YouTube","fast.ai","Lilian Weng blog"]
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "theme": "Project 6 — Clinical Trial Signal Extractor (Healthcare / Medical AI)",
+      "phase": "impact",
+      "sessions": [
+        {
+          "id": "w11-mon", "day": "MON", "type": "weekday",
+          "mern": [
+            "Plan P6: Clinical Trial Signal Extractor",
+            "Study ClinicalTrials.gov API + PubMed Entrez API — read docs, run test queries",
+            "Design schemas: trials, publications, entities (drug/dosage/outcome/adverse_event), queries"
+          ],
+          "ai": [
+            "BioBERT: understand why domain-specific pretraining matters for clinical NER",
+            "HuggingFace: load 'dmis-lab/biobert-base-cased-v1.2' — run NER pipeline on a trial abstract",
+            "Study PICO framework: Population, Intervention, Comparison, Outcome — the gold standard for trial extraction"
+          ],
+          "resources": ["clinicaltrials.gov API docs","PubMed Entrez API","BioBERT HuggingFace","PICO framework paper"]
+        },
+        {
+          "id": "w11-tue", "day": "TUE", "type": "weekday",
+          "mern": [
+            "Build ingestion pipeline: ClinicalTrials.gov API → fetch by condition/drug → store raw JSON",
+            "PubMed fetcher: search by NCT ID → retrieve abstract + full text where available",
+            "PDF processor: pdfplumber extracts text from trial PDFs — handle multi-column layouts"
+          ],
+          "ai": [
+            "Fine-tune BioBERT NER on i2b2 or BC5CDR dataset for drug/disease recognition",
+            "spaCy custom pipeline: add BioBERT as a component, extract entity spans with confidence",
+            "Build entity linker: map extracted drug names → RxNorm IDs, diseases → SNOMED CT codes"
+          ],
+          "resources": ["BC5CDR dataset","i2b2 NER dataset","spaCy custom components","RxNorm API","SNOMED browser"]
+        },
+        {
+          "id": "w11-wed", "day": "WED", "type": "weekday",
+          "mern": [
+            "Neo4j schema: Trial nodes, Drug nodes, Outcome nodes, AdverseEvent nodes — relationships: TESTED, MEASURED, CAUSED",
+            "Build graph loader: extracted entities → Neo4j upsert with deduplication",
+            "Cypher queries: 'find all trials testing Drug X that measured Outcome Y'"
+          ],
+          "ai": [
+            "PICO extractor: LLM prompt to extract Population/Intervention/Comparison/Outcome as structured JSON from each abstract",
+            "Evidence quality scorer: classify trial type (RCT, observational, case study) + sample size → quality score",
+            "Build: run full pipeline on 50 real trials — spot-check entity extraction accuracy"
+          ],
+          "resources": ["Neo4j Aura free tier","Cypher query language","LangChain structured output","CONSORT trial classification"]
+        },
+        {
+          "id": "w11-thu", "day": "THU", "type": "weekday",
+          "mern": [
+            "FastAPI: natural language query endpoint → LLM generates Cypher + vector search → merged results",
+            "React UI: search bar, trial results cards, entity highlight on abstract text",
+            "Cross-trial comparison view: aggregate outcomes across trials for same drug"
+          ],
+          "ai": [
+            "Natural language to Cypher: LLM takes user query → generates Neo4j Cypher query",
+            "Hybrid: Cypher for structural queries + Pinecone embedding search for semantic queries",
+            "FHIR export: map extracted data to FHIR ResearchStudy + MedicationKnowledge resources"
+          ],
+          "resources": ["LangChain Neo4j chain","Pinecone docs","HL7 FHIR R4 spec","FHIR Python library"]
+        },
+        {
+          "id": "w11-fri", "day": "FRI", "type": "weekday",
+          "mern": [
+            "Add: adverse event heatmap — drug vs adverse event frequency matrix",
+            "Export: structured CSV / FHIR JSON download per query result",
+            "Auth + rate limiting — public API for researchers with free tier"
+          ],
+          "ai": [
+            "Evaluate NER: precision/recall/F1 on held-out trial abstracts vs manual annotations",
+            "Benchmark: compare your BioBERT extractor vs GPT-4 direct extraction — cost vs quality",
+            "Write model card: extraction methodology, limitations, known failure modes"
+          ],
+          "resources": ["seqeval library","annotation tool: Label Studio","HuggingFace model card template"]
+        },
+        {
+          "id": "w11-sat", "day": "SAT", "type": "weekend",
+          "mern": [
+            "Deploy to Render + Vercel, seed with 500 real trials across 5 disease areas",
+            "Write detailed README: problem statement, architecture diagram, API docs, usage examples",
+            "Submit to AMIA Informatics Summit or ACL BioNLP workshop — abstract due dates",
+            "Post on GitHub with 'biomedical-NLP', 'clinical-trials', 'knowledge-graph' topics",
+            "LinkedIn post: 'I built an open-source clinical trial signal extractor' — tag pharma researchers"
+          ],
+          "ai": [
+            "Ablation study: BioBERT NER vs GPT-4 NER vs spaCy baseline — document results",
+            "Error analysis: which entity types fail most — document in README limitations section",
+            "Package as pip installable library: clinical_signal_extractor — publish to PyPI"
+          ],
+          "resources": ["AMIA conference","ACL BioNLP workshop","PyPI packaging guide","Render.com"]
+        },
+        {
+          "id": "w11-sun", "day": "SUN", "type": "weekend",
+          "mern": [
+            "System Design: Healthcare Data Pipeline at Scale",
+            "HIPAA compliance considerations, de-identification, audit logging",
+            "Read: how PubMed Central processes 3M+ papers — their indexing architecture",
+            "Apply to healthcare AI roles: Tempus, Flatiron Health, Google Health, Microsoft Health"
+          ],
+          "ai": [
+            "Read: 'BERT for Biomedical Text Mining' survey paper — 30 min",
+            "Explore: Med-PaLM 2, BioGPT, ClinicalBERT — understand the model landscape",
+            "Extend: add drug-drug interaction detection using the extracted knowledge graph"
+          ],
+          "resources": ["Med-PaLM paper","BioGPT HuggingFace","ClinicalBERT","Flatiron Health careers","Tempus careers"]
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "theme": "Project 7 — AI Contract Intelligence Platform (Legal / Compliance)",
+      "phase": "impact",
+      "sessions": [
+        {
+          "id": "w12-mon", "day": "MON", "type": "weekday",
+          "mern": [
+            "Plan P7: AI Contract Intelligence Platform",
+            "Study: CUAD dataset — 510 contracts, 41 clause types, expert annotations — the benchmark for this domain",
+            "Design schemas: contracts, clauses, risk_flags, clause_library, comparisons"
+          ],
+          "ai": [
+            "CUAD dataset: download, explore clause type distribution, understand annotation format",
+            "Fine-tune a clause classifier: DistilBERT on CUAD — 41-class multi-label classification",
+            "Baseline: GPT-4 zero-shot clause extraction vs fine-tuned DistilBERT — compare F1"
+          ],
+          "resources": ["CUAD dataset HuggingFace","CUAD paper arxiv","DistilBERT HuggingFace","contract-nli dataset"]
+        },
+        {
+          "id": "w12-tue", "day": "TUE", "type": "weekday",
+          "mern": [
+            "Contract parser: pdfplumber + python-docx → extract text preserving section structure",
+            "Section boundary detector: LLM identifies clause start/end positions with section title",
+            "FastAPI ingestion endpoint: upload → parse → classify → store all clauses in MongoDB"
+          ],
+          "ai": [
+            "Risk rubric engine: configurable JSON rules — per clause type, define red/amber/green conditions",
+            "Risk evaluator: for each extracted clause, run rubric → assign risk level + explanation",
+            "Example rubric: indemnification clause with 'unlimited liability' → RED, 'capped at contract value' → GREEN"
+          ],
+          "resources": ["pdfplumber docs","python-docx docs","LangChain structured output","MongoDB Atlas"]
+        },
+        {
+          "id": "w12-wed", "day": "WED", "type": "weekday",
+          "mern": [
+            "Clause library: CRUD for approved standard language per clause type",
+            "Deviation detector: compare extracted clause vs library standard — semantic similarity + LLM diff",
+            "React UI: contract upload, clause list with risk badges, side-by-side deviation view"
+          ],
+          "ai": [
+            "Industry template comparison: embed standard NDA/SaaS/employment clauses",
+            "Deviation scoring: cosine similarity + LLM explanation of how extracted clause differs",
+            "Plain-English explainer: 'this clause means you cannot sue them even if they lose your data'"
+          ],
+          "resources": ["OpenAI embeddings","sentence-transformers","standard NDA templates (public domain)"]
+        },
+        {
+          "id": "w12-thu", "day": "THU", "type": "weekday",
+          "mern": [
+            "Multi-party redline: upload two versions of same contract → diff at clause level",
+            "Highlight added/removed/changed clauses with risk change indicators",
+            "Audit trail: every flag with exact PDF page + character offset reference"
+          ],
+          "ai": [
+            "Risk summary generator: LLM synthesises all flags into 5-bullet executive summary",
+            "Negotiation suggestions: for each RED flag, suggest alternative language with legal reasoning",
+            "Confidence calibration: when model is unsure → flag for human review instead of auto-classifying"
+          ],
+          "resources": ["diff-match-patch library","LangChain chain-of-thought prompting","Anthropic structured output"]
+        },
+        {
+          "id": "w12-fri", "day": "FRI", "type": "weekday",
+          "mern": [
+            "Stripe integration: $49/mo subscription — 10 contracts/mo free, unlimited paid",
+            "Deployment: FastAPI on Render, React on Vercel, MongoDB Atlas",
+            "Onboarding flow: upload first contract → instant risk summary — < 60 seconds to value"
+          ],
+          "ai": [
+            "Evaluate on CUAD test set: clause extraction F1, risk classification accuracy",
+            "User test: give 3 real contracts to a non-lawyer friend — does the summary make sense?",
+            "Legal disclaimer: add prominent 'not legal advice' notice — this is required"
+          ],
+          "resources": ["Stripe API docs","CUAD evaluation script","Render.com","Vercel.com"]
+        },
+        {
+          "id": "w12-sat", "day": "SAT", "type": "weekend",
+          "mern": [
+            "Launch on Product Hunt — 'AI contract review for SMBs, 50x cheaper than a lawyer'",
+            "Post in IndieHackers, r/legaladvice, r/startups, startup Slack communities",
+            "Target first 10 paying users: reach out to founder communities directly",
+            "README + demo video showing a real NDA getting flagged in < 1 minute"
+          ],
+          "ai": [
+            "Fine-tune improvement: retrain on CUAD + your own flagged contracts — log improvement in eval F1",
+            "Add: jurisdiction-aware risk rubric — US vs UK vs EU contract law differences",
+            "Research contribution: publish clause extraction methodology on arXiv"
+          ],
+          "resources": ["Product Hunt launch guide","IndieHackers.com","arXiv.org","CUAD benchmark leaderboard"]
+        },
+        {
+          "id": "w12-sun", "day": "SUN", "type": "weekend",
+          "mern": [
+            "System Design: Legal AI Platform at Scale — multi-jurisdiction, multi-language",
+            "GDPR compliance: contract data handling, retention policy, deletion rights",
+            "Research competitors: Ironclad, Kira, Luminance — what do they charge? What do they miss?"
+          ],
+          "ai": [
+            "Extend: multilingual clause extraction — test on French and German contracts",
+            "Read: 'LEGAL-BERT' paper — domain-specific pretraining for legal NLP",
+            "Explore: contract lifecycle management as next feature — obligation tracking post-signature"
+          ],
+          "resources": ["LEGAL-BERT paper","Ironclad pricing","multilingual-e5 HuggingFace","GDPR compliance guide"]
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "theme": "Project 8 — Carbon Footprint Intelligence Engine (Climate / Science)",
+      "phase": "impact",
+      "sessions": [
+        {
+          "id": "w13-mon", "day": "MON", "type": "weekday",
+          "mern": [
+            "Plan P8: Carbon Footprint Intelligence Engine",
+            "Study: GHG Protocol Corporate Standard — Scope 1, 2, 3 definitions, calculation methodology",
+            "Design schemas: companies, activity_data, emission_factors, calculations, scenarios, reports"
+          ],
+          "ai": [
+            "GHG Protocol emission factors database: download EPA + IPCC datasets — understand factor format",
+            "Scope 3 category mapping: 15 upstream/downstream categories — build category classifier",
+            "LLM activity mapper: 'electricity bill from Mumbai office' → Scope 2, grid emission factor for Maharashtra"
+          ],
+          "resources": ["GHG Protocol Corporate Standard PDF","EPA emission factors hub","IPCC AR6 emission factors","climatiq.io API"]
+        },
+        {
+          "id": "w13-tue", "day": "TUE", "type": "weekday",
+          "mern": [
+            "Activity data ingestion: CSV templates for energy, travel, logistics, procurement, waste",
+            "Data validation: flag missing units, implausible values, unrecognised activity types",
+            "FastAPI calculation engine: activity × emission factor → kgCO2e, with uncertainty range"
+          ],
+          "ai": [
+            "Supplier emission estimator: when supplier data unavailable → use industry-average spend-based factors",
+            "LLM invoice parser: upload supplier invoice PDF → extract spend amount + category → Scope 3 estimate",
+            "Uncertainty quantification: Monte Carlo simulation over factor ranges → 90% confidence interval"
+          ],
+          "resources": ["climatiq.io emission factor API","Monte Carlo with NumPy","pdfplumber for invoices","Scope 3 spend-based factors"]
+        },
+        {
+          "id": "w13-wed", "day": "WED", "type": "weekday",
+          "mern": [
+            "EDGAR integration: fetch peer company disclosed emissions via SEC EDGAR XBRL API",
+            "Benchmark view: your emissions vs 5 industry peers — normalised by revenue",
+            "React dashboard: Scope 1/2/3 breakdown, year-over-year trend, top emitting categories"
+          ],
+          "ai": [
+            "What-if analysis engine: user changes an input → recalculate instantly with delta highlighted",
+            "Reduction opportunity ranker: for each high-emission category → fetch abatement options + cost estimates",
+            "ROI calculator: 'switch to renewable energy' → cost to implement vs tonnes saved vs carbon price"
+          ],
+          "resources": ["SEC EDGAR XBRL API","carbon price tracker APIs","Project Drawdown abatement database"]
+        },
+        {
+          "id": "w13-thu", "day": "THU", "type": "weekday",
+          "mern": [
+            "TCFD report generator: scenario analysis (1.5°C, 2°C, 3°C) → physical and transition risk narrative",
+            "PDF report export: branded TCFD-aligned disclosure document — pdfkit",
+            "Audit log: every calculation traceable to source data + emission factor version used"
+          ],
+          "ai": [
+            "LLM report writer: takes structured calculation output → writes TCFD narrative sections",
+            "Science-based target alignment checker: compare trajectory vs SBTi 1.5°C pathway",
+            "Greenwashing detector: flag claims in user-provided sustainability reports that don't match their data"
+          ],
+          "resources": ["TCFD recommendations PDF","SBTi target-setting guidance","pdfkit npm","Plotly for charts"]
+        },
+        {
+          "id": "w13-fri", "day": "FRI", "type": "weekday",
+          "mern": [
+            "Deploy: FastAPI on Render, React on Vercel — seed with 3 demo company datasets",
+            "Open-source the emission factor library as a standalone Python package",
+            "Add: ISO 14064 compliance checklist — required for formal third-party verification"
+          ],
+          "ai": [
+            "Validate calculations: cross-check 10 sample calculations against CDP-disclosed company data",
+            "Methodology paper: write 4-page technical description of calculation approach — submit to arXiv",
+            "LLM evaluation: test what-if analysis accuracy — does the engine correctly model Scope 3 changes?"
+          ],
+          "resources": ["CDP open data","arXiv climate section","ISO 14064 standard overview","PyPI packaging"]
+        },
+        {
+          "id": "w13-sat", "day": "SAT", "type": "weekend",
+          "mern": [
+            "GitHub release: 'Open-source GHG accounting tool — TCFD-aligned, free forever'",
+            "Submit to: ClimateAction.tech community, GreenBiz forums, ESG LinkedIn groups",
+            "Target first users: sustainability managers at B Corps, ESG consultants",
+            "README: methodology, limitations, how to contribute emission factors"
+          ],
+          "ai": [
+            "Extend: automated data collection via utility API integrations (Urjanet, Arcadia)",
+            "Research: EU CSRD reporting requirements — does your tool cover them?",
+            "Reach out to: Climate TRACE, Carbon Disclosure Project — propose data partnership"
+          ],
+          "resources": ["Climate TRACE","CDP open data","EU CSRD regulation text","Urjanet API","ClimateAction.tech"]
+        },
+        {
+          "id": "w13-sun", "day": "SUN", "type": "weekend",
+          "mern": [
+            "System Design: Climate Data Platform — ingesting satellite data, IoT sensors, supply chain APIs",
+            "Read: how Google Environmental Insights Explorer calculates city-level emissions",
+            "Explore: carbon markets API integration — voluntary carbon offset pricing"
+          ],
+          "ai": [
+            "Satellite data: Sentinel-5P methane detection — could you flag high-emitting facilities automatically?",
+            "Time-series forecasting: Prophet model to project future emissions based on historical trend",
+            "Read: 'Machine Learning for Climate' NeurIPS workshop papers — find one to implement"
+          ],
+          "resources": ["Google Environmental Insights","Sentinel-5P data","Prophet forecasting","NeurIPS Climate AI workshop"]
+        }
+      ]
+    },
+    {
+      "week": 14,
+      "theme": "Project 9 — Adaptive Learning Tutor with Knowledge Graph (Education)",
+      "phase": "impact",
+      "sessions": [
+        {
+          "id": "w14-mon", "day": "MON", "type": "weekday",
+          "mern": [
+            "Plan P9: Adaptive Learning Tutor with Knowledge Graph",
+            "Study: Bayesian Knowledge Tracing (BKT) and Deep Knowledge Tracing (DKT) papers — the academic foundation",
+            "Design schemas: students, concepts, prerequisites, mastery_scores, interactions, reviews"
+          ],
+          "ai": [
+            "Knowledge Tracing: implement simple BKT model — 4 parameters per concept (learn, slip, guess, transit)",
+            "Prerequisite graph: LLM extracts concept graph from a syllabus PDF — nodes + directed prerequisite edges",
+            "Test: give it a Python syllabus — does the extracted graph look correct?"
+          ],
+          "resources": ["BKT original paper","Deep Knowledge Tracing paper","Assist dataset","LangChain document processing"]
+        },
+        {
+          "id": "w14-tue", "day": "TUE", "type": "weekday",
+          "mern": [
+            "Neo4j: concept graph — nodes (concept, mastery_score, last_reviewed), edges (REQUIRES, LEADS_TO)",
+            "Readiness algorithm: a concept is 'ready to learn' if all prerequisites have mastery > threshold",
+            "Next concept selector: from all ready concepts, pick the one with lowest mastery — maximise learning efficiency"
+          ],
+          "ai": [
+            "LangGraph tutor agent: nodes for QuestionGenerator, AnswerEvaluator, HintProvider, MasteryUpdater",
+            "Socratic mode: QuestionGenerator never gives the answer — generates leading questions only",
+            "Answer evaluator: GPT-4 grades free-text answer against rubric — updates BKT mastery score"
+          ],
+          "resources": ["LangGraph docs","Neo4j Aura free","SM-2 spaced repetition algorithm","GPT-4 rubric grading prompts"]
+        },
+        {
+          "id": "w14-wed", "day": "WED", "type": "weekday",
+          "mern": [
+            "Spaced repetition scheduler: SM-2 algorithm — schedule next review based on mastery decay curve",
+            "Misconception detector: analyse patterns in wrong answers → flag specific conceptual gaps",
+            "React student UI: chat interface with tutor, knowledge graph visualiser (D3.js), due reviews sidebar"
+          ],
+          "ai": [
+            "Misconception library: for each concept, define common wrong answers + their root misconceptions",
+            "Adaptive hint system: 3 levels of hints — minimal → moderate → explicit, escalate on repeated failure",
+            "Progress analytics: learning velocity per concept, predicted time to mastery, weak area heatmap"
+          ],
+          "resources": ["D3.js force graph","SM-2 algorithm spec","misconception research papers in CS education"]
+        },
+        {
+          "id": "w14-thu", "day": "THU", "type": "weekday",
+          "mern": [
+            "Teacher dashboard: class knowledge graph — which concepts are gaps for most students",
+            "At-risk alert: students whose mastery is declining or who have stopped engaging",
+            "Curriculum builder: teacher uploads syllabus → reviews auto-extracted concept graph → edits prerequisites"
+          ],
+          "ai": [
+            "Multi-subject support: test with Python programming, linear algebra, and basic chemistry syllabuses",
+            "Content generator: for any concept, auto-generate 5 practice problems at varying difficulty",
+            "Difficulty calibration: track student performance vs predicted difficulty — recalibrate if off"
+          ],
+          "resources": ["OpenAI function calling for problem generation","Bloom's taxonomy for difficulty levels","Khan Academy content model"]
+        },
+        {
+          "id": "w14-fri", "day": "FRI", "type": "weekday",
+          "mern": [
+            "Deploy: full stack on Render + Vercel — seed with Python programming curriculum",
+            "Onboarding: student takes 10-min diagnostic test → knowledge graph pre-populated with initial mastery scores",
+            "Mobile responsive — students should be able to use this on phone for review sessions"
+          ],
+          "ai": [
+            "A/B test: Socratic mode vs direct explanation — measure mastery gain per session",
+            "Evaluate: knowledge graph quality on 3 different subjects — precision of prerequisite edges",
+            "Research paper: write methodology for knowledge graph construction from syllabus — submit to EDM or LAK"
+          ],
+          "resources": ["EDM conference","LAK conference","Learning Analytics datasets (MOOC)","Render.com"]
+        },
+        {
+          "id": "w14-sat", "day": "SAT", "type": "weekend",
+          "mern": [
+            "Outreach: share with coding bootcamp instructors, university TA programs, Khan Academy community",
+            "GitHub: publish curriculum data format as open standard — invite contributions",
+            "Target first school or bootcamp pilot: offer free for 1 month in exchange for usage data"
+          ],
+          "ai": [
+            "DKT implementation: replace BKT with a simple LSTM-based Deep Knowledge Tracing model",
+            "Compare: BKT vs DKT vs simple moving average — which predicts mastery best on held-out data?",
+            "Extend: peer learning mode — two students with complementary gaps tutor each other"
+          ],
+          "resources": ["DKT paper and code","LSTM PyTorch","ASSISTments dataset","Coursera research team"]
+        },
+        {
+          "id": "w14-sun", "day": "SUN", "type": "weekend",
+          "mern": [
+            "System Design: Adaptive Learning Platform at Scale — 1M concurrent students",
+            "Knowledge graph sync: when teacher updates curriculum, how do student graphs update safely?",
+            "Monetisation: $9/mo student, $99/mo teacher (unlimited class size) — model the unit economics"
+          ],
+          "ai": [
+            "Reinforcement learning: model the tutor as an RL agent — state = student knowledge graph, action = next concept",
+            "Read: 'Towards Deep Learning Models for Psychological State Estimation' — student affect detection",
+            "Explore: multimodal input — student can answer by drawing diagrams (GPT-4V grades)"
+          ],
+          "resources": ["RL for tutoring systems survey","Duolingo research blog","Knewton adaptive learning paper","GPT-4V cookbook"]
+        }
+      ]
+    },
+    {
+      "week": 15,
+      "theme": "Project 10 — Real-Time Financial Fraud Detection Pipeline (FinTech)",
+      "phase": "impact",
+      "sessions": [
+        {
+          "id": "w15-mon", "day": "MON", "type": "weekday",
+          "mern": [
+            "Plan P10: Real-Time Financial Fraud Detection Pipeline",
+            "Download: IEEE-CIS Fraud Detection dataset (Kaggle) — 590k transactions, 434 features",
+            "Study: transaction graph structure — accounts, devices, IP addresses as nodes"
+          ],
+          "ai": [
+            "EDA on IEEE-CIS dataset: fraud rate, feature distributions, missing value patterns",
+            "Baseline: XGBoost on tabular features — establish AUC-ROC benchmark (~0.93 typical)",
+            "Graph construction: build transaction graph from training data — visualise with NetworkX"
+          ],
+          "resources": ["IEEE-CIS Kaggle dataset","XGBoost docs","NetworkX graph visualisation","Stellargraph GNN library"]
+        },
+        {
+          "id": "w15-tue", "day": "TUE", "type": "weekday",
+          "mern": [
+            "Kafka setup: Docker Compose with Kafka + Zookeeper — produce simulated transaction events at 1k/sec",
+            "Consumer service: Python Kafka consumer → feature engineering → inference → result store",
+            "Redis: cache account features (avg spend, device count, velocity) — update per transaction"
+          ],
+          "ai": [
+            "GraphSAGE implementation: node classification on transaction graph using Stellargraph or PyTorch Geometric",
+            "Node features: account age, transaction velocity, device count, merchant category, amount z-score",
+            "Train GraphSAGE: 80/20 split, handle severe class imbalance (fraud ~3.5%) with focal loss"
+          ],
+          "resources": ["PyTorch Geometric GraphSAGE","Kafka Python client","focal loss implementation","Stellargraph docs"]
+        },
+        {
+          "id": "w15-wed", "day": "WED", "type": "weekday",
+          "mern": [
+            "Isolation Forest: sklearn — fit on normal transaction features, score anomalies in real-time",
+            "Ensemble combiner: weighted average of GNN score + Isolation Forest score + rule engine flags",
+            "Confidence calibration: Platt scaling on ensemble output → calibrated probability"
+          ],
+          "ai": [
+            "Rule engine: hard rules first (transaction > $10k from new device in new country = flag)",
+            "Online learning: buffer new labelled fraud cases → retrain GNN weekly — log AUC improvement",
+            "Threshold tuner: Precision-Recall curve → let operator choose operating point (minimize FP vs FN)"
+          ],
+          "resources": ["sklearn IsolationForest","Platt scaling calibration","sklearn PR curve","online learning with River library"]
+        },
+        {
+          "id": "w15-thu", "day": "THU", "type": "weekday",
+          "mern": [
+            "LLM explainer: for each flagged transaction → GPT-4 generates human-readable fraud narrative",
+            "Example output: 'Flagged because: device last used in Delhi 2 hours ago, current location Mumbai, amount 4.2x average'",
+            "Case management UI: fraud analyst queue — review flagged transactions, mark as confirmed fraud or false positive"
+          ],
+          "ai": [
+            "Explainability: SHAP values for GNN predictions — which node features drove the fraud score?",
+            "Counterfactual: 'what would this transaction need to look like to not be flagged?' — actionable for UX",
+            "Fairness audit: does the model have higher false positive rates for any demographic group in the data?"
+          ],
+          "resources": ["SHAP library","GNN explainability paper","AI fairness 360 IBM","Grafana dashboards"]
+        },
+        {
+          "id": "w15-fri", "day": "FRI", "type": "weekday",
+          "mern": [
+            "Grafana dashboard: fraud rate, false positive rate, model latency p99, Kafka consumer lag",
+            "Model drift detector: monitor feature distribution shift — alert if input distribution changes significantly",
+            "Deploy: full pipeline on Docker Compose — Kafka + consumer + Redis + FastAPI + Grafana"
+          ],
+          "ai": [
+            "Benchmark: GNN + ensemble vs XGBoost baseline — AUC-ROC, Average Precision, F1 at 0.5 threshold",
+            "Latency benchmark: end-to-end transaction scoring latency — target < 100ms p99",
+            "Document: technical report with model card, fairness analysis, and benchmark results — publishable"
+          ],
+          "resources": ["Evidently AI drift detection","Docker Compose Kafka setup","AUC-ROC vs Average Precision explainer"]
+        },
+        {
+          "id": "w15-sat", "day": "SAT", "type": "weekend",
+          "mern": [
+            "GitHub: publish with IEEE-CIS benchmark results — include reproducible training script",
+            "Write technical blog post: 'Building a real-time fraud detection pipeline with GNNs' — post on Towards Data Science",
+            "Submit to KDD or FinNLP workshop — fraud detection with GNNs is an active research area"
+          ],
+          "ai": [
+            "Extend: heterogeneous graph — add IP address and merchant nodes for richer graph structure",
+            "Compare: GraphSAGE vs Graph Attention Network (GAT) — does attention help on fraud graphs?",
+            "Explore: federated learning — could multiple banks train a joint model without sharing raw transactions?"
+          ],
+          "resources": ["KDD conference","FinNLP workshop","GAT paper","federated learning with Flower framework","Towards Data Science submission"]
+        },
+        {
+          "id": "w15-sun", "day": "SUN", "type": "weekend",
+          "mern": [
+            "System Design: Fraud Detection at Stripe/PayPal scale — 10k transactions/second",
+            "Feature store: pre-computing and serving account features at millisecond latency",
+            "Apply to: Stripe ML team, Razorpay AI, PayU, PhonePe, Juspay — all active in fraud ML hiring"
+          ],
+          "ai": [
+            "Read: 'Fraud Detection on Financial Transactions with Machine Learning' — Stripe Engineering blog",
+            "Temporal graph networks: transactions have time — TGN models evolving graph structure over time",
+            "Synthetic data generation: use GAN or CTGAN to generate synthetic fraud cases for training augmentation"
+          ],
+          "resources": ["Stripe Engineering blog","Temporal Graph Networks paper","CTGAN library","Razorpay careers"]
+        }
+      ]
+    },
+    {
+      "week": 16,
+      "theme": "Project 11 — Autonomous DevOps Incident Responder (Developer Tooling)",
+      "phase": "impact",
+      "sessions": [
+        {
+          "id": "w16-mon", "day": "MON", "type": "weekday",
+          "mern": [
+            "Plan P11: Autonomous DevOps Incident Responder",
+            "Setup: Prometheus + Alertmanager + Grafana + a sample microservices app — all in Docker Compose",
+            "Study: common alert types — high latency, error rate spike, pod OOMKill, disk full, CPU throttle"
+          ],
+          "ai": [
+            "LangGraph RCA agent design: nodes = TimelineBuilder, LogCorrelator, DeploymentDiffer, HypothesisRanker, RemediationPlanner, PostMortemWriter",
+            "Study: previous incident reports from real companies — Cloudflare, AWS, GitHub status pages — what patterns recur?",
+            "Root cause taxonomy: build a library of 20 common incident patterns with their telltale signals"
+          ],
+          "resources": ["Prometheus alertmanager webhook docs","Kubernetes Python client","LangGraph docs","real incident post-mortems: github.com/danluu/post-mortems"]
+        },
+        {
+          "id": "w16-tue", "day": "TUE", "type": "weekday",
+          "mern": [
+            "Alertmanager webhook receiver: FastAPI endpoint — receives alert → triggers LangGraph agent",
+            "Prometheus query tool: agent can query any PromQL expression — wraps prometheus-api-client",
+            "Kubernetes API tool: agent can list pods, get events, describe deployments, get recent pod logs"
+          ],
+          "ai": [
+            "TimelineBuilder node: query Prometheus for metric spikes in 30-min window before alert fired",
+            "DeploymentDiffer node: query Kubernetes for deployments changed in past 2 hours — annotate timeline",
+            "LogCorrelator node: fetch pod logs for affected services → LLM extracts error patterns and first occurrence time"
+          ],
+          "resources": ["prometheus-api-client Python","kubernetes Python client","LangSmith tracing","Loki log querying API"]
+        },
+        {
+          "id": "w16-wed", "day": "WED", "type": "weekday",
+          "mern": [
+            "HypothesisRanker node: LLM takes timeline + deployment diff + log errors → generates top 3 hypotheses with evidence score",
+            "Evidence scoring: each hypothesis gets a confidence score based on: correlation strength, temporal alignment, deployment overlap",
+            "Human-in-the-loop: agent presents ranked hypotheses to on-call engineer — waits for confirmation before remediation"
+          ],
+          "ai": [
+            "Remediation action library: define safe actions (scale deployment, rollback Helm chart, restart pod, drain node)",
+            "Safety checker: before executing any action — validate it is safe (no data loss, reversible, within blast radius limits)",
+            "RemediationPlanner: maps confirmed hypothesis to appropriate safe action with rollback plan"
+          ],
+          "resources": ["Helm Python client","LangGraph human-in-the-loop","Kubernetes rollout undo command","PagerDuty API"]
+        },
+        {
+          "id": "w16-thu", "day": "THU", "type": "weekday",
+          "mern": [
+            "Slack integration: send hypothesis list + remediation plan to incident Slack channel — approve/reject via reaction",
+            "PagerDuty integration: auto-create incident, attach RCA timeline, close when resolved",
+            "React dashboard: incident history, agent run trace, remediation log, MTTR trends"
+          ],
+          "ai": [
+            "PostMortemWriter node: auto-draft post-mortem — timeline, root cause, contributing factors, action items",
+            "Post-mortem quality: LLM evaluates draft against Google SRE post-mortem template — flags missing sections",
+            "Learning loop: after each incident, add confirmed root cause to pattern library — improves future hypotheses"
+          ],
+          "resources": ["Slack Bolt Python","PagerDuty Events API","Google SRE post-mortem culture chapter","LangSmith"]
+        },
+        {
+          "id": "w16-fri", "day": "FRI", "type": "weekday",
+          "mern": [
+            "Chaos testing: use Chaos Monkey / LitmusChaos to inject faults — does the agent correctly identify them?",
+            "Test 5 scenarios: high latency, memory leak, bad deployment, external API down, database connection exhaustion",
+            "Measure: time from alert to root cause hypothesis — target < 3 minutes for known patterns"
+          ],
+          "ai": [
+            "Evaluation harness: replay 10 past incidents from post-mortem data — does agent identify correct root cause?",
+            "False positive analysis: does the agent ever recommend dangerous remediations? Build a safety test suite",
+            "LangSmith: full trace of each incident run — visible for audit and agent improvement"
+          ],
+          "resources": ["LitmusChaos docs","chaos engineering principles","LangSmith evaluation","incident replay framework"]
+        },
+        {
+          "id": "w16-sat", "day": "SAT", "type": "weekend",
+          "mern": [
+            "GitHub: open-source release — 'AI-powered incident responder for Kubernetes' — target 500 GitHub stars",
+            "Write: 'We reduced MTTR from 4.5 hours to 20 minutes' — technical blog post for DevOps.com or SRE Weekly",
+            "Submit to: CNCF landscape, Awesome Kubernetes lists, Hacker News Show HN"
+          ],
+          "ai": [
+            "Extend: anomaly detection using Prophet time-series forecasting on Prometheus metrics — predict incidents before they fire",
+            "Multi-cluster: extend to monitor multiple Kubernetes clusters simultaneously",
+            "Fine-tune: collect incident→root cause pairs as training data — fine-tune a small model for pattern matching"
+          ],
+          "resources": ["CNCF landscape submission","SRE Weekly newsletter","Show HN posting guide","Prophet forecasting"]
+        },
+        {
+          "id": "w16-sun", "day": "SUN", "type": "weekend",
+          "mern": [
+            "System Design: AIOps Platform at Enterprise Scale",
+            "Ingesting millions of metrics, thousands of alerts per day — triage, correlation, noise reduction",
+            "Apply to: platform engineering teams, SRE roles at Google, Meta, Cloudflare, Razorpay"
+          ],
+          "ai": [
+            "Read: Google SRE Book chapters on monitoring, alerting, and on-call — free online",
+            "Explore: OpenTelemetry traces as additional signal for root cause analysis",
+            "Research: 'AIOps: Artificial Intelligence for IT Operations' survey — understand the academic landscape"
+          ],
+          "resources": ["Google SRE Book free","OpenTelemetry Python","AIOps survey paper","Cloudflare SRE careers"]
+        }
+      ]
+    },
+    {
+      "week": 17,
+      "theme": "Project 12 — Multi-Modal Enterprise Knowledge OS (Enterprise / B2B SaaS)",
+      "phase": "impact",
+      "sessions": [
+        {
+          "id": "w17-mon", "day": "MON", "type": "weekday",
+          "mern": [
+            "Plan P12: Multi-Modal Enterprise Knowledge OS",
+            "Study: how Glean, Guru, and Notion AI handle cross-source search — read their engineering blogs",
+            "Design: OAuth connector architecture, unified document schema, permission propagation model"
+          ],
+          "ai": [
+            "Multimodal ingestion strategy: text (direct embed), PDF (extract + embed), image (GPT-4V caption + embed), audio (Whisper transcribe + embed)",
+            "Authority scoring model: recency weight + engagement signals (views, reactions) + author seniority → single authority score",
+            "Staleness detector: rule-based (> 90 days no update) + LLM-based (content references outdated tools/versions)"
+          ],
+          "resources": ["Glean engineering blog","Guru knowledge management","OAuth 2.0 PKCE flow","GPT-4V API","Whisper API"]
+        },
+        {
+          "id": "w17-tue", "day": "TUE", "type": "weekday",
+          "mern": [
+            "OAuth connectors: Google Drive (files, docs, sheets), Slack (messages, threads, files), Notion (pages, databases)",
+            "Connector architecture: each connector is an independent worker — standardised output schema",
+            "Incremental sync: store last_modified timestamps — only re-index changed documents"
+          ],
+          "ai": [
+            "Unified chunking: strategy per content type — Slack messages by thread, Docs by section, code by function",
+            "Metadata extraction per source: Slack → channel, author, timestamp, reactions; Drive → owner, last editor, folder path",
+            "Permission model: index document ACLs alongside content — query-time permission filter per user"
+          ],
+          "resources": ["Google Drive API Python","Slack Bolt Python","Notion API","BullMQ for connector workers"]
+        },
+        {
+          "id": "w17-wed", "day": "WED", "type": "weekday",
+          "mern": [
+            "GitHub + Confluence connectors: code repositories (README, code comments), Confluence pages + spaces",
+            "Email connector: Gmail API — index sent/received emails with attachment handling",
+            "Connector health dashboard: last sync time, document count, error rate per source"
+          ],
+          "ai": [
+            "Hybrid search: BM25 keyword + dense embedding — weighted fusion per query type",
+            "Query understanding: classify query intent → route to best retrieval strategy",
+            "Cross-source deduplication: detect near-duplicate content across sources — consolidate into single result"
+          ],
+          "resources": ["GitHub API Python","Confluence REST API","Gmail API Python","rank_bm25 library","LangChain ensemble retriever"]
+        },
+        {
+          "id": "w17-thu", "day": "THU", "type": "weekday",
+          "mern": [
+            "Answer with provenance: every sentence in AI answer linked to exact source document + timestamp",
+            "Staleness warning: if cited source > 90 days old and has newer related content — flag it",
+            "React UI: unified search bar, source filter chips, answer with inline citations, related documents sidebar"
+          ],
+          "ai": [
+            "Conversational memory: multi-turn questions build on previous context — 'who owns that project?' after 'tell me about Project Phoenix'",
+            "Expertise finder: 'who in the company knows about Kafka?' → index Slack messages + GitHub commits → return expert profiles",
+            "Knowledge gap detector: query answered with low confidence → flag as missing documentation"
+          ],
+          "resources": ["LangChain conversation memory","Pinecone metadata filtering","react-markdown for citations","shadcn/ui"]
+        },
+        {
+          "id": "w17-fri", "day": "FRI", "type": "weekday",
+          "mern": [
+            "Self-hosted deployment: Docker Compose — all connectors + Pinecone local (or ChromaDB) + FastAPI + React",
+            "Enterprise SSO: SAML 2.0 / OIDC integration for enterprise auth",
+            "Usage analytics: which queries go unanswered? What documents are searched most? — feeds back into content strategy"
+          ],
+          "ai": [
+            "Evaluate: answer quality on 20 internal Q&A pairs — faithfulness, citation accuracy, staleness handling",
+            "Latency benchmark: query latency p99 with 10k documents indexed — target < 2 seconds",
+            "Privacy audit: verify permission filter works — user A cannot retrieve documents they cannot access in source system"
+          ],
+          "resources": ["SAML 2.0 Python library","ChromaDB for local deployment","Ragas for evaluation","Docker Compose"]
+        },
+        {
+          "id": "w17-sat", "day": "SAT", "type": "weekend",
+          "mern": [
+            "GitHub: open-source release — 'Self-hostable enterprise knowledge OS — connect Slack, Drive, Notion, GitHub'",
+            "Product Hunt launch: 'Open-source Glean alternative — self-hosted, privacy-first'",
+            "Outreach: Hacker News Show HN, r/devops, r/selfhosted — communities that care about self-hosted tools",
+            "Pricing model: free self-hosted, $15/user/month cloud-hosted — model the unit economics"
+          ],
+          "ai": [
+            "Fine-tune a small retrieval model on your company's query-document pairs — improve ranking over generic embeddings",
+            "Add: anomaly detection on knowledge graph — detect when a topic suddenly gets many questions (signals an incident or confusion)",
+            "Research: 'Enterprise Knowledge Graphs' survey — position your project in the academic landscape"
+          ],
+          "resources": ["Product Hunt launch guide","Show HN","r/selfhosted","Glean valuation research","enterprise knowledge graph survey"]
+        },
+        {
+          "id": "w17-sun", "day": "SUN", "type": "weekend",
+          "mern": [
+            "Phase 5 complete — full portfolio audit:",
+            "✅ P6: Clinical trial extractor — open-source, publishable, real pharma pain",
+            "✅ P7: Contract intelligence — paying users, SMB pain, monetised",
+            "✅ P8: Carbon footprint engine — policy-relevant, TCFD-aligned, open-source",
+            "✅ P9: Adaptive learning tutor — research-citable, ed-tech pain, knowledge graph",
+            "✅ P10: Fraud detection pipeline — GNN-based, benchmark results, FinTech pain",
+            "✅ P11: DevOps incident responder — open-source, GitHub stars, SRE pain",
+            "✅ P12: Enterprise knowledge OS — self-hosted, Product Hunt, $50B market",
+            "You are not a junior AI engineer anymore. You are a builder."
+          ],
+          "ai": [
+            "Reflect: 7 projects, 7 domains, 7 real problems.",
+            "Every project has: a real user, a quantified pain, a publication or monetisation path.",
+            "Pick the one that excited you most — go deeper. Add users. Write the paper. Ship the SaaS.",
+            "The field rewards people who build things that matter, in public, consistently.",
+            "Keep shipping."
+          ],
+          "resources": ["arxiv.org","Product Hunt","GitHub","HuggingFace Hub","your own curiosity"]
+        }
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "num": "01",
+      "name": "Adaptive RAG Evaluation Engine",
+      "level": "Hard",
+      "color": "#818cf8",
+      "stack": "FastAPI + LangChain + Pinecone + Ragas + Judge LLM + MERN",
+      "buildWeek": "W1–W2",
+      "desc": "A self-evaluating RAG platform that continuously benchmarks its own retrieval and generation quality. Users upload a corpus, define a golden Q&A test set, and the system auto-runs Ragas evals on every config change — chunking strategy, embedding model, top-k, reranker. Results are logged in a visual eval dashboard. A Judge LLM (GPT-4) automatically flags regressions before they ship.",
+      "why": "Every company building RAG eventually needs this. It shows you understand that RAG quality is a moving target — not a one-time build. 95% of candidates build a RAG chatbot. You built the eval system that sits above all RAG chatbots. Immediate differentiation in any AI engineering interview.",
+      "features": [
+        "Multi-config experiment runner",
+        "Ragas: faithfulness, context recall, answer relevance, context precision",
+        "Judge LLM (GPT-4) as auto-grader with rubric scoring",
+        "Regression alerts on eval drops > 5% vs baseline",
+        "Chunking strategy A/B (fixed vs sentence vs semantic)",
+        "Embedding model swap without re-uploading corpus",
+        "Visual eval dashboard with side-by-side diff view",
+        "Exportable eval report as PDF"
+      ]
+    },
+    {
+      "num": "02",
+      "name": "LLM Inference Gateway",
+      "level": "Very Hard",
+      "color": "#34d399",
+      "stack": "FastAPI + Redis + vLLM + Prometheus + Grafana + Docker + TypeScript",
+      "buildWeek": "W2–W3",
+      "desc": "Build your own LiteLLM-style AI gateway from scratch. A reverse proxy that sits between your apps and any LLM provider (OpenAI, Anthropic, local vLLM). Features: per-key rate limiting, semantic caching with Redis + embeddings, model fallback chains, request cost tracking, and a real-time observability dashboard. Speaks OpenAI-compatible API format so any client just changes the base URL.",
+      "why": "Pure ML infrastructure — a skill almost no candidate has. Every company with more than one AI product needs a gateway. Building one from scratch proves you understand latency, caching, failover, and cost at a systems level. Immediately relevant at any AI-first startup or platform team.",
+      "features": [
+        "OpenAI-compatible REST API surface",
+        "Multi-provider routing (OpenAI, Anthropic, local vLLM)",
+        "Semantic cache using GPTCache + Redis (not just exact-match)",
+        "Per-API-key rate limiting via token bucket in Redis",
+        "Model fallback chain with circuit breaker pattern",
+        "Real-time cost + latency metrics exported to Prometheus",
+        "Grafana dashboard: p50/p95 latency, cache hit %, error rate, cost/request",
+        "Docker Compose: gateway + Redis + Prometheus + Grafana in one command"
+      ]
+    },
+    {
+      "num": "03",
+      "name": "Autonomous Research Agent with Self-Critique",
+      "level": "Very Hard",
+      "color": "#fb923c",
+      "stack": "LangGraph + Tavily + E2B + Anthropic + FastAPI + React + LangSmith",
+      "buildWeek": "W4–W5",
+      "desc": "A LangGraph-powered research agent that doesn't just retrieve — it self-critiques and iterates (Reflexion architecture). Given a research question, it plans sub-questions, searches the web, reads sources, writes a structured report, then critiques its own output against a rubric (coverage, citations, contradictions, accuracy, structure). If any score is below threshold, it spawns targeted follow-up searches automatically. Human-in-the-loop checkpoints before irreversible actions.",
+      "why": "Self-critique loops (Reflexion, Self-RAG) are the cutting edge of agentic AI. Building this shows you've read the research and implemented it — not just watched a YouTube tutorial on LangChain agents. The self-evaluation loop is exactly what separates toy agents from production ones. Instantly recognizable to anyone technical at a serious AI lab.",
+      "features": [
+        "LangGraph state machine: Planner → Searcher → Reader → Writer → Critic → Router",
+        "Reflexion-style retry: critique score below threshold → new targeted searches",
+        "Critic node: GPT-4 scores report on 5 rubric dimensions via JSON output",
+        "Tavily deep research + arxiv API as search tools",
+        "E2B sandbox: agent runs Python to parse data and compute statistics",
+        "Contradiction detector: flags conflicting claims across sources",
+        "Human-in-the-loop: approval before web writes or emails",
+        "Full LangSmith trace with per-node latency and critique reasoning visible"
+      ]
+    },
+    {
+      "num": "04",
+      "name": "DPO Fine-Tuning Pipeline with Live A/B Testing",
+      "level": "Brutal",
+      "color": "#ef4444",
+      "stack": "Python + TRL + DPO + LoRA + vLLM + MLflow + MERN + HuggingFace",
+      "buildWeek": "W3–W6",
+      "desc": "Go beyond SFT. Build a full DPO (Direct Preference Optimization) fine-tuning pipeline: curate a preference dataset (chosen vs rejected pairs), train with TRL DPOTrainer, merge the adapter, serve both SFT and DPO models with vLLM, and A/B test them with live traffic. The MERN frontend shows real-time win rate, latency, and eval scores per model variant. All experiments tracked in MLflow.",
+      "why": "DPO is what serious labs use instead of RLHF for alignment. Building SFT is now table stakes — DPO is the differentiator. The A/B testing infrastructure shows product-level thinking on top of model-level depth. This is a portfolio piece that gets you conversations at Mistral, Cohere, and Sarvam AI — places where they actually care about alignment techniques.",
+      "features": [
+        "Preference dataset curation UI: annotate chosen/rejected pairs (200+ samples)",
+        "SFT baseline: TRL SFTTrainer on Phi-3-mini, logged to W&B",
+        "DPO training with TRL: KL divergence + reward margin monitored per step",
+        "30-prompt benchmark: base model vs SFT vs DPO scored by Judge LLM",
+        "vLLM multi-model serving: both model variants live simultaneously",
+        "Shadow A/B proxy: 80/20 traffic split with real-time win rate tracking",
+        "MLflow: all training runs, hyperparams, eval metrics, artifacts compared",
+        "HuggingFace Hub: SFT + DPO adapters with detailed model cards"
+      ]
+    },
+    {
+      "num": "05",
+      "name": "AI Code Intelligence Platform",
+      "level": "Brutal",
+      "color": "#ec4899",
+      "stack": "tree-sitter + LangGraph + GitHub API + Neo4j + GPT-4o + E2B + FastAPI + React",
+      "buildWeek": "W8",
+      "desc": "Beyond code review — a full code intelligence layer. Ingests a GitHub repo, builds an AST-based code graph (functions, classes, call chains, imports), and indexes it into a vector store. Engineers query it in natural language: 'which functions call auth middleware?', 'what breaks if I change this interface?', 'generate a test for this edge case'. A LangGraph agent decomposes multi-step queries into sub-graph traversals plus LLM synthesis. Changes are proposed as actual PRs via the GitHub API.",
+      "why": "This combines code parsing (tree-sitter), graph traversal, hybrid RAG, and agentic action — four distinct skills in one project. It's directly analogous to Cursor, Codeium, and GitHub Copilot Workspace internally. Any company building dev tools will immediately recognize the architecture. Nothing else in a portfolio starts as many conversations with engineering leads.",
+      "features": [
+        "tree-sitter: full AST parse for Python, JS, TS — functions, classes, imports extracted",
+        "Code graph: nodes = functions/classes, edges = call chains + import dependencies",
+        "Hybrid retrieval: graph traversal (structural) + embedding search (semantic) combined",
+        "LangGraph agent: Planner → Graph Traverser → Semantic Retriever → Synthesizer",
+        "Impact analysis: BFS from changed node — surfaces all downstream dependents",
+        "Auto-generate pytest unit tests with E2B execution verification (pass/fail returned)",
+        "PR creation via GitHub API: agent opens PR with suggested fix + generated tests",
+        "Interactive code graph visualizer in React (D3.js force-directed)"
+      ]
+    },
+    {
+      "num": "06",
+      "name": "Clinical Trial Signal Extractor",
+      "level": "Brutal",
+      "color": "#34d399",
+      "stack": "BioBERT + spaCy NER + Neo4j + FastAPI + Pinecone + React",
+      "buildWeek": "W11",
+      "domain": "Healthcare / Medical AI",
+      "impactType": ["Open-source", "Research-citable", "Real users: pharma teams"],
+      "realPain": "Researchers spend 40% of their time manually extracting efficacy signals from clinical trial PDFs. Tools like Elsevier's Embase charge $50k/year per seat. An open-source version with comparable quality would be immediately adopted by academic medical centres globally.",
+      "desc": "Ingests ClinicalTrials.gov data and trial PDFs, uses BioBERT-based NER to extract structured entities (drug, dosage, outcome, adverse event), builds a knowledge graph in Neo4j, and lets researchers query across thousands of trials in natural language. FHIR-compatible export. Publishable at ACL BioNLP or AMIA.",
+      "who": "Academic medical centres, pharma researchers, systematic review authors. Publish on GitHub + HuggingFace. Submit abstract to AMIA Informatics Summit or ACL BioNLP workshop.",
+      "features": [
+        "PubMed + ClinicalTrials.gov API ingestion pipeline",
+        "BioBERT NER: drug, dosage, outcome, adverse event entity extraction",
+        "Neo4j knowledge graph: trials → interventions → outcomes",
+        "Natural language query → Cypher generation via LLM",
+        "Cross-trial outcome aggregation for same drug",
+        "PICO framework extraction (Population, Intervention, Comparison, Outcome)",
+        "Evidence quality scoring: RCT vs observational vs case study",
+        "FHIR-compatible JSON export"
+      ]
+    },
+    {
+      "num": "07",
+      "name": "AI Contract Intelligence Platform",
+      "level": "Very Hard",
+      "color": "#818cf8",
+      "stack": "DistilBERT + CUAD + LangChain + Pinecone + FastAPI + React + Stripe",
+      "buildWeek": "W12",
+      "domain": "Legal / Compliance",
+      "impactType": ["Paying users", "Replaces $800/hr lawyer hours", "Enterprise SaaS"],
+      "realPain": "93% of SMBs sign contracts without proper legal review. A single unfavourable indemnification clause can cost more than a year's revenue. Existing tools like Kira and Luminance charge $500+/month — unaffordable for startups and SMBs.",
+      "desc": "Ingests any contract (NDA, SaaS, employment, vendor), fine-tuned DistilBERT classifies 41 clause types using the CUAD benchmark dataset, flags high-risk provisions against a configurable risk rubric, compares clauses to industry-standard templates, and generates a plain-English risk summary with exact page references. Monetised at $49/mo via Stripe.",
+      "who": "SMB owners, startup founders, procurement teams, in-house legal at Series A–C companies. Launch on Product Hunt. Direct competitors charge $500+/month.",
+      "features": [
+        "Contract ingestion: PDF, DOCX → structured clause extraction with section boundaries",
+        "Fine-tuned DistilBERT classifier: 41 clause types using CUAD dataset",
+        "Configurable risk rubric: red/amber/green flags per clause type",
+        "Industry template comparison: deviation detection vs standard NDA/SaaS/employment",
+        "Plain-English risk summary with exact page + line references",
+        "Clause library: store approved language, auto-detect deviations",
+        "Multi-party redline: diff two contract versions at clause level",
+        "Stripe billing: $49/mo — 10 contracts/mo free, unlimited paid"
+      ]
+    },
+    {
+      "num": "08",
+      "name": "Carbon Footprint Intelligence Engine",
+      "level": "Very Hard",
+      "color": "#4ade80",
+      "stack": "GHG Protocol + FastAPI + Plotly + React + EDGAR API + pdfkit",
+      "buildWeek": "W13",
+      "domain": "Climate / Science",
+      "impactType": ["Open-source", "Policy-relevant", "Research-citable"],
+      "realPain": "Only 18% of companies claiming net-zero targets have credible plans. Emissions accounting is broken because affordable, accurate tooling doesn't exist for mid-market companies. EU CSRD mandates disclosure for 50,000+ companies by 2026 — a forced market worth billions.",
+      "desc": "Ingests company activity data (energy, travel, logistics, procurement), maps every line item to the GHG Protocol emission factors database, auto-calculates Scope 1/2/3 footprint with uncertainty ranges, and generates a TCFD-aligned disclosure report. What-if analysis lets sustainability managers model reduction scenarios instantly. EDGAR integration benchmarks against peer-disclosed emissions.",
+      "who": "Sustainability managers at mid-market companies, ESG consultants, climate researchers. Open-source the emission factor library as a standalone Python package. Submit methodology to arXiv.",
+      "features": [
+        "Activity data CSV ingestion: energy, travel, logistics, procurement, waste",
+        "GHG Protocol emission factor library: 10,000+ Scope 1/2/3 factors",
+        "Monte Carlo uncertainty quantification: 90% confidence intervals on all calculations",
+        "Scope 3 supplier estimator: spend-based factors when supplier data unavailable",
+        "EDGAR peer benchmark: your emissions vs 5 industry peers normalised by revenue",
+        "What-if analysis: change any input → instant Scope recalculation with delta",
+        "Reduction opportunity ranker: ROI-sorted abatement options with cost estimates",
+        "TCFD-aligned PDF report generator with scenario analysis"
+      ]
+    },
+    {
+      "num": "09",
+      "name": "Adaptive Learning Tutor with Knowledge Graph",
+      "level": "Brutal",
+      "color": "#fb923c",
+      "stack": "LangGraph + Neo4j + BKT + SM-2 + FastAPI + React + GPT-4o",
+      "buildWeek": "W14",
+      "domain": "Education / Learning",
+      "impactType": ["Paying users", "Research-citable", "Scales to millions"],
+      "realPain": "70% of students who fail do so because of undetected prerequisite gaps — not because the current material is too hard. Existing AI tutors (including ChatGPT) ignore prior knowledge entirely. This is the core unsolved problem in ed-tech.",
+      "desc": "Builds a per-student knowledge graph where nodes are concepts, edges are prerequisites, and weights are mastery scores updated after every interaction. LangGraph tutor agent selects next concept using a prerequisite-ready algorithm, generates Socratic questions (never direct answers), and schedules reviews using spaced repetition. Teacher dashboard shows class-wide gap analysis and at-risk alerts.",
+      "who": "Online learning platforms, coding bootcamps, university MOOC teams. Research publishable at EDM (Educational Data Mining) or LAK (Learning Analytics) conference. Pilot with one bootcamp for real usage data.",
+      "features": [
+        "Curriculum ingestion: syllabus PDF → concept graph extraction via LLM",
+        "Per-student knowledge graph in Neo4j with mastery scores and gap detection",
+        "BKT mastery model: 4-parameter Bayesian Knowledge Tracing per concept",
+        "LangGraph tutor: prerequisite-ready concept selection algorithm",
+        "Socratic mode: never gives answer — generates leading questions only",
+        "SM-2 spaced repetition scheduler adapted for concept mastery decay",
+        "Misconception detector: wrong answer patterns → specific gap identification",
+        "Teacher dashboard: class knowledge graph heatmap + at-risk student alerts"
+      ]
+    },
+    {
+      "num": "10",
+      "name": "Real-Time Financial Fraud Detection Pipeline",
+      "level": "Brutal",
+      "color": "#fbbf24",
+      "stack": "PyTorch Geometric + GraphSAGE + Kafka + Redis + FastAPI + Grafana + Isolation Forest",
+      "buildWeek": "W15",
+      "domain": "Finance / FinTech",
+      "impactType": ["Infra for known pain", "Research-citable", "B2B SaaS potential"],
+      "realPain": "Payment fraud costs $48B/year globally. Most fintech companies use static rule engines with 40%+ false positive rates — blocking legitimate customers and causing churn. A 1% false positive rate at 10M transactions/day means 100,000 blocked legitimate transactions daily.",
+      "desc": "Transaction events stream through Kafka at 10k/sec. A GraphSAGE GNN models the transaction graph (accounts, merchants, devices as nodes), an Isolation Forest detects statistical anomalies, and an ensemble combines both with a rule engine. An LLM explainer generates human-readable fraud narratives for compliance teams. Continuous retraining on new labelled fraud cases. Benchmarked on IEEE-CIS Kaggle dataset.",
+      "who": "FinTech startups, payment processors, neobanks. Train on IEEE-CIS Fraud Detection dataset (Kaggle). Publishable at KDD or FinNLP workshop. Apply to Stripe ML, Razorpay AI, PayU, Juspay.",
+      "features": [
+        "Kafka streaming pipeline: 10k simulated transactions/sec with consumer workers",
+        "GraphSAGE GNN: node classification on transaction graph (PyTorch Geometric)",
+        "Isolation Forest: real-time anomaly detection on transaction feature vectors",
+        "Ensemble: GNN + Isolation Forest + rule engine with calibrated confidence (Platt scaling)",
+        "SHAP explainability: which node features drove the fraud score",
+        "LLM explainer: human-readable fraud narrative for each flagged transaction",
+        "Online retraining: new labelled fraud cases → weekly GNN fine-tune with AUC tracking",
+        "Grafana dashboard: fraud rate, false positive rate, model latency p99, Kafka consumer lag"
+      ]
+    },
+    {
+      "num": "11",
+      "name": "Autonomous DevOps Incident Responder",
+      "level": "Brutal",
+      "color": "#60a5fa",
+      "stack": "LangGraph + Prometheus + Kubernetes API + Slack + PagerDuty + FastAPI + LangSmith",
+      "buildWeek": "W16",
+      "domain": "Developer tooling / DevOps",
+      "impactType": ["Open-source", "GitHub stars", "Infra pain every SRE feels"],
+      "realPain": "Average time to detect and resolve a production incident is 4.5 hours. Most of that is engineers manually correlating logs, metrics, and deployment history while the system is on fire. On-call misery is one of the top reasons senior engineers quit.",
+      "desc": "Monitors Prometheus alerts and automatically runs a root cause analysis playbook: correlates metric spikes with recent deployments, queries logs for error patterns, checks downstream service health, generates a ranked hypothesis list with evidence scores, executes safe remediation actions (scale pods, rollback deployment) with human approval via Slack, and writes a post-mortem draft automatically.",
+      "who": "Platform engineers, SRE teams, DevOps at Series B+ startups. Open-source on GitHub — target 500+ stars. Integration with PagerDuty and Slack makes it immediately production-relevant.",
+      "features": [
+        "Alertmanager webhook: fires LangGraph agent on any Prometheus alert",
+        "LangGraph RCA agent: TimelineBuilder → LogCorrelator → DeploymentDiffer → HypothesisRanker",
+        "Prometheus PromQL tool: agent queries any metric in the 30-min incident window",
+        "Kubernetes API tool: pod status, recent deployments, resource usage, pod logs",
+        "Hypothesis ranker: top 3 root causes with evidence confidence scores",
+        "Safe remediation: scale pods, rollback Helm chart, restart deployment — with human Slack approval",
+        "Auto post-mortem: incident timeline + root cause + resolution + action items",
+        "Chaos testing: LitmusChaos fault injection — validated against 5 common incident types"
+      ]
+    },
+    {
+      "num": "12",
+      "name": "Multi-Modal Enterprise Knowledge OS",
+      "level": "Brutal",
+      "color": "#c084fc",
+      "stack": "LangGraph + Pinecone + GPT-4V + Whisper + OAuth + FastAPI + React + BullMQ",
+      "buildWeek": "W17",
+      "domain": "Enterprise / B2B SaaS",
+      "impactType": ["Paying users", "Self-hosted open-source", "$50B+ market"],
+      "realPain": "Employees spend 2.5 hours/day searching for information across Slack, Notion, Google Drive, Confluence, and meeting recordings — a $28k/employee/year productivity loss. Tools like Glean charge $10k+/seat/year. A self-hostable open-source version would be adopted by thousands of companies.",
+      "desc": "Universal company knowledge layer with OAuth connectors for Slack, Google Drive, Notion, GitHub, Confluence, and Gmail. Processes text, images (GPT-4V), audio (Whisper), and PDFs with a multimodal pipeline into a unified semantic index. Single AI interface where employees ask anything in natural language. Cites exact sources with links and timestamps. Respects source-level access controls. Self-hostable.",
+      "who": "HR ops teams, engineering teams at 50–500 person companies, IT managers. Self-hosted version for data-sensitive companies. Launch on Product Hunt as 'open-source Glean alternative'. Monetise cloud-hosted at $15/user/month.",
+      "features": [
+        "OAuth connectors: Slack, Google Drive, Notion, GitHub, Confluence, Gmail",
+        "Multimodal ingestion: text, PDF, images (GPT-4V captions), audio (Whisper transcription)",
+        "Incremental sync: re-index only changed documents, preserving source timestamps",
+        "Authority scoring: recency + engagement + author seniority → single authority score",
+        "Staleness detection: flags content not updated in > 90 days with newer alternatives",
+        "Hybrid search: BM25 + dense embedding with query-intent routing",
+        "Answer with provenance: every claim linked to exact source + timestamp",
+        "Permission enforcement: query-time ACL filter — users only see what they can access in source"
+      ]
+    }
+  ],
+
+  "bonusReads": [
+    {
+      "id": "openai-rlhf",
+      "icon": "🤖",
+      "company": "OPENAI",
+      "color": "#10b981",
+      "title": "How ChatGPT Was Actually Trained: The RLHF Story",
+      "tags": ["RLHF","fine-tuning","PPO","alignment","InstructGPT"],
+      "preview": "GPT-3 could generate text — but also said terrible things. Here's the three-stage training that turned a raw language model into a product used by 100 million people.",
+      "sections": [
+        {
+          "heading": "THE GPT-3 PROBLEM",
+          "color": "#10b981",
+          "text": "GPT-3 was trained to predict the next token on internet text — which means it also learned from toxic content. Ask it a question and it might continue the question rather than answering, because on the internet, questions are often followed by more questions."
+        },
+        {
+          "heading": "THREE STAGES OF RLHF",
+          "color": "#f59e0b",
+          "steps": [
+            "SFT: Human labellers wrote ideal responses to thousands of prompts. GPT-3 was fine-tuned on these.",
+            "Reward Model: Labellers ranked multiple model responses. A separate model learned to predict these rankings.",
+            "PPO: The SFT model is further trained using the reward model as feedback. Higher-scoring responses get reinforced."
+          ]
+        },
+        {
+          "heading": "THE ALIGNMENT TAX",
+          "color": "#f59e0b",
+          "callout": "RLHF makes models more helpful — but often reduces raw benchmark performance. OpenAI called this the alignment tax.",
+          "text": "InstructGPT scored lower on some benchmarks than raw GPT-3 — but humans vastly preferred it. Benchmark performance and product usefulness are different things."
+        },
+        {
+          "heading": "FOR YOUR INTERVIEWS",
+          "color": "#10b981",
+          "text": "DPO (Direct Preference Optimization) achieves similar alignment without the RL training loop — just a clever loss function on preference pairs. Most modern fine-tuning uses DPO or variants. When asked 'how do you align a model?' — this is your answer."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-cai",
+      "icon": "📜",
+      "company": "ANTHROPIC",
+      "color": "#818cf8",
+      "title": "Constitutional AI: How Anthropic Built Claude Without Human Feedback on Harmful Content",
+      "tags": ["Constitutional AI","RLAIF","alignment","Anthropic","Claude"],
+      "preview": "RLHF requires humans to rate harmful outputs. Constitutional AI makes the model critique its own harmful outputs using a written constitution — no labellers needed.",
+      "sections": [
+        {
+          "heading": "THE PROBLEM",
+          "color": "#818cf8",
+          "text": "To train a safe model via RLHF, you need humans to evaluate harmful content. Hiring labellers to read thousands of toxic responses at scale is expensive and harmful to the workers."
+        },
+        {
+          "heading": "THE APPROACH",
+          "color": "#f59e0b",
+          "steps": [
+            "Write a Constitution: principles the AI should follow.",
+            "SL-CAI: The model critiques and revises its own harmful outputs using the constitution. Fine-tune on the revised outputs.",
+            "RLAIF: An AI model scores outputs using the constitution instead of human labellers. Use these scores for RL training."
+          ]
+        },
+        {
+          "heading": "FOR YOUR INTERVIEWS",
+          "color": "#818cf8",
+          "text": "Constitutional AI is why Claude exists. The key insight: LLMs are capable enough to critique themselves and generate preference data. RLAIF is now standard thinking at Anthropic and Google DeepMind. When asked 'how do you align an LLM without RLHF?' — this is your answer."
+        }
+      ]
+    },
+    {
+      "id": "meta-rag",
+      "icon": "🦙",
+      "company": "META",
+      "color": "#0866ff",
+      "title": "RAG vs Fine-Tuning: Meta's Analysis of When Each Wins",
+      "tags": ["RAG","fine-tuning","production AI","decision framework"],
+      "preview": "Meta ran a systematic comparison of RAG vs fine-tuning vs both combined. The results clarified when each approach actually works — and the answer isn't what most people assume.",
+      "sections": [
+        {
+          "heading": "THE RESULTS",
+          "color": "#0866ff",
+          "steps": [
+            "Knowledge updates frequently: RAG wins. Fine-tuning freezes knowledge. RAG updates the moment you update the vector store.",
+            "Tone and format changes (always answer in JSON): fine-tuning wins. RAG cannot reliably change output style.",
+            "Deep domain reasoning (legal, medical): fine-tuning + RAG wins.",
+            "Cost: RAG is ~10x cheaper than fine-tuning at scale."
+          ]
+        },
+        {
+          "heading": "THE DECISION FRAMEWORK",
+          "color": "#0866ff",
+          "callout": "Use RAG when the knowledge changes. Use fine-tuning when the behaviour changes. Use both when you need deep domain reasoning over live data.",
+          "text": "This is the single most important AI product decision you'll make repeatedly. Every senior AI engineering interview will ask it. Know the four dimensions: knowledge freshness, behaviour vs knowledge, cost, and latency."
+        }
+      ]
+    },
+    {
+      "id": "uber-twotower",
+      "icon": "📍",
+      "company": "UBER",
+      "color": "#ff6b35",
+      "title": "How Uber's Two-Tower Neural Net Matches Riders to Drivers in 2 Seconds",
+      "tags": ["recommendation systems","two-tower model","embeddings","real-time ML"],
+      "preview": "Every Uber match is a real-time ML ranking problem. Two-tower neural networks, ANN search, and feature stores — the same architecture that powers RAG retrieval.",
+      "sections": [
+        {
+          "heading": "THE ARCHITECTURE",
+          "color": "#ff6b35",
+          "steps": [
+            "Rider request fires — Feature Store returns pre-computed features.",
+            "Two-tower net: one tower encodes rider context, one encodes each candidate driver as embeddings.",
+            "Dot product similarity ranks candidates — top-K go to a reranker.",
+            "Reranker applies business constraints: driver earnings fairness, surge cap."
+          ]
+        },
+        {
+          "heading": "WHY THIS MATTERS FOR AI ENGINEERS",
+          "color": "#ff6b35",
+          "text": "Two-tower models are the industry standard for large-scale retrieval. One tower = query, one tower = documents. Fast dot product at scale = Approximate Nearest Neighbour search. This is exactly how your RAG vector search works. Same architecture, different domain."
+        }
+      ]
+    },
+    {
+      "id": "notion-streaming",
+      "icon": "📝",
+      "company": "NOTION",
+      "color": "#6366f1",
+      "title": "How Notion AI Ships: Streaming, Context Management, and Knowing When Not to Use AI",
+      "tags": ["AI product","streaming","context window","time-to-first-token","UX"],
+      "preview": "The most important metric for AI writing isn't accuracy — it's time-to-first-token. Notion obsessed over showing the first word in under 300ms.",
+      "sections": [
+        {
+          "heading": "THE UX INSIGHT",
+          "color": "#6366f1",
+          "text": "If the user sees the first word in 300ms, the AI feels fast. If they wait 2 seconds for the first word, it feels broken — even if total response time is the same. Notion's streaming architecture was built around this perception."
+        },
+        {
+          "heading": "HOW THEY STREAM",
+          "color": "#f59e0b",
+          "steps": [
+            "User clicks 'Improve Writing' — frontend shows loading state immediately.",
+            "Backend fires streaming API call — as soon as the first token arrives, it's sent via SSE.",
+            "React renders each token as it arrives — fills in word-by-word.",
+            "Crucially: the full page is NOT sent to GPT — only selected block + surrounding context (< 2000 tokens)."
+          ]
+        },
+        {
+          "heading": "WHEN NOT TO USE AI",
+          "color": "#6366f1",
+          "callout": "The hardest product decision was choosing what NOT to make AI. Spell check, bullet formatting, basic grammar — deterministic rules are cheaper, faster, and more reliable.",
+          "text": "Knowing when NOT to invoke an LLM is a core AI engineering judgment. A regex is cheaper, faster, and more reliable than a 200ms LLM call for structured operations."
+        }
+      ]
+    },
+    {
+      "id": "google-palm",
+      "icon": "🌴",
+      "company": "GOOGLE",
+      "color": "#4285f4",
+      "title": "How Google Scaled PaLM to 540B Parameters Across 6,144 TPUs",
+      "tags": ["LLM training","model parallelism","TPUs","distributed systems"],
+      "preview": "Training a 540B parameter model requires splitting it across thousands of chips. The engineering behind PaLM is as impressive as the model itself.",
+      "sections": [
+        {
+          "heading": "THREE TYPES OF PARALLELISM",
+          "color": "#4285f4",
+          "steps": [
+            "Tensor Parallelism: single matrix multiplications split across chips. Each computes a slice, all-reduce combines. High communication overhead.",
+            "Pipeline Parallelism: model layers split into stages across chip groups. Bubble overhead between microbatches.",
+            "Data Parallelism: same model processes multiple microbatches in parallel. Gradient sync cost."
+          ]
+        },
+        {
+          "heading": "FOR YOUR INTERVIEWS",
+          "color": "#4285f4",
+          "text": "At Google, Meta, or DeepMind: know what each parallelism type splits (tensors, layers, data) and the tradeoffs. You don't need to implement them — you need to explain them clearly and compare their costs."
+        }
+      ]
+    }
+  ]
+}
