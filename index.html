@@ -650,21 +650,22 @@ function escHtml(s) {
   return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 function weekDots(week, data) {
-  return week.sessions.map(s =>
-    `<div class="w-dot ${data[s.id] ? 'done' : ''}" data-sid="${escHtml(s.id)}"></div>`
-  ).join('');
+  return (week.sessions || [])
+    .filter(s => s.type === 'weekday' || s.type === 'weekend')
+    .map(s => `<div class="w-dot ${data[s.id] ? 'done' : ''}" data-sid="${escHtml(s.id)}"></div>`)
+    .join('');
 }
 function doneCount(week, data) {
-  return week.sessions.filter(s => data[s.id]).length;
+  return (week.sessions || []).filter(s => data[s.id]).length;
 }
 
 function buildWeekHtml(week) {
-  const data = gp();
-  const col  = phaseColor(week.week);
-  const dc   = doneCount(week, data);
+  const data     = gp();
+  const col      = phaseColor(week.week);
+  const sessions = (week.sessions || []).filter(s => s.type === 'weekday' || s.type === 'weekend');
+  const dc       = doneCount(week, data);
 
-  const rows = week.sessions.map(s => {
-    if (!s.mern && !s.ai) return '';
+  const rows = sessions.map(s => {
     const isWeekend = s.type === 'weekend';
     const checked   = data[s.id] ? 'checked' : '';
     const doneClass = data[s.id] ? ' done' : '';
@@ -698,7 +699,7 @@ function buildWeekHtml(week) {
         <span class="w-num" style="color:${col}">W${week.week}</span>
         <span class="w-theme">${escHtml(week.theme)}</span>
         <div class="w-dots" id="dots-${week.week}">${weekDots(week, data)}</div>
-        <span class="w-count" id="cnt-${week.week}">${dc}/${week.sessions.filter(s=>s.mern||s.ai).length}</span>
+        <span class="w-count" id="cnt-${week.week}">${dc}/${sessions.length}</span>
         <span class="w-chevron">▼</span>
       </div>
       <div class="week-body">
@@ -725,11 +726,12 @@ function toggleSession(sid, weekNum, checked) {
 function refreshWeekDots(weekNum) {
   const week = CFG.weeks.find(w => w.week === weekNum);
   if (!week) return;
-  const data   = gp();
-  const dotsEl = document.getElementById('dots-' + weekNum);
-  const cntEl  = document.getElementById('cnt-' + weekNum);
+  const data     = gp();
+  const sessions = (week.sessions || []).filter(s => s.type === 'weekday' || s.type === 'weekend');
+  const dotsEl   = document.getElementById('dots-' + weekNum);
+  const cntEl    = document.getElementById('cnt-' + weekNum);
   if (dotsEl) dotsEl.innerHTML = weekDots(week, data);
-  if (cntEl)  cntEl.textContent = doneCount(week, data) + '/' + week.sessions.filter(s=>s.mern||s.ai).length;
+  if (cntEl)  cntEl.textContent = doneCount(week, data) + '/' + sessions.length;
 }
 
 function toggleWeek(wn) {
