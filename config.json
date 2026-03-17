@@ -35,7 +35,7 @@
     },
     "gpuBudget": "\u20b94,000\u20137,000 total \u2014 Colab T4 + Kaggle free first, RunPod A100 only for DPO/vLLM weeks",
     "dsaNote": "DSA removed per preference \u2014 focus is entirely on AI engineering depth",
-    "totalSessions": 98
+    "totalSessions": 102
   },
   "phases": [
     {
@@ -3262,16 +3262,19 @@
       "note": "4 weeks of buffer (W15-W18) for anyone who ran over on projects, wants to go deeper on a domain, polish existing work, or needs more interview prep time. Use this time to compound.",
       "sessions": [
         {
-          "id": "w15-overview",
-          "day": "OVERVIEW",
-          "type": "buffer",
-          "options": [
+          "id": "w15-buffer",
+          "day": "BUFFER",
+          "type": "weekend",
+          "mern": [
             "Option A: Go deep on your best project \u2014 publish a paper, find 10 paying users, get GitHub stars",
-            "Option B: Add a 10th project in a domain you missed \u2014 healthcare NLP, education AI, legal tech extension",
-            "Option C: Interview sprint \u2014 5 mock interviews this week, 30 applications, fix every weakness",
-            "Option D: Research depth week \u2014 read 5 papers, implement 2 techniques, add to existing projects",
+            "Option B: Add a 10th project in a domain you missed \u2014 healthcare NLP, education AI, legal tech",
+            "Option C: Interview sprint \u2014 5 mock interviews this week, 30 applications, fix every weakness"
+          ],
+          "ai": [
+            "Option D: Research depth \u2014 read 5 papers, implement 2 techniques, add to existing projects",
             "All options: continue 5 applications/day \u2014 the job search never pauses"
-          ]
+          ],
+          "resources": []
         }
       ]
     },
@@ -3279,19 +3282,70 @@
       "week": 16,
       "theme": "Buffer Week 2 \u2014 Extension or Interview Sprint",
       "phase": "impact",
-      "note": "Same options as Week 15. Use Pramp daily. Keep shipping small improvements to existing projects."
+      "note": "Same options as Week 15. Use Pramp daily. Keep shipping small improvements to existing projects.",
+      "sessions": [
+        {
+          "id": "w16-buffer",
+          "day": "BUFFER",
+          "type": "weekend",
+          "mern": [
+            "Continue mock interviews daily on Pramp \u2014 target 1 full loop per day",
+            "Ship small improvements to existing projects \u2014 polish READMEs, fix bugs, add tests",
+            "Apply to 10 jobs per day \u2014 keep the application flywheel running"
+          ],
+          "ai": [
+            "Read one paper per day \u2014 15 min: abstract + conclusion + figures + intro",
+            "Extend your best project \u2014 more users, more features, more GitHub stars"
+          ],
+          "resources": []
+        }
+      ]
     },
     {
       "week": 17,
       "theme": "Buffer Week 3 \u2014 Deep Specialisation or Final Polish",
       "phase": "impact",
-      "note": "If you have interviews lined up: full mock interview mode. If not: pick one project and make it genuinely impressive \u2014 stars, users, citations."
+      "note": "If you have interviews lined up: full mock interview mode. If not: pick one project and make it genuinely impressive \u2014 stars, users, citations.",
+      "sessions": [
+        {
+          "id": "w17-buffer",
+          "day": "BUFFER",
+          "type": "weekend",
+          "mern": [
+            "If interviews scheduled: full mock interview mode \u2014 2 mocks per day minimum",
+            "If no interviews yet: pick one project, make it genuinely impressive",
+            "Target 500+ GitHub stars on your open-source project \u2014 promote in communities"
+          ],
+          "ai": [
+            "Write a technical blog post \u2014 publish on HuggingFace blog or Towards Data Science",
+            "Review all 9 projects \u2014 is every live URL working? Every README professional?"
+          ],
+          "resources": []
+        }
+      ]
     },
     {
       "week": 18,
       "theme": "Buffer Week 4 \u2014 Offer or Continue",
       "phase": "impact",
-      "note": "By this week you should have interview activity. If you have an offer: evaluate carefully against your BATNA. If not: increase application volume to 10/day and request feedback from every rejection."
+      "note": "By this week you should have interview activity. If you have an offer: evaluate carefully against your BATNA. If not: increase application volume to 10/day and request feedback from every rejection.",
+      "sessions": [
+        {
+          "id": "w18-buffer",
+          "day": "BUFFER",
+          "type": "weekend",
+          "mern": [
+            "If you have an offer: evaluate carefully against your BATNA \u2014 do not rush",
+            "If no offer yet: increase to 10 applications per day, request feedback from every rejection",
+            "Negotiate: never accept the first offer \u2014 always ask for time and competing context"
+          ],
+          "ai": [
+            "Keep building: one small experiment per week compounds over a career",
+            "You are ready. The roadmap is complete. Keep shipping."
+          ],
+          "resources": []
+        }
+      ]
     }
   ],
   "projects": [
