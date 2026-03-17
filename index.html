@@ -46,6 +46,54 @@ body { background:var(--bg); color:var(--text); font-family:var(--font-sans); fo
 .pw-count { color:var(--text); font-size:.75rem; }
 #reset-btn { border:1px solid var(--bdr2); background:none; color:var(--muted); font-family:var(--font-mono); font-size:.52rem; letter-spacing:.08em; padding:.2rem .5rem; border-radius:5px; cursor:pointer; transition:all .2s; }
 #reset-btn:hover { border-color:#f87171; color:#f87171; }
+#sync-btn { border:1px solid var(--bdr2); background:none; color:var(--muted); font-family:var(--font-mono); font-size:.52rem; letter-spacing:.08em; padding:.2rem .5rem; border-radius:5px; cursor:pointer; transition:all .2s; }
+#sync-btn:hover { border-color:var(--ind); color:var(--ind); }
+#sync-status { font-size:.5rem; color:var(--muted); letter-spacing:.06em; }
+
+/* ── SYNC MODAL ── */
+#sync-overlay {
+  display:none; position:fixed; inset:0; z-index:1000;
+  background:rgba(0,0,0,.7); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center;
+}
+#sync-overlay.open { display:flex; }
+#sync-modal {
+  background:var(--s1); border:1px solid var(--bdr2);
+  border-radius:12px; padding:2rem; width:100%; max-width:400px;
+  font-family:var(--font-mono); margin:1rem;
+}
+.sm-title { font-size:1rem; font-weight:600; color:var(--text); margin-bottom:.4rem; }
+.sm-sub { font-size:.7rem; color:var(--muted2); margin-bottom:1.5rem; line-height:1.7; }
+.sm-label { font-size:.6rem; letter-spacing:.12em; color:var(--muted); margin-bottom:.4rem; display:block; }
+.sm-input {
+  width:100%; background:var(--s2); border:1px solid var(--bdr2);
+  border-radius:6px; padding:.55rem .85rem; color:var(--text);
+  font-family:var(--font-mono); font-size:.82rem; outline:none;
+  transition:border-color .2s; margin-bottom:1rem;
+}
+.sm-input:focus { border-color:var(--ind); }
+.sm-row { display:flex; gap:.6rem; margin-bottom:.6rem; }
+.sm-btn {
+  flex:1; padding:.6rem; border-radius:6px; border:1px solid var(--bdr2);
+  font-family:var(--font-mono); font-size:.65rem; letter-spacing:.1em;
+  cursor:pointer; transition:all .2s; background:none;
+}
+.sm-btn-primary { border-color:var(--ind); color:var(--ind); }
+.sm-btn-primary:hover { background:rgba(129,140,248,.12); }
+.sm-btn-secondary { color:var(--muted); }
+.sm-btn-secondary:hover { border-color:var(--muted2); color:var(--muted2); }
+.sm-btn-danger { border-color:#f87171; color:#f87171; }
+.sm-btn-danger:hover { background:rgba(248,113,113,.08); }
+.sm-divider { border:none; border-top:1px solid var(--bdr); margin:1.2rem 0; }
+.sm-msg { font-size:.65rem; min-height:1.2rem; margin-top:.5rem; padding:.4rem .7rem; border-radius:5px; display:none; }
+.sm-msg.show { display:block; }
+.sm-msg.ok { background:rgba(52,211,153,.08); color:#34d399; border:1px solid rgba(52,211,153,.2); }
+.sm-msg.err { background:rgba(248,113,113,.08); color:#f87171; border:1px solid rgba(248,113,113,.2); }
+.sm-msg.info { background:rgba(129,140,248,.08); color:var(--ind); border:1px solid rgba(129,140,248,.2); }
+.sm-user-row { display:flex; align-items:center; gap:.6rem; padding:.5rem .7rem; background:var(--s0); border-radius:6px; border:1px solid var(--bdr); margin-bottom:1rem; }
+.sm-user-dot { width:7px; height:7px; border-radius:50%; background:var(--ml); flex-shrink:0; }
+.sm-user-name { font-size:.7rem; color:var(--text); flex:1; }
+.sm-user-id { font-size:.58rem; color:var(--muted); }
 
 /* ── HERO ── */
 .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:5rem 2rem 3rem; position:relative; overflow:hidden; }
@@ -128,13 +176,9 @@ body { background:var(--bg); color:var(--text); font-family:var(--font-sans); fo
 .task::before { content:'›'; position:absolute; left:0; color:var(--ind); font-weight:600; }
 .session-row.done .s-day,
 .session-row.done .task { opacity:.3; text-decoration:line-through; text-decoration-color:var(--ind); }
-
-/* weekend row accent */
 .session-row.weekend-row { background:rgba(251,191,36,.014); }
 .session-row.weekend-row:hover { background:rgba(251,191,36,.025); }
 .session-row.weekend-row.done { background:rgba(129,140,248,.03); }
-
-/* resources */
 .res-bar { display:none; padding:.5rem 1rem .5rem calc(36px + 90px + 1rem); background:rgba(251,191,36,.025); border-top:1px dashed rgba(251,191,36,.12); flex-wrap:wrap; gap:.35rem; align-items:center; }
 .res-bar.open { display:flex; }
 .res-label { font-family:var(--font-mono); font-size:.55rem; letter-spacing:.12em; color:var(--gold); margin-right:.35rem; }
@@ -207,6 +251,7 @@ footer { border-top:1px solid var(--bdr); text-align:center; padding:3rem 1.5rem
   .s-col:last-child,.col-h:last-child { display:none; }
   .proj-inner { grid-template-columns:48px 1fr auto; }
   .proj-num { font-size:1.5rem; }
+  #prog-widget { gap:.4rem; }
 }
 </style>
 </head>
@@ -223,47 +268,364 @@ footer { border-top:1px solid var(--bdr); text-align:center; padding:3rem 1.5rem
     <div class="pw-count" id="prog-count">0/0</div>
     <div class="pw-label">SESSIONS</div>
   </div>
+  <div>
+    <div id="sync-status">NOT SYNCED</div>
+    <div class="pw-label">CLOUD</div>
+  </div>
+  <button id="sync-btn" onclick="openSyncModal()">☁ SYNC</button>
   <button id="reset-btn">RESET</button>
 </div>
 
+<!-- ── SYNC MODAL ── -->
+<div id="sync-overlay">
+  <div id="sync-modal">
+    <div id="sm-logged-out">
+      <div class="sm-title">Cloud Sync</div>
+      <div class="sm-sub">Your progress syncs across every browser and device. Create a profile with a username + PIN, then log in anywhere.</div>
+
+      <div id="sm-create-section">
+        <span class="sm-label">CREATE PROFILE</span>
+        <input class="sm-input" id="sm-new-user" placeholder="username (e.g. aryan)" maxlength="24" />
+        <input class="sm-input" id="sm-new-pin" placeholder="PIN (4–8 digits)" type="password" maxlength="8" />
+        <div class="sm-row">
+          <button class="sm-btn sm-btn-primary" onclick="createProfile()">CREATE &amp; SYNC</button>
+        </div>
+      </div>
+
+      <hr class="sm-divider">
+
+      <div id="sm-login-section">
+        <span class="sm-label">LOGIN TO EXISTING PROFILE</span>
+        <input class="sm-input" id="sm-login-user" placeholder="username" maxlength="24" />
+        <input class="sm-input" id="sm-login-pin" placeholder="PIN" type="password" maxlength="8" />
+        <div class="sm-row">
+          <button class="sm-btn sm-btn-primary" onclick="loginProfile()">LOGIN &amp; LOAD</button>
+        </div>
+      </div>
+
+      <div class="sm-msg" id="sm-msg-out"></div>
+    </div>
+
+    <div id="sm-logged-in" style="display:none">
+      <div class="sm-title">Cloud Sync</div>
+      <div class="sm-user-row">
+        <div class="sm-user-dot"></div>
+        <div class="sm-user-name" id="sm-display-name">—</div>
+        <div class="sm-user-id">SYNCED</div>
+      </div>
+      <div class="sm-row">
+        <button class="sm-btn sm-btn-primary" onclick="pushSync()">↑ PUSH (save to cloud)</button>
+        <button class="sm-btn sm-btn-secondary" onclick="pullSync()">↓ PULL (load from cloud)</button>
+      </div>
+      <div class="sm-row" style="margin-top:.4rem">
+        <button class="sm-btn sm-btn-danger" onclick="logoutProfile()">LOGOUT</button>
+      </div>
+      <div class="sm-msg" id="sm-msg-in"></div>
+    </div>
+
+    <hr class="sm-divider">
+    <button class="sm-btn sm-btn-secondary" style="width:100%" onclick="closeSyncModal()">CLOSE</button>
+  </div>
+</div>
+
 <div id="app"></div>
-<!-- CONFIG -->
 
 <script>
+/* ═══════════════════════════════════════════════════
+   CONFIG + CONSTANTS
+═══════════════════════════════════════════════════ */
 let CFG;
 let TOTAL;
 const SK = 'ai_roadmap_v2';
 const BK = 'ai_bonus_v2';
+const UK = 'ai_sync_user_v2';   // stores { username, pin, binId }
 
-fetch("./config.json")
+// JSONBin.io — free, no auth required for public bins
+// We use a master index bin that maps username → binId
+// Each user gets their own bin storing { progress, bonus }
+const JBIN_API  = 'https://api.jsonbin.io/v3';
+const JBIN_KEY  = '$2a$10$placeholder_replace_with_your_key'; // <-- see instructions below
+
+fetch('./config.json')
   .then(r => r.json())
   .then(cfg => {
-    CFG = cfg;
+    CFG   = cfg;
     TOTAL = CFG.meta.totalSessions;
-
     init();
+    restoreUserBadge();
   });
 
-
-
-
-// ─── PROGRESS STORE ────────────────────────────────────────────────────────
-function gp() { try { return JSON.parse(localStorage.getItem(SK)) || {}; } catch { return {}; } }
+/* ═══════════════════════════════════════════════════
+   LOCAL STORAGE HELPERS
+═══════════════════════════════════════════════════ */
+function gp()  { try { return JSON.parse(localStorage.getItem(SK))  || {}; } catch { return {}; } }
 function sp(d) { localStorage.setItem(SK, JSON.stringify(d)); }
-function gb() { try { return JSON.parse(localStorage.getItem(BK)) || {}; } catch { return {}; } }
+function gb()  { try { return JSON.parse(localStorage.getItem(BK))  || {}; } catch { return {}; } }
 function sb(d) { localStorage.setItem(BK, JSON.stringify(d)); }
+function gu()  { try { return JSON.parse(localStorage.getItem(UK))  || null; } catch { return null; } }
+function su(d) { localStorage.setItem(UK, JSON.stringify(d)); }
 
+/* ═══════════════════════════════════════════════════
+   SYNC UI HELPERS
+═══════════════════════════════════════════════════ */
 function syncUI() {
-  const d = gp();
+  const d    = gp();
   const done = Object.values(d).filter(Boolean).length;
-  const pct = Math.round((done / TOTAL) * 100);
-  document.getElementById('top-fill').style.width = pct + '%';
-  document.getElementById('prog-pct').textContent = pct + '%';
+  const pct  = Math.round((done / TOTAL) * 100);
+  document.getElementById('top-fill').style.width   = pct + '%';
+  document.getElementById('prog-pct').textContent   = pct + '%';
   document.getElementById('prog-count').textContent = done + '/' + TOTAL;
 }
 
+function setCloudStatus(txt, color) {
+  const el = document.getElementById('sync-status');
+  el.textContent = txt;
+  el.style.color = color || 'var(--muted)';
+}
+
+function showMsg(elId, text, type) {
+  const el = document.getElementById(elId);
+  el.textContent = text;
+  el.className   = 'sm-msg show ' + type;
+  setTimeout(() => el.classList.remove('show'), 4000);
+}
+
+/* ═══════════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════════ */
+function openSyncModal() {
+  const u = gu();
+  if (u) {
+    document.getElementById('sm-logged-out').style.display = 'none';
+    document.getElementById('sm-logged-in').style.display  = 'block';
+    document.getElementById('sm-display-name').textContent  = u.username;
+  } else {
+    document.getElementById('sm-logged-out').style.display = 'block';
+    document.getElementById('sm-logged-in').style.display  = 'none';
+  }
+  document.getElementById('sync-overlay').classList.add('open');
+}
+
+function closeSyncModal() {
+  document.getElementById('sync-overlay').classList.remove('open');
+}
+
+document.getElementById('sync-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeSyncModal();
+});
+
+function restoreUserBadge() {
+  const u = gu();
+  if (u) setCloudStatus(u.username.toUpperCase(), 'var(--ml)');
+}
+
+/* ═══════════════════════════════════════════════════
+   JSONBIN HELPERS
+═══════════════════════════════════════════════════ */
+
+// Hash function — simple but good enough for PINs stored client-side
+async function hashPin(pin) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+// Create a new bin with initial data, returns binId
+async function createBin(data) {
+  const r = await fetch(`${JBIN_API}/b`, {
+    method:  'POST',
+    headers: {
+      'Content-Type':    'application/json',
+      'X-Master-Key':    JBIN_KEY,
+      'X-Bin-Private':   'true',
+      'X-Bin-Name':      'ai-roadmap-userdata'
+    },
+    body: JSON.stringify(data)
+  });
+  if (!r.ok) throw new Error('Failed to create bin: ' + r.status);
+  const j = await r.json();
+  return j.metadata.id;
+}
+
+// Read a bin
+async function readBin(binId) {
+  const r = await fetch(`${JBIN_API}/b/${binId}/latest`, {
+    headers: { 'X-Master-Key': JBIN_KEY }
+  });
+  if (!r.ok) throw new Error('Failed to read bin: ' + r.status);
+  const j = await r.json();
+  return j.record;
+}
+
+// Update a bin
+async function writeBin(binId, data) {
+  const r = await fetch(`${JBIN_API}/b/${binId}`, {
+    method:  'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': JBIN_KEY
+    },
+    body: JSON.stringify(data)
+  });
+  if (!r.ok) throw new Error('Failed to write bin: ' + r.status);
+}
+
+// Master index bin: maps username → { binId, pinHash }
+// Store YOUR master index bin ID here after first run (see instructions)
+const MASTER_BIN_ID = 'REPLACE_WITH_YOUR_MASTER_BIN_ID';
+
+async function readIndex() {
+  try {
+    return await readBin(MASTER_BIN_ID);
+  } catch {
+    return {};
+  }
+}
+
+async function writeIndex(data) {
+  await writeBin(MASTER_BIN_ID, data);
+}
+
+/* ═══════════════════════════════════════════════════
+   CREATE PROFILE
+═══════════════════════════════════════════════════ */
+async function createProfile() {
+  const username = document.getElementById('sm-new-user').value.trim().toLowerCase();
+  const pin      = document.getElementById('sm-new-pin').value.trim();
+
+  if (!username || username.length < 2) return showMsg('sm-msg-out', 'Username must be at least 2 characters.', 'err');
+  if (!/^\d{4,8}$/.test(pin))           return showMsg('sm-msg-out', 'PIN must be 4–8 digits.', 'err');
+
+  showMsg('sm-msg-out', 'Creating profile...', 'info');
+
+  try {
+    const index   = await readIndex();
+    if (index[username]) return showMsg('sm-msg-out', 'Username already taken. Choose another.', 'err');
+
+    const pinHash = await hashPin(pin);
+    const userData = { progress: gp(), bonus: gb(), username, createdAt: Date.now() };
+    const binId    = await createBin(userData);
+
+    index[username] = { binId, pinHash };
+    await writeIndex(index);
+
+    su({ username, pinHash, binId });
+    setCloudStatus(username.toUpperCase(), 'var(--ml)');
+    document.getElementById('sm-display-name').textContent = username;
+    document.getElementById('sm-logged-out').style.display = 'none';
+    document.getElementById('sm-logged-in').style.display  = 'block';
+    showMsg('sm-msg-in', 'Profile created! Progress saved to cloud.', 'ok');
+  } catch (e) {
+    showMsg('sm-msg-out', 'Error: ' + e.message, 'err');
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   LOGIN
+═══════════════════════════════════════════════════ */
+async function loginProfile() {
+  const username = document.getElementById('sm-login-user').value.trim().toLowerCase();
+  const pin      = document.getElementById('sm-login-pin').value.trim();
+
+  if (!username || !pin) return showMsg('sm-msg-out', 'Enter both username and PIN.', 'err');
+
+  showMsg('sm-msg-out', 'Logging in...', 'info');
+
+  try {
+    const index   = await readIndex();
+    const entry   = index[username];
+    if (!entry) return showMsg('sm-msg-out', 'Username not found.', 'err');
+
+    const pinHash = await hashPin(pin);
+    if (pinHash !== entry.pinHash) return showMsg('sm-msg-out', 'Wrong PIN.', 'err');
+
+    const data = await readBin(entry.binId);
+    if (data.progress) { sp(data.progress); }
+    if (data.bonus)    { sb(data.bonus); }
+
+    su({ username, pinHash, binId: entry.binId });
+    setCloudStatus(username.toUpperCase(), 'var(--ml)');
+    document.getElementById('sm-display-name').textContent = username;
+    document.getElementById('sm-logged-out').style.display = 'none';
+    document.getElementById('sm-logged-in').style.display  = 'block';
+
+    // Re-render to reflect loaded progress
+    document.getElementById('app').innerHTML =
+      renderHero() + renderTracks() + renderCurriculum() + renderProjects() + renderBonus() + renderFooter();
+    syncUI();
+    showMsg('sm-msg-in', 'Loaded your progress from cloud!', 'ok');
+  } catch (e) {
+    showMsg('sm-msg-out', 'Error: ' + e.message, 'err');
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   PUSH / PULL
+═══════════════════════════════════════════════════ */
+async function pushSync() {
+  const u = gu();
+  if (!u) return showMsg('sm-msg-in', 'Not logged in.', 'err');
+  showMsg('sm-msg-in', 'Saving...', 'info');
+  try {
+    await writeBin(u.binId, { progress: gp(), bonus: gb(), username: u.username, updatedAt: Date.now() });
+    showMsg('sm-msg-in', 'Saved to cloud!', 'ok');
+    setCloudStatus(u.username.toUpperCase(), 'var(--ml)');
+  } catch (e) {
+    showMsg('sm-msg-in', 'Save failed: ' + e.message, 'err');
+  }
+}
+
+async function pullSync() {
+  const u = gu();
+  if (!u) return showMsg('sm-msg-in', 'Not logged in.', 'err');
+  showMsg('sm-msg-in', 'Loading...', 'info');
+  try {
+    const data = await readBin(u.binId);
+    if (data.progress) sp(data.progress);
+    if (data.bonus)    sb(data.bonus);
+    document.getElementById('app').innerHTML =
+      renderHero() + renderTracks() + renderCurriculum() + renderProjects() + renderBonus() + renderFooter();
+    syncUI();
+    showMsg('sm-msg-in', 'Loaded latest from cloud!', 'ok');
+  } catch (e) {
+    showMsg('sm-msg-in', 'Load failed: ' + e.message, 'err');
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   AUTO-SYNC on checkbox change
+═══════════════════════════════════════════════════ */
+let autoSyncTimer = null;
+function scheduleAutoSync() {
+  const u = gu();
+  if (!u) return;
+  clearTimeout(autoSyncTimer);
+  setCloudStatus('SAVING...', 'var(--gold)');
+  autoSyncTimer = setTimeout(async () => {
+    try {
+      await writeBin(u.binId, { progress: gp(), bonus: gb(), username: u.username, updatedAt: Date.now() });
+      setCloudStatus(u.username.toUpperCase(), 'var(--ml)');
+    } catch {
+      setCloudStatus('SYNC FAILED', '#f87171');
+    }
+  }, 1500); // debounce 1.5s after last checkbox click
+}
+
+/* ═══════════════════════════════════════════════════
+   LOGOUT
+═══════════════════════════════════════════════════ */
+function logoutProfile() {
+  localStorage.removeItem(UK);
+  setCloudStatus('NOT SYNCED', 'var(--muted)');
+  document.getElementById('sm-logged-out').style.display = 'block';
+  document.getElementById('sm-logged-in').style.display  = 'none';
+  showMsg('sm-msg-out', 'Logged out. Local progress is still saved.', 'info');
+}
+
+/* ═══════════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════════ */
 document.getElementById('reset-btn').onclick = () => {
-  if (!confirm('Reset all progress?')) return;
+  if (!confirm('Reset all local progress?')) return;
   localStorage.removeItem(SK);
   localStorage.removeItem(BK);
   document.querySelectorAll('.chk').forEach(c => c.checked = false);
@@ -273,50 +635,43 @@ document.getElementById('reset-btn').onclick = () => {
   syncUI();
 };
 
-// ─── PHASE COLORS ──────────────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════
+   RENDER HELPERS (unchanged from original)
+═══════════════════════════════════════════════════ */
 function phaseColor(wn) {
-  for (const ph of CFG.phases) {
-    if (ph.weeks.includes(wn)) return ph.color;
-  }
+  for (const ph of CFG.phases) { if (ph.weeks.includes(wn)) return ph.color; }
   return '#818cf8';
 }
-
-// ─── RENDER HELPERS ────────────────────────────────────────────────────────
 function renderTasks(arr) {
   if (!arr || !arr.length) return '';
   return arr.map(t => `<div class="task">${escHtml(t)}</div>`).join('');
 }
-
 function escHtml(s) {
   return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
-
 function weekDots(week, data) {
   return week.sessions.map(s =>
     `<div class="w-dot ${data[s.id] ? 'done' : ''}" data-sid="${escHtml(s.id)}"></div>`
   ).join('');
 }
-
 function doneCount(week, data) {
   return week.sessions.filter(s => data[s.id]).length;
 }
 
-// ─── BUILD WEEK HTML ───────────────────────────────────────────────────────
 function buildWeekHtml(week) {
   const data = gp();
-  const col = phaseColor(week.week);
-  const dc = doneCount(week, data);
+  const col  = phaseColor(week.week);
+  const dc   = doneCount(week, data);
 
   const rows = week.sessions.map(s => {
+    if (!s.mern && !s.ai) return '';
     const isWeekend = s.type === 'weekend';
-    const checked = data[s.id] ? 'checked' : '';
+    const checked   = data[s.id] ? 'checked' : '';
     const doneClass = data[s.id] ? ' done' : '';
-    const wkClass = isWeekend ? ' weekend-row' : '';
-    const resId = 'res-' + s.id;
-    const hasRes = s.resources && s.resources.length > 0;
-    const resHtml = hasRes
-      ? s.resources.map(r => `<span class="res-chip">${escHtml(r)}</span>`).join('')
-      : '';
+    const wkClass   = isWeekend ? ' weekend-row' : '';
+    const resId     = 'res-' + s.id;
+    const hasRes    = s.resources && s.resources.length > 0;
+    const resHtml   = hasRes ? s.resources.map(r => `<span class="res-chip">${escHtml(r)}</span>`).join('') : '';
 
     return `
       <div class="session-wrap">
@@ -324,7 +679,7 @@ function buildWeekHtml(week) {
           <div class="s-check">
             <input type="checkbox" class="chk" ${checked}
               data-sid="${escHtml(s.id)}" data-week="${week.week}"
-              onchange="toggleSession('${escHtml(s.id)}', ${week.week}, this.checked)">
+              onchange="toggleSession('${escHtml(s.id)}',${week.week},this.checked)">
           </div>
           <div class="s-day">${escHtml(s.day)}</div>
           <div class="s-col">${renderTasks(s.mern)}</div>
@@ -342,10 +697,8 @@ function buildWeekHtml(week) {
       <div class="week-head" onclick="toggleWeek(${week.week})">
         <span class="w-num" style="color:${col}">W${week.week}</span>
         <span class="w-theme">${escHtml(week.theme)}</span>
-        <div class="w-dots" id="dots-${week.week}">
-          ${weekDots(week, data)}
-        </div>
-        <span class="w-count" id="cnt-${week.week}">${dc}/${week.sessions.length}</span>
+        <div class="w-dots" id="dots-${week.week}">${weekDots(week, data)}</div>
+        <span class="w-count" id="cnt-${week.week}">${dc}/${week.sessions.filter(s=>s.mern||s.ai).length}</span>
         <span class="w-chevron">▼</span>
       </div>
       <div class="week-body">
@@ -360,52 +713,45 @@ function buildWeekHtml(week) {
     </div>`;
 }
 
-// ─── TOGGLE SESSION ────────────────────────────────────────────────────────
 function toggleSession(sid, weekNum, checked) {
   const d = gp(); d[sid] = checked; sp(d);
   const row = document.getElementById('row-' + sid);
   if (row) row.classList.toggle('done', checked);
   refreshWeekDots(weekNum);
   syncUI();
+  scheduleAutoSync();
 }
 
 function refreshWeekDots(weekNum) {
   const week = CFG.weeks.find(w => w.week === weekNum);
   if (!week) return;
-  const data = gp();
+  const data   = gp();
   const dotsEl = document.getElementById('dots-' + weekNum);
-  const cntEl = document.getElementById('cnt-' + weekNum);
+  const cntEl  = document.getElementById('cnt-' + weekNum);
   if (dotsEl) dotsEl.innerHTML = weekDots(week, data);
-  if (cntEl) cntEl.textContent = doneCount(week, data) + '/' + week.sessions.length;
+  if (cntEl)  cntEl.textContent = doneCount(week, data) + '/' + week.sessions.filter(s=>s.mern||s.ai).length;
 }
 
 function toggleWeek(wn) {
   const block = document.getElementById('week-' + wn);
   if (block) block.classList.toggle('open');
 }
-
 function toggleRes(id) {
   const el = document.getElementById(id);
   if (el) el.classList.toggle('open');
 }
-
-// ─── FILTER PHASES ─────────────────────────────────────────────────────────
 function filterPhase(phaseId, btn) {
   document.querySelectorAll('.phase-pill').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-
   const weeks = phaseId === 'all'
     ? CFG.weeks
-    : CFG.weeks.filter(w => {
-        const ph = CFG.phases.find(p => p.id === phaseId);
-        return ph && ph.weeks.includes(w.week);
-      });
-
-  const container = document.getElementById('weeks-container');
-  container.innerHTML = weeks.map(buildWeekHtml).join('');
+    : CFG.weeks.filter(w => { const ph = CFG.phases.find(p => p.id === phaseId); return ph && ph.weeks.includes(w.week); });
+  document.getElementById('weeks-container').innerHTML = weeks.map(buildWeekHtml).join('');
 }
 
-// ─── RENDER HERO ───────────────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════
+   RENDER SECTIONS
+═══════════════════════════════════════════════════ */
 function renderHero() {
   const m = CFG.meta;
   return `
@@ -430,76 +776,53 @@ function renderHero() {
         </div>
       </div>
       <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num" style="color:var(--ind)">${m.totalSessions}</div>
-          <div class="stat-lbl">SESSIONS</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num" style="color:var(--gold)">${m.totalWeeks}</div>
-          <div class="stat-lbl">WEEKS</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num" style="color:var(--ml)">${CFG.projects.length}</div>
-          <div class="stat-lbl">AI PROJECTS</div>
-        </div>
+        <div class="stat"><div class="stat-num" style="color:var(--ind)">${m.totalSessions}</div><div class="stat-lbl">SESSIONS</div></div>
+        <div class="stat"><div class="stat-num" style="color:var(--gold)">${m.totalWeeks}</div><div class="stat-lbl">WEEKS</div></div>
+        <div class="stat"><div class="stat-num" style="color:var(--ml)">${CFG.projects.length}</div><div class="stat-lbl">AI PROJECTS</div></div>
       </div>
       <div class="scroll-hint">↓ scroll</div>
     </div>`;
 }
 
-// ─── RENDER TRACKS ─────────────────────────────────────────────────────────
 function renderTracks() {
   return `
-    <section class="section">
-      <div class="container">
-        <div class="sec-eyebrow">// 01 — WHAT YOU WILL MASTER</div>
-        <div class="sec-title">Three parallel tracks.</div>
-        <div class="tracks-grid">
-          ${CFG.tracks.map(t => `
-            <div class="track-card" style="border-top:2px solid ${escHtml(t.color)}">
-              <span class="track-icon">${t.icon}</span>
-              <div class="track-name" style="color:${escHtml(t.color)}">${escHtml(t.label)}</div>
-              <p class="track-desc">${escHtml(t.desc)}</p>
-              <div class="chips">${t.chips.map(c => `<span class="chip">${escHtml(c)}</span>`).join('')}</div>
-            </div>`).join('')}
-        </div>
+    <section class="section"><div class="container">
+      <div class="sec-eyebrow">// 01 — WHAT YOU WILL MASTER</div>
+      <div class="sec-title">Three parallel tracks.</div>
+      <div class="tracks-grid">
+        ${CFG.tracks.map(t => `
+          <div class="track-card" style="border-top:2px solid ${escHtml(t.color)}">
+            <span class="track-icon">${t.icon}</span>
+            <div class="track-name" style="color:${escHtml(t.color)}">${escHtml(t.label)}</div>
+            <p class="track-desc">${escHtml(t.desc)}</p>
+            <div class="chips">${t.chips.map(c => `<span class="chip">${escHtml(c)}</span>`).join('')}</div>
+          </div>`).join('')}
       </div>
-    </section>`;
+    </div></section>`;
 }
 
-// ─── RENDER CURRICULUM ─────────────────────────────────────────────────────
 function renderCurriculum() {
   const phasePills = `
     <div class="phase-bar">
       <button class="phase-pill active" onclick="filterPhase('all',this)">All weeks</button>
-      ${CFG.phases.map(p =>
-        `<button class="phase-pill" style="" onclick="filterPhase('${p.id}',this)">${escHtml(p.label)}</button>`
-      ).join('')}
+      ${CFG.phases.map(p => `<button class="phase-pill" onclick="filterPhase('${p.id}',this)">${escHtml(p.label)}</button>`).join('')}
     </div>`;
-
-  const allWeeksHtml = CFG.weeks.map(buildWeekHtml).join('');
-
   return `
-    <section class="section">
-      <div class="container">
-        <div class="sec-eyebrow">// 02 — FULL CURRICULUM</div>
-        <div class="sec-title">10-week breakdown.</div>
-        ${phasePills}
-        <div class="weeks-list" id="weeks-container">${allWeeksHtml}</div>
-      </div>
-    </section>`;
+    <section class="section"><div class="container">
+      <div class="sec-eyebrow">// 02 — FULL CURRICULUM</div>
+      <div class="sec-title">${CFG.meta.totalWeeks}-week breakdown.</div>
+      ${phasePills}
+      <div class="weeks-list" id="weeks-container">${CFG.weeks.map(buildWeekHtml).join('')}</div>
+    </div></section>`;
 }
 
-// ─── RENDER PROJECTS ───────────────────────────────────────────────────────
 function renderProjects() {
   const cards = CFG.projects.map(p => {
     const fid = 'pf-' + p.num;
     return `
       <div class="proj-card" style="border-top:2px solid ${escHtml(p.color)}">
         <div class="proj-inner">
-          <div class="proj-num-col">
-            <span class="proj-num" style="color:${escHtml(p.color)}">${escHtml(p.num)}</span>
-          </div>
+          <div class="proj-num-col"><span class="proj-num" style="color:${escHtml(p.color)}">${escHtml(p.num)}</span></div>
           <div class="proj-body">
             <div class="proj-meta">
               <span class="proj-badge" style="background:${p.color}18;color:${escHtml(p.color)};border:1px solid ${p.color}44">${escHtml(p.level)}</span>
@@ -510,9 +833,7 @@ function renderProjects() {
             <p class="proj-desc">${escHtml(p.desc)}</p>
             <div class="proj-why">${escHtml(p.why)}</div>
           </div>
-          <div class="proj-actions">
-            <button class="feat-btn" onclick="toggleFeats('${fid}',this)">features ↓</button>
-          </div>
+          <div class="proj-actions"><button class="feat-btn" onclick="toggleFeats('${fid}',this)">features ↓</button></div>
         </div>
         <div class="proj-features" id="${escHtml(fid)}">
           <div class="feat-title" style="color:${escHtml(p.color)}">FEATURES</div>
@@ -520,83 +841,60 @@ function renderProjects() {
         </div>
       </div>`;
   }).join('');
-
   return `
-    <section class="section">
-      <div class="container">
-        <div class="sec-eyebrow">// 03 — BUILD ORDER</div>
-        <div class="sec-title">5 AI portfolio projects.</div>
-        <p style="color:var(--muted2);font-size:.88rem;max-width:480px;margin-bottom:2rem;line-height:1.7;">Each project introduces one new hard AI concept. Your portfolio tells a story of growing capability.</p>
-        <div class="proj-list">${cards}</div>
-      </div>
-    </section>`;
+    <section class="section"><div class="container">
+      <div class="sec-eyebrow">// 03 — BUILD ORDER</div>
+      <div class="sec-title">${CFG.projects.length} AI portfolio projects.</div>
+      <p style="color:var(--muted2);font-size:.88rem;max-width:480px;margin-bottom:2rem;line-height:1.7;">Each project introduces one new hard AI concept. Your portfolio tells a story of growing capability.</p>
+      <div class="proj-list">${cards}</div>
+    </div></section>`;
 }
 
 function toggleFeats(id, btn) {
-  const el = document.getElementById(id);
-  const o = el.classList.toggle('open');
+  const o = document.getElementById(id).classList.toggle('open');
   btn.textContent = o ? 'features ↑' : 'features ↓';
 }
 
-// ─── RENDER BONUS READS ────────────────────────────────────────────────────
 function renderBonus() {
-  const bd = gb();
+  const bd    = gb();
   const cards = CFG.bonusReads.map(a => {
-    const bid = 'bb-' + a.id;
+    const bid    = 'bb-' + a.id;
     const isRead = bd[a.id];
-
-    const sections = a.sections.map(s => `
+    const secs   = a.sections.map(s => `
       <div>
         <div class="b-sec-title" style="color:${escHtml(s.color)}">${escHtml(s.heading)}</div>
         ${s.callout ? `<div class="b-callout">${escHtml(s.callout)}</div>` : ''}
-        ${s.steps ? s.steps.map(st => `
-          <div class="b-step">
-            <span class="b-snum">${escHtml(String(s.steps.indexOf(st) + 1).padStart(2,'0'))}</span>
-            <span class="b-stxt">${escHtml(st)}</span>
-          </div>`).join('') : ''}
-        ${s.text ? `<div class="b-text">${escHtml(s.text)}</div>` : ''}
+        ${s.steps   ? s.steps.map((st,i) => `<div class="b-step"><span class="b-snum">${String(i+1).padStart(2,'0')}</span><span class="b-stxt">${escHtml(st)}</span></div>`).join('') : ''}
+        ${s.text    ? `<div class="b-text">${escHtml(s.text)}</div>` : ''}
       </div>`).join('');
-
     return `
       <div class="bonus-card ${isRead ? 'read-done' : ''}" id="bcard-${escHtml(a.id)}">
         <span class="b-read-badge">✓ READ</span>
-        <div class="b-head">
-          <div class="b-icon">${a.icon}</div>
-          <div>
-            <div class="b-co" style="color:${escHtml(a.color)}">${escHtml(a.company)}</div>
-            <div class="b-title">${escHtml(a.title)}</div>
-          </div>
-        </div>
+        <div class="b-head"><div class="b-icon">${a.icon}</div><div><div class="b-co" style="color:${escHtml(a.color)}">${escHtml(a.company)}</div><div class="b-title">${escHtml(a.title)}</div></div></div>
         <div class="b-tags">${a.tags.map(t => `<span class="b-tag">${escHtml(t)}</span>`).join('')}</div>
         <div class="b-preview">${escHtml(a.preview)}</div>
-        <div class="b-body" id="${escHtml(bid)}">
-          ${sections}
+        <div class="b-body" id="${escHtml(bid)}">${secs}
           <div class="b-actions">
             <button class="mark-read-btn" onclick="markRead('${escHtml(a.id)}')">✓ Mark as read</button>
-            <button class="collapse-btn" onclick="toggleBonus('${escHtml(a.id)}')">Collapse ↑</button>
+            <button class="collapse-btn"  onclick="toggleBonus('${escHtml(a.id)}')">Collapse ↑</button>
           </div>
         </div>
-        <button class="b-toggle" onclick="toggleBonus('${escHtml(a.id)}')">
-          <span>Read deep dive</span><span>↓</span>
-        </button>
+        <button class="b-toggle" onclick="toggleBonus('${escHtml(a.id)}')"><span>Read deep dive</span><span>↓</span></button>
       </div>`;
   }).join('');
-
   return `
-    <section class="section">
-      <div class="container">
-        <div class="sec-eyebrow">// 04 — DEEP DIVES</div>
-        <div class="sec-title">How real AI systems work.</div>
-        <p style="color:var(--muted2);font-size:.88rem;max-width:480px;margin-bottom:2rem;line-height:1.7;">Engineering decisions made by top AI teams. These make your interview answers unforgettable.</p>
-        <div class="bonus-grid">${cards}</div>
-      </div>
-    </section>`;
+    <section class="section"><div class="container">
+      <div class="sec-eyebrow">// 04 — DEEP DIVES</div>
+      <div class="sec-title">How real AI systems work.</div>
+      <p style="color:var(--muted2);font-size:.88rem;max-width:480px;margin-bottom:2rem;line-height:1.7;">Engineering decisions made by top AI teams. These make your interview answers unforgettable.</p>
+      <div class="bonus-grid">${cards}</div>
+    </div></section>`;
 }
 
 function toggleBonus(id) {
-  const b = document.getElementById('bb-' + id);
+  const b   = document.getElementById('bb-' + id);
   const btn = document.querySelector(`#bcard-${id} .b-toggle span:last-child`);
-  const o = b.classList.toggle('open');
+  const o   = b.classList.toggle('open');
   if (btn) btn.textContent = o ? '↑' : '↓';
 }
 
@@ -604,22 +902,16 @@ function markRead(id) {
   const d = gb(); d[id] = true; sb(d);
   const card = document.getElementById('bcard-' + id);
   if (card) card.classList.add('read-done');
+  scheduleAutoSync();
 }
 
-// ─── RENDER FOOTER ─────────────────────────────────────────────────────────
 function renderFooter() {
-  return `<footer>AI ENGINEER ROADMAP &nbsp;·&nbsp; 10 WEEKS &nbsp;·&nbsp; ${CFG.meta.totalSessions} SESSIONS &nbsp;·&nbsp; BUILD THINGS THAT THINK 🧠<br><br><span style="font-size:.5rem;color:var(--muted)">To update content, edit config.json only. The HTML is a pure renderer.</span></footer>`;
+  return `<footer>AI ENGINEER ROADMAP &nbsp;·&nbsp; ${CFG.meta.totalWeeks} WEEKS &nbsp;·&nbsp; ${CFG.meta.totalSessions} SESSIONS &nbsp;·&nbsp; BUILD THINGS THAT THINK 🧠<br><br><span style="font-size:.5rem;color:var(--muted)">To update content, edit config.json only. The HTML is a pure renderer.</span></footer>`;
 }
 
 function init() {
   document.getElementById('app').innerHTML =
-    renderHero() +
-    renderTracks() +
-    renderCurriculum() +
-    renderProjects() +
-    renderBonus() +
-    renderFooter();
-
+    renderHero() + renderTracks() + renderCurriculum() + renderProjects() + renderBonus() + renderFooter();
   syncUI();
 }
 </script>
