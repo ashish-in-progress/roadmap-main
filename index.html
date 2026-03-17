@@ -344,7 +344,7 @@ const UK = 'ai_sync_user_v2';   // stores { username, pin, binId }
 // We use a master index bin that maps username → binId
 // Each user gets their own bin storing { progress, bonus }
 const JBIN_API  = 'https://api.jsonbin.io/v3';
-const JBIN_KEY  = '$2a$10$placeholder_replace_with_your_key'; // <-- see instructions below
+const JBIN_KEY  = '$2a$10$qEVvieGfk6FQgMGFaOBrUuEU2g3zftUO0KP7aZ/rTuVmRKMhOgVeC'; // <-- see instructions below
 
 fetch('./config.json')
   .then(r => r.json())
@@ -471,7 +471,7 @@ async function writeBin(binId, data) {
 
 // Master index bin: maps username → { binId, pinHash }
 // Store YOUR master index bin ID here after first run (see instructions)
-const MASTER_BIN_ID = 'REPLACE_WITH_YOUR_MASTER_BIN_ID';
+const MASTER_BIN_ID = '69b902b0c3097a1dd53133b1';
 
 async function readIndex() {
   try {
