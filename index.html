@@ -276,7 +276,6 @@ footer { border-top:1px solid var(--bdr); text-align:center; padding:3rem 1.5rem
   <button id="reset-btn">RESET</button>
 </div>
 
-<!-- ── SYNC MODAL ── -->
 <div id="sync-overlay">
   <div id="sync-modal">
     <div id="sm-logged-out">
@@ -341,8 +340,6 @@ const BK = 'ai_bonus_v2';
 const UK = 'ai_sync_user_v2';   // stores { username, pin, binId }
 
 // JSONBin.io — free, no auth required for public bins
-// We use a master index bin that maps username → binId
-// Each user gets their own bin storing { progress, bonus }
 const JBIN_API  = 'https://api.jsonbin.io/v3';
 const JBIN_KEY  = '$2a$10$qEVvieGfk6FQgMGFaOBrUuEU2g3zftUO0KP7aZ/rTuVmRKMhOgVeC'; // <-- see instructions below
 
@@ -371,7 +368,7 @@ function su(d) { localStorage.setItem(UK, JSON.stringify(d)); }
 function syncUI() {
   const d    = gp();
   const done = Object.values(d).filter(Boolean).length;
-  const pct  = Math.round((done / TOTAL) * 100);
+  const pct  = Math.round((done / TOTAL) * 100) || 0;
   document.getElementById('top-fill').style.width   = pct + '%';
   document.getElementById('prog-pct').textContent   = pct + '%';
   document.getElementById('prog-count').textContent = done + '/' + TOTAL;
@@ -422,14 +419,11 @@ function restoreUserBadge() {
 /* ═══════════════════════════════════════════════════
    JSONBIN HELPERS
 ═══════════════════════════════════════════════════ */
-
-// Hash function — simple but good enough for PINs stored client-side
 async function hashPin(pin) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
-// Create a new bin with initial data, returns binId
 async function createBin(data) {
   const r = await fetch(`${JBIN_API}/b`, {
     method:  'POST',
@@ -446,7 +440,6 @@ async function createBin(data) {
   return j.metadata.id;
 }
 
-// Read a bin
 async function readBin(binId) {
   const r = await fetch(`${JBIN_API}/b/${binId}/latest`, {
     headers: { 'X-Master-Key': JBIN_KEY }
@@ -456,7 +449,6 @@ async function readBin(binId) {
   return j.record;
 }
 
-// Update a bin
 async function writeBin(binId, data) {
   const r = await fetch(`${JBIN_API}/b/${binId}`, {
     method:  'PUT',
@@ -469,16 +461,10 @@ async function writeBin(binId, data) {
   if (!r.ok) throw new Error('Failed to write bin: ' + r.status);
 }
 
-// Master index bin: maps username → { binId, pinHash }
-// Store YOUR master index bin ID here after first run (see instructions)
 const MASTER_BIN_ID = '69b902b0c3097a1dd53133b1';
 
 async function readIndex() {
-  try {
-    return await readBin(MASTER_BIN_ID);
-  } catch {
-    return {};
-  }
+  try { return await readBin(MASTER_BIN_ID); } catch { return {}; }
 }
 
 async function writeIndex(data) {
@@ -548,7 +534,6 @@ async function loginProfile() {
     document.getElementById('sm-logged-out').style.display = 'none';
     document.getElementById('sm-logged-in').style.display  = 'block';
 
-    // Re-render to reflect loaded progress
     document.getElementById('app').innerHTML =
       renderHero() + renderTracks() + renderCurriculum() + renderProjects() + renderBonus() + renderFooter();
     syncUI();
@@ -592,7 +577,7 @@ async function pullSync() {
 }
 
 /* ═══════════════════════════════════════════════════
-   AUTO-SYNC on checkbox change
+   AUTO-SYNC
 ═══════════════════════════════════════════════════ */
 let autoSyncTimer = null;
 function scheduleAutoSync() {
@@ -607,11 +592,11 @@ function scheduleAutoSync() {
     } catch {
       setCloudStatus('SYNC FAILED', '#f87171');
     }
-  }, 1500); // debounce 1.5s after last checkbox click
+  }, 1500); 
 }
 
 /* ═══════════════════════════════════════════════════
-   LOGOUT
+   LOGOUT / RESET
 ═══════════════════════════════════════════════════ */
 function logoutProfile() {
   localStorage.removeItem(UK);
@@ -621,9 +606,6 @@ function logoutProfile() {
   showMsg('sm-msg-out', 'Logged out. Local progress is still saved.', 'info');
 }
 
-/* ═══════════════════════════════════════════════════
-   RESET
-═══════════════════════════════════════════════════ */
 document.getElementById('reset-btn').onclick = () => {
   if (!confirm('Reset all local progress?')) return;
   localStorage.removeItem(SK);
@@ -636,7 +618,7 @@ document.getElementById('reset-btn').onclick = () => {
 };
 
 /* ═══════════════════════════════════════════════════
-   RENDER HELPERS (unchanged from original)
+   RENDER HELPERS
 ═══════════════════════════════════════════════════ */
 function phaseColor(wn) {
   for (const ph of CFG.phases) { if (ph.weeks.includes(wn)) return ph.color; }
@@ -674,6 +656,14 @@ function buildWeekHtml(week) {
     const hasRes    = s.resources && s.resources.length > 0;
     const resHtml   = hasRes ? s.resources.map(r => `<span class="res-chip">${escHtml(r)}</span>`).join('') : '';
 
+    // Bundle new 2026 features so they actually render in the AI column
+    const aiTasks = [].concat(
+      s.ai || [], 
+      s.new_2026 || [], 
+      s.mcp_2026 || [], 
+      s.a2a_2026 || []
+    );
+
     return `
       <div class="session-wrap">
         <div class="session-row${doneClass}${wkClass}" id="row-${escHtml(s.id)}">
@@ -683,9 +673,9 @@ function buildWeekHtml(week) {
               onchange="toggleSession('${escHtml(s.id)}',${week.week},this.checked)">
           </div>
           <div class="s-day">${escHtml(s.day)}</div>
-          <div class="s-col">${renderTasks(s.mern)}</div>
+          <div class="s-col">${renderTasks(s.web)}</div>
           <div class="s-col">
-            ${renderTasks(s.ai)}
+            ${renderTasks(aiTasks)}
             ${hasRes ? `<button class="res-btn" onclick="toggleRes('${escHtml(resId)}')">📚 resources</button>` : ''}
           </div>
         </div>
@@ -706,7 +696,7 @@ function buildWeekHtml(week) {
         <div class="col-header">
           <div class="col-h"></div>
           <div class="col-h">SESSION</div>
-          <div class="col-h" style="color:var(--ind)">MERN + FULL-STACK</div>
+          <div class="col-h" style="color:var(--ind)">NEXT.JS + FULL-STACK</div>
           <div class="col-h" style="color:var(--ml)">ML / LLM / AI TRACK</div>
         </div>
         ${rows}
