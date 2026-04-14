@@ -243,7 +243,7 @@
           "id": "w2-mon","day": "MON","type": "weekday",
           "web": [
             "Next.js App Router setup: layouts (layout.tsx), pages (page.tsx), routing conventions",
-            "React Server Components (RSC) vs Client Components ("use client"): when to use each",
+            "React Server Components (RSC) vs Client Components ('use client'): when to use each",
             "Data Fetching in Next.js: fetch API, caching strategies, revalidation (ISR)",
             "Server Actions: performing server-side mutations without dedicated API routes",
             "Build: a multi-step form utilizing Server Actions and client-side validation"
